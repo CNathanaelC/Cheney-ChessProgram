@@ -2,15 +2,19 @@ package chess;
 
 import java.util.Collection;
 
+import static chess.ChessGame.TeamColor.WHITE;
+
 public class Game implements ChessGame{
+    TeamColor teamTurn = WHITE;
+
     @Override
     public TeamColor getTeamTurn() {
-        return null;
+        return teamTurn;
     }
 
     @Override
     public void setTeamTurn(TeamColor team) {
-
+        teamTurn = team;
     }
 
     @Override

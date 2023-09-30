@@ -4,72 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cheney Chess Program.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/ChessBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/ChessGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/ChessMove.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/ChessPiece.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/ChessPosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess/InvalidMoveException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/TestFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/ChessBoardTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/ChessGameTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessExtraCredit/CastlingTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessExtraCredit/EnPassantTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessPieceTests/BishopMoveTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessPieceTests/KingMoveTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessPieceTests/KnightMoveTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessPieceTests/PawnMoveTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessPieceTests/QueenMoveTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/chessTests/chessPieceTests/RookMoveTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/chess/ChessBoard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/chess/ChessGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/chess/ChessMove.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/chess/ChessPiece.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/chess/ChessPosition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/chess/InvalidMoveException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/TestFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/ChessBoardTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/ChessGameTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessExtraCredit/CastlingTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessExtraCredit/EnPassantTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessPieceTests/BishopMoveTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessPieceTests/KingMoveTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessPieceTests/KnightMoveTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessPieceTests/PawnMoveTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessPieceTests/QueenMoveTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/1-chess-game/starter-code/passoffTests/chessTests/chessPieceTests/RookMoveTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/setup/empty-project.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/setup/implement-ispellcorrector.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/setup/new-project.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/setup/project-structure.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/setup/run-tests.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/setup/setup.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/setup/starter-code.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/specification.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/spelling-corrector.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/jars/apiguardian-api-1.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/jars/junit-jupiter-api-5.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/jars/junit-platform-commons-1.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/jars/opentest4j-1.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/notsobig.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/passoff/SpellTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/passoff/TrieTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/spell/INode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/spell/ISpellCorrector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/spell/ITrie.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/spell/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/word.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/spelling-corrector/starter-code/words.txt" beforeDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="implemented a couple methods without editing">
+      <change afterPath="$PROJECT_DIR$/src/chess/Move.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess/Piece.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +65,14 @@
       <option name="presentableId" value="Default" />
       <updated>1695688533010</updated>
     </task>
+    <task id="LOCAL-00001" summary="implemented a couple methods without editing">
+      <created>1696034103552</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696034103552</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,5 +85,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="implemented a couple methods without editing" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented a couple methods without editing" />
   </component>
 </project>
