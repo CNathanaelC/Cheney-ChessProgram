@@ -1,6 +1,7 @@
 package chess;
 
-public class Position implements ChessPosition{
+
+public class Position implements ChessPosition {
     private int row;
     private int column;
     @Override
