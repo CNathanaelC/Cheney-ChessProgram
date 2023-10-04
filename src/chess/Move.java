@@ -4,8 +4,9 @@ import static chess.ChessPiece.PieceType.PAWN;
 import static chess.ChessPiece.PieceType.QUEEN;
 
 public class Move implements ChessMove{
-    Position sp = new Position();
-    Position ep = new Position();
+    private Position sp = new Position();
+    private Position ep = new Position();
+    private ChessPiece.PieceType pp;
     @Override
     public ChessPosition getStartPosition() {
         return sp;
@@ -30,5 +31,12 @@ public class Move implements ChessMove{
         } else {
             return PAWN;
         }
+    }
+    public void setPromotionPiece(ChessPiece.PieceType pt) {
+        pp = pt;
+    }
+    @Override
+    public boolean equals(ChessMove move) {
+        return (this.getStartPosition().getRow() == move.getStartPosition().getRow() && this.getStartPosition().getColumn() == move.getStartPosition().getColumn() && this.getEndPosition().getRow() == move.getEndPosition().getRow() && this.getEndPosition().getColumn() == move.getEndPosition().getColumn());
     }
 }

@@ -3,11 +3,12 @@ package chess;
 import javax.management.openmbean.CompositeDataSupport;
 import java.util.Collection;
 
+import static chess.ChessGame.TeamColor.BLACK;
 import static chess.ChessGame.TeamColor.WHITE;
 
 public class Game implements ChessGame{
     private TeamColor teamTurn = WHITE;
-    Board official_board = new Board();
+    public Board official_board = new Board();
     @Override
     public TeamColor getTeamTurn() {
         return teamTurn;
@@ -25,7 +26,34 @@ public class Game implements ChessGame{
 
     @Override
     public void makeMove(ChessMove move) throws InvalidMoveException {
+        Piece piece = (Piece) official_board.getPiece(move.getStartPosition());
+        //if move is in possible moves
+        Collection<ChessMove> possibleMoves = piece.pieceMoves(official_board, move.getStartPosition());
+        boolean continueQ = false;
+        for(ChessMove possibleMove : possibleMoves) {
+            System.out.println("Move: (" + possibleMove.getStartPosition().getRow() + "," + possibleMove.getStartPosition().getColumn() + ") to (" +
+                    possibleMove.getEndPosition().getRow() + "," + possibleMove.getEndPosition().getColumn() + ")\n");
+            if(possibleMove.equals(move)) {
+                continueQ = true;
+            }
+        }
+        if(!continueQ) {
+            throw new InvalidMoveException("Invalid move: " + move);
+        }
 
+        //if king is in check after
+        if(isInCheck(teamTurn)) {
+            throw new InvalidMoveException("Invalid move: " + move);
+        }
+        //make the move
+        official_board.board[move.getStartPosition().getRow()-1][move.getStartPosition().getColumn()-1] = null;
+        official_board.board[move.getEndPosition().getRow()-1][move.getEndPosition().getColumn()-1] = piece;
+        //set it as the next teamturn
+        if(teamTurn == WHITE) {
+            teamTurn = BLACK;
+        } else {
+            teamTurn = WHITE;
+        }
     }
 
     @Override

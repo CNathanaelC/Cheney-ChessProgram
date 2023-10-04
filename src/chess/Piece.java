@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Piece implements ChessPiece{
@@ -24,22 +25,24 @@ public class Piece implements ChessPiece{
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        Collection<Move> moves = null;
+        Collection<ChessMove> moves = new ArrayList<>();
         Move move = new Move();
         if(getPieceType() == PieceType.KING) {
             for(int r = -1; r <= 1; r++) {
                 for(int c = -1; c <= 1; c++) {
                     Position prospect = new Position();
-                    prospect.setRow(myPosition.getRow()+r);
-                    prospect.setColumn(myPosition.getColumn()+c);
-                    if(board.getPiece(prospect) == null) {
-                        move.setStartPosition((Position) myPosition);
-                        move.setEndPosition(prospect);
-                        moves.add(move);
-                    } else if(board.getPiece(prospect).getTeamColor() != this.getTeamColor()) {
-                        move.setStartPosition((Position) myPosition);
-                        move.setEndPosition(prospect);
-                        moves.add(move);
+                    if(myPosition.getRow()+r > -1 && myPosition.getRow()+r < 8 && myPosition.getColumn()+c > -1 && myPosition.getColumn()+c < 8) {
+                        prospect.setRow(myPosition.getRow()+r);
+                        prospect.setColumn(myPosition.getColumn()+c);
+                        if(board.getPiece(prospect) == null) {
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        } else if(board.getPiece(prospect).getTeamColor() != this.getTeamColor()) {
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        }
                     }
                 }
             }
@@ -55,8 +58,7 @@ public class Piece implements ChessPiece{
         } else if(getPieceType()== PieceType.PAWN) {
 
         }
-        moves.add(move);
-        return null;
+        return moves;
     }
 
 }
