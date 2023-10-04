@@ -62,7 +62,7 @@
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.ChessBoardTests">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chess.Main" />
       <module name="Cheney Chess Program" />
@@ -124,8 +124,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ChessBoardTests" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ChessGameTests" />
         <item itemvalue="JUnit.ChessBoardTests.defaultGameBoard" />
       </list>

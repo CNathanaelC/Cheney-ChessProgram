@@ -128,9 +128,9 @@ public class Board implements ChessBoard {
                     Position coord = new Position();
                     coord.setRow(r+1);
                     coord.setColumn(c+1);
-                    Piece piece = new Piece();
-                    piece.setPieceType(null);
-                    piece.setTeamColor(null);
+                    Piece piece = null;
+//                    piece.setPieceType(null);
+//                    piece.setTeamColor(null);
                     addPiece(coord, piece);
                 }
             }
