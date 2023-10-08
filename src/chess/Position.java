@@ -1,6 +1,8 @@
 package chess;
 
 
+import javax.management.openmbean.CompositeDataSupport;
+
 public class Position implements ChessPosition {
     private int row;
     private int column;
@@ -19,5 +21,6 @@ public class Position implements ChessPosition {
     public void setColumn(int c) {
         column = c;
     }
+
 
 }

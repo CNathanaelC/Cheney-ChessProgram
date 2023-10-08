@@ -25,5 +25,4 @@ public interface ChessMove {
      */
     ChessPiece.PieceType getPromotionPiece();
 
-    boolean equals(ChessMove move);
 }

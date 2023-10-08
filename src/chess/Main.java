@@ -6,8 +6,15 @@ public class Main {
 
     public static void main(String[] args) {
         Game game = new Game();
+//        Position p = new Position();
+//        p.setRow(3);
+//        p.setColumn(5);
+//        Piece pi = new Piece();
+//        pi.setPieceType(ChessPiece.PieceType.QUEEN);
+//        pi.setTeamColor(ChessGame.TeamColor.WHITE);
+//        game.official_board.addPiece(p,pi);
         game.official_board.resetBoard();
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < 10; i++) {
             System.out.println(game.official_board.toString());
             Move move = new Move();
             Position start = new Position();
@@ -25,12 +32,16 @@ public class Main {
             end.setRow(row);
             column = scanner.nextInt();
             end.setColumn(column);
-            move.setStartPosition(start);
-            move.setEndPosition(end);
-            try {
-                game.makeMove(move);
-            } catch (InvalidMoveException e) {
-                throw new RuntimeException(e);
+            if(game.official_board.getPiece(start) != null) {
+                move.setStartPosition(start);
+                move.setEndPosition(end);
+                try {
+                    game.makeMove(move);
+                } catch (InvalidMoveException e) {
+                    System.out.print("Try a different move\n\n");
+                }
+            } else {
+                System.out.print("Try a different move\n\n");
             }
         }
 

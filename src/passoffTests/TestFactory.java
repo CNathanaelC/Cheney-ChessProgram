@@ -36,7 +36,7 @@ public class TestFactory {
         Move m = new Move();
         m.setStartPosition((Position) startPosition);
         m.setEndPosition((Position) endPosition);
-        m.setPromotionPiece(promotionPiece);
+        m.setPromotionPiece((Piece.PieceType)promotionPiece);
 		return m;
     }
     //------------------------------------------------------------------------------------------------------------------

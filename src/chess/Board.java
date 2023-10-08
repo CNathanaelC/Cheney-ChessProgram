@@ -71,7 +71,7 @@ public class Board implements ChessBoard {
                     piece.setTeamColor(BLACK);
                     addPiece(coord, piece);
                 }
-                //FIXME::c != 4 is just for testing purposes to make sure the king can move
+
                 else if(r == 1) {
                     Position coord = new Position();
                     coord.setRow(r+1);
@@ -139,10 +139,15 @@ public class Board implements ChessBoard {
 
     public String toString() {
         StringBuilder picture = new StringBuilder();
+        picture.append(8);
         for(int r = 7; r > -1; r--) {
+            if(r != 7) {
+                //FIXME::get rid of sum_r and adding it to the append as well as the picture.append(8) above for final tostring
+                int sum_r = r+1;
+                picture.append("|\n"+sum_r);
+            }
             for(int c = 0; c < 8; c++) {
                 picture.append('|');
-
                 Piece piece = new Piece();
                 piece = board[r][c];
                 if(piece != null) {
@@ -182,18 +187,14 @@ public class Board implements ChessBoard {
                         } else {
                             picture.append('p');
                         }
-                    } else {
-                        picture.append(" ");
-                    }
-                    if (c == 7) {
-                        picture.append("|\n");
                     }
                 } else {
                     picture.append(" ");
                 }
             }
         }
-
+        //FIXME::get rid of the |#|#|#|#|# in the append statement for final
+        picture.append("|\n |1|2|3|4|5|6|7|8|");
         return picture.toString();
     }
 }

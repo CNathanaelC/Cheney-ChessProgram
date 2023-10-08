@@ -26,7 +26,7 @@ public class Move implements ChessMove{
 
     @Override
     public ChessPiece.PieceType getPromotionPiece() {
-        if(getEndPosition().getRow() == 0 || getEndPosition().getRow() == 7) {
+        if(getEndPosition().getRow() == 1 || getEndPosition().getRow() == 8) {
             return QUEEN;
         } else {
             return PAWN;
@@ -36,7 +36,14 @@ public class Move implements ChessMove{
         pp = pt;
     }
     @Override
-    public boolean equals(ChessMove move) {
-        return (this.getStartPosition().getRow() == move.getStartPosition().getRow() && this.getStartPosition().getColumn() == move.getStartPosition().getColumn() && this.getEndPosition().getRow() == move.getEndPosition().getRow() && this.getEndPosition().getColumn() == move.getEndPosition().getColumn());
+    public boolean equals(Object o) {
+        return (this.getStartPosition().getRow() == ((Move)o).getStartPosition().getRow() && this.getStartPosition().getColumn() == ((Move)o).getStartPosition().getColumn() && this.getEndPosition().getRow() == ((Move)o).getEndPosition().getRow() && this.getEndPosition().getColumn() == ((Move)o).getEndPosition().getColumn());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.getStartPosition().hashCode();
+        result = 31 * result + getEndPosition().hashCode();
+        return result;
     }
 }
