@@ -63,7 +63,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -87,7 +87,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -111,7 +111,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -135,7 +135,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -160,7 +160,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -185,7 +185,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -210,7 +210,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -235,7 +235,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -264,7 +264,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -289,7 +289,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -314,7 +314,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -339,7 +339,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -392,16 +392,11 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
-                            System.out.println("Add Move: (" + myPosition.getRow() + "," + myPosition.getColumn() + ") to (" + r + "," + c + ")");
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
-                            System.out.println("S: " + move.getStartPosition().getRow() + " " + move.getStartPosition().getColumn());
-                            System.out.println("E: " + move.getEndPosition().getRow() + " " + move.getEndPosition().getColumn());
-                            System.out.println("Before: " + moves.size());
                             moves.add((ChessMove) move);
-                            System.out.println("After: " + moves.size());
                         }
                     } else {
                         Move move = new Move();
@@ -421,7 +416,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -445,7 +440,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);
@@ -469,7 +464,7 @@ public class Piece implements ChessPiece{
                     prospect.setColumn(c);
                     if(board.getPiece(prospect) != null) {
                         piecesInPath = false;
-                        if(board.getPiece(prospect).getTeamColor() != board.getPiece(myPosition).getTeamColor()) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
                             Move move = new Move();
                             move.setStartPosition((Position) myPosition);
                             move.setEndPosition(prospect);

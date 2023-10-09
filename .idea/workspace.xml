@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt;">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Piece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,20 +35,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/bubba/IdeaProjects/Chess Program - Copy",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bubba/IdeaProjects/Chess Program - Copy&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="chess" />
@@ -56,7 +57,7 @@
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests.chessTests.chessPieceTests in Cheney Chess Program">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chess.Main" />
       <module name="Cheney Chess Program" />
@@ -130,11 +131,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.passoffTests in Cheney Chess Program" />
         <item itemvalue="JUnit.passoffTests.chessTests.chessPieceTests in Cheney Chess Program" />
         <item itemvalue="JUnit.ChessGameTests" />
         <item itemvalue="JUnit.QueenMoveTests" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.passoffTests in Cheney Chess Program" />
       </list>
     </recent_temporary>
   </component>
@@ -196,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696728666968</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly">
+      <created>1696729988954</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1696729988954</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,6 +224,7 @@
     <MESSAGE value="implemented a couple methods and fixd testfactory" />
     <MESSAGE value="implemented a couple methods and fixed testfactory and chess board tests are passed" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt;" />
+    <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly" />
   </component>
 </project>

@@ -64,17 +64,19 @@ public class Game implements ChessGame{
     @Override
     public boolean isInCheck(TeamColor teamColor) {
         Position kp = (Position) getKing(teamColor);
-        for(int r = 0; r < 8; r++) {
-            for(int c = 0; c < 8; c++) {
-                if(official_board.board[r][c] != null) {
-                    if(official_board.board[r][c].getTeamColor() != teamColor) {
-                        Position pp = new Position();
-                        pp.setColumn(c+1);
-                        pp.setRow(r+1);
-                        Collection<ChessMove> possible_moves = validMoves(pp);
-                        for(ChessMove m : possible_moves) {
-                            if(m.getEndPosition().getRow() == kp.getRow() && m.getEndPosition().getColumn() == kp.getColumn()) {
-                                return true;
+        if(kp != null) {
+            for(int r = 0; r < 8; r++) {
+                for(int c = 0; c < 8; c++) {
+                    if(official_board.board[r][c] != null) {
+                        if(official_board.board[r][c].getTeamColor() != teamColor) {
+                            Position pp = new Position();
+                            pp.setColumn(c+1);
+                            pp.setRow(r+1);
+                            Collection<ChessMove> possible_moves = validMoves(pp);
+                            for(ChessMove m : possible_moves) {
+                                if(m.getEndPosition().getRow() == kp.getRow() && m.getEndPosition().getColumn() == kp.getColumn()) {
+                                    return true;
+                                }
                             }
                         }
                     }
