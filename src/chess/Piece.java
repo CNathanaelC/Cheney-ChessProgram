@@ -356,6 +356,7 @@ public class Piece implements ChessPiece{
             return moves;
         }
         else if(getPieceType()== PieceType.KNIGHT) {
+            moves.clear();
             for(int r : new int[]{-2, -1, 1, 2, -2, -1, 1, 2}) {
                 for(int c : new int[]{1, 2, -2, -1, -1, -2, 2,1}) {
                     if(Math.abs(r) != Math.abs(c)) {
@@ -378,6 +379,11 @@ public class Piece implements ChessPiece{
                     }
                 }
             }
+//            for(ChessMove m : moves) {
+//                if(board.getPiece(m.getEndPosition()) != null) {
+//                    System.out.println(board.getPiece(m.getStartPosition()).getTeamColor() + "(" + m.getStartPosition().getRow() + "," + m.getStartPosition().getColumn() + ") -" + board.getPiece(m.getEndPosition()).getTeamColor() + "(" + m.getEndPosition().getRow() + "," + m.getEndPosition().getColumn() + ")");
+//                }
+//            }
             return moves;
         }
         else if(getPieceType()== PieceType.ROOK) {
@@ -482,99 +488,147 @@ public class Piece implements ChessPiece{
         }
         else if(getPieceType()== PieceType.PAWN) {
             if(getTeamColor() == ChessGame.TeamColor.BLACK) {
-                //if this is the first move
-                if(first_move) {
-                    first_move = false;
-                    for(int r = 1; r <= 2; r++) {
-                        if(myPosition.getRow()-r <= 8 && myPosition.getRow()-r >= 1) {
-                            Position prospect = new Position();
-                            prospect.setRow(myPosition.getRow()-r);
-                            prospect.setColumn(myPosition.getColumn());
-                            if(board.getPiece(prospect) == null) {
-                                Move move = new Move();
-                                move.setStartPosition((Position) myPosition);
-                                move.setEndPosition(prospect);
-                                moves.add(move);
-                            }
-                        }
-                    }
-                }
-                //if there are opposing pieces diagonal
-                for(int r = 1; r <= 1; r++) {
-                    for (int c = -1; c <= 1; c+=2) {
-                        Position prospect = new Position();
-                        if(myPosition.getRow()-r >= 1 && myPosition.getRow()-r <= 8 && myPosition.getColumn()-c >= 1 && myPosition.getColumn()-c <= 8) {
-                            prospect.setRow(myPosition.getRow()-r);
-                            prospect.setColumn(myPosition.getColumn()-c);
-                            if( board.getPiece(prospect) != null && board.getPiece(prospect).getTeamColor() != this.getTeamColor()) {
-                                Move move = new Move();
-                                move.setStartPosition((Position) myPosition);
-                                move.setEndPosition(prospect);
-                                moves.add(move);
-                            }
-                        }
-                    }
-                }
-                //all others (only can more forward one space
-                Position prospect = new Position();
-                if(myPosition.getRow()-1 <= 1) {
-                    prospect.setRow(myPosition.getRow()+1);
-                    prospect.setColumn(myPosition.getColumn());
+                //South
+                int edit_int = 1;
+                boolean blocked = false;
+                if(myPosition.getRow()-edit_int >= 1) {
+                    int r = myPosition.getRow()-edit_int;
+                    Position prospect = new Position();
+                    int c = myPosition.getColumn();
+                    prospect.setRow(r);
+                    prospect.setColumn(c);
                     if(board.getPiece(prospect) == null) {
                         Move move = new Move();
                         move.setStartPosition((Position) myPosition);
                         move.setEndPosition(prospect);
                         moves.add(move);
+                    } else {
+                        blocked = true;
+                    }
+                }
+                if(first_move && !blocked) {
+                    edit_int = 2;
+                    first_move = false;
+                    if(myPosition.getRow()-edit_int >= 1) {
+                        int r = myPosition.getRow()-edit_int;
+                        Position prospect = new Position();
+                        int c = myPosition.getColumn();
+                        prospect.setRow(r);
+                        prospect.setColumn(c);
+                        if(board.getPiece(prospect) == null) {
+                            Move move = new Move();
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        }
+                    }
+                }
+
+
+                //Southeast
+                if (myPosition.getColumn()+1 <= 8 && myPosition.getRow()-1 >= 1) {
+                    Position prospect = new Position();
+                    int c = myPosition.getColumn() + 1;
+                    int r = myPosition.getRow() - 1;
+                    prospect.setRow(r);
+                    prospect.setColumn(c);
+                    if(board.getPiece(prospect) != null) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
+                            Move move = new Move();
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        }
+                    }
+                }
+                //Southwest
+                if(myPosition.getColumn()-1 >= 1 && myPosition.getRow()-1 >= 1) {
+                    Position prospect = new Position();
+                    int c = myPosition.getColumn()-1;
+                    int r = myPosition.getRow()-1;
+                    prospect.setRow(r);
+                    prospect.setColumn(c);
+                    if(board.getPiece(prospect) != null) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
+                            Move move = new Move();
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        }
                     }
                 }
                 return moves;
             }
             else {
-                //if this is the first move
-                if(first_move) {
-                    first_move = false;
-                    for(int r = 1; r <= 2; r++) {
-                        if(myPosition.getRow()+r <= 8 && myPosition.getRow()+r >= 1) {
-                            Position prospect = new Position();
-                            prospect.setRow(myPosition.getRow()+r);
-                            prospect.setColumn(myPosition.getColumn());
-                            if(board.getPiece(prospect) == null) {
-                                Move move = new Move();
-                                move.setStartPosition((Position) myPosition);
-                                move.setEndPosition(prospect);
-                                moves.add(move);
-                            }
-                        }
-                    }
-                }
-                //if there are opposing pieces diagonal
-                for(int r = 1; r <= 1; r++) {
-                    for (int c = -1; c <= 1; c+=2) {
-                        Position prospect = new Position();
-                        if(myPosition.getRow()+r >= 1 && myPosition.getRow()+r <= 8 && myPosition.getColumn()+c >= 1 && myPosition.getColumn()+c <= 8) {
-                            prospect.setRow(myPosition.getRow()+r);
-                            prospect.setColumn(myPosition.getColumn()+c);
-                            if(board.getPiece(prospect) != null && board.getPiece(prospect).getTeamColor() != this.getTeamColor()) {
-                                Move move = new Move();
-                                move.setStartPosition((Position) myPosition);
-                                move.setEndPosition(prospect);
-                                moves.add(move);
-                            }
-                        }
-                    }
-                }
-                //all others (only can more forward one space
-                Position prospect = new Position();
-                if(myPosition.getRow()+1 <= 8) {
-                    prospect.setRow(myPosition.getRow()+1);
-                    prospect.setColumn(myPosition.getColumn());
+                //North
+                int edit_int = 1;
+                boolean blocked = false;
+                if(myPosition.getRow()+edit_int <= 8) {
+                    int r = myPosition.getRow()+edit_int;
+                    Position prospect = new Position();
+                    int c = myPosition.getColumn();
+                    prospect.setRow(r);
+                    prospect.setColumn(c);
                     if(board.getPiece(prospect) == null) {
                         Move move = new Move();
                         move.setStartPosition((Position) myPosition);
                         move.setEndPosition(prospect);
                         moves.add(move);
+                    } else {
+                        blocked = true;
                     }
                 }
+                if(first_move && !blocked) {
+                    edit_int = 2;
+                    first_move = false;
+                    if(myPosition.getRow()+edit_int <= 8) {
+                        int r = myPosition.getRow()+edit_int;
+                        Position prospect = new Position();
+                        int c = myPosition.getColumn();
+                        prospect.setRow(r);
+                        prospect.setColumn(c);
+                        if(board.getPiece(prospect) == null) {
+                            Move move = new Move();
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        }
+                    }
+                }
+
+                //Northwest
+                if(myPosition.getColumn()-1 >= 1 && myPosition.getRow()+1 <= 8) {
+                    Position prospect = new Position();
+                    int c = myPosition.getColumn() - 1;
+                    int r = myPosition.getRow() + 1;
+                    prospect.setRow(r);
+                    prospect.setColumn(c);
+                    if(board.getPiece(prospect) != null) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
+                            Move move = new Move();
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        }
+                    }
+                }
+                //Northeast
+                if(myPosition.getColumn()+1 <= 8 && myPosition.getRow()+1 <= 8) {
+                    Position prospect = new Position();
+                    int c = myPosition.getColumn() + 1;
+                    int r = myPosition.getRow() + 1;
+                    prospect.setRow(r);
+                    prospect.setColumn(c);
+                    if(board.getPiece(prospect) != null) {
+                        if(board.getPiece(prospect).getTeamColor() != getTeamColor()) {
+                            Move move = new Move();
+                            move.setStartPosition((Position) myPosition);
+                            move.setEndPosition(prospect);
+                            moves.add(move);
+                        }
+                    }
+                }
+
                 return moves;
             }
         }
