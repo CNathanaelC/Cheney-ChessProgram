@@ -530,7 +530,7 @@ public class Piece implements ChessPiece{
                         blocked = true;
                     }
                 }
-                if(first_move && !blocked && myPosition.getRow() == 7) {
+                if(!blocked && myPosition.getRow() == 7) {
                     edit_int = 2;
                     first_move = false;
                     if(myPosition.getRow()-edit_int >= 1) {
@@ -602,7 +602,7 @@ public class Piece implements ChessPiece{
                         blocked = true;
                     }
                 }
-                if(first_move && !blocked && myPosition.getRow() == 2) {
+                if(!blocked && myPosition.getRow() == 2) {
                     edit_int = 2;
                     first_move = false;
                     if(myPosition.getRow()+edit_int <= 8) {

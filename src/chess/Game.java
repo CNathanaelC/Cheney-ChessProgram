@@ -24,12 +24,17 @@ public class Game implements ChessGame{
     @Override
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
         Collection<ChessMove> valid = new HashSet<>();
+        //iterate through piece moves
         for(ChessMove move : official_board.getPiece(startPosition).pieceMoves(official_board, startPosition)){
-            if(official_board.getPiece(move.getEndPosition()) != null) {
-                if(official_board.getPiece(move.getStartPosition()).getTeamColor() != official_board.getPiece(move.getEndPosition()).getTeamColor()) {
-                    valid.add(move);
-                }
-            } else {
+            //pretend making move
+            Game simulation = new Game();
+            simulation.setBoard(official_board);
+            Piece pretend = new Piece();
+            pretend = (Piece) simulation.official_board.getPiece(move.getStartPosition());
+            simulation.official_board.board[move.getStartPosition().getRow()-1][move.getStartPosition().getColumn()-1] = null;
+            simulation.official_board.board[move.getEndPosition().getRow()-1][move.getEndPosition().getColumn()-1] = pretend;
+            //check if board clone is in check
+            if(!simulation.isInCheck(official_board.getPiece(startPosition).getTeamColor())) {
                 valid.add(move);
             }
         }
@@ -98,7 +103,7 @@ public class Game implements ChessGame{
                             Position pp = new Position();
                             pp.setColumn(c+1);
                             pp.setRow(r+1);
-                            Collection<ChessMove> possible_moves = validMoves(pp);
+                            Collection<ChessMove> possible_moves = official_board.getPiece(pp).pieceMoves(official_board,pp);
                             for(ChessMove m : possible_moves) {
                                 if(m.getEndPosition().getRow() == kp.getRow() && m.getEndPosition().getColumn() == kp.getColumn()) {
                                     return true;
