@@ -46,10 +46,12 @@ public class Game implements ChessGame{
         //if move is in possible moves
         Collection<ChessMove> possibleMoves = validMoves(move.getStartPosition());
         boolean continueQ = false;
+        System.out.println("Move: (" + ((Move)move).getStartPosition().getRow() + "," + ((Move)move).getStartPosition().getColumn() + ") to (" +
+                ((Move)move).getEndPosition().getRow() + "," + ((Move)move).getEndPosition().getColumn() + ")");
         for(ChessMove possibleMove : possibleMoves) {
-//            System.out.println("Move: (" + ((Move)possibleMove).getStartPosition().getRow() + "," + ((Move)possibleMove).getStartPosition().getColumn() + ") to (" +
-//                    ((Move)possibleMove).getEndPosition().getRow() + "," + ((Move)possibleMove).getEndPosition().getColumn() + ")\n");
-            if(((Move)possibleMove).equals(move)) {
+            System.out.println("\tMove: (" + ((Move)possibleMove).getStartPosition().getRow() + "," + ((Move)possibleMove).getStartPosition().getColumn() + ") to (" +
+                    ((Move)possibleMove).getEndPosition().getRow() + "," + ((Move)possibleMove).getEndPosition().getColumn() + ")");
+           if(((Move)possibleMove).equals(move)) {
                 continueQ = true;
             }
         }

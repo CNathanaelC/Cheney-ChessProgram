@@ -8,8 +8,7 @@ public class Piece implements ChessPiece{
     private PieceType type;
     private ChessGame.TeamColor color;
 
-    private boolean first_move = true;
-
+    public boolean first_move = true;
     @Override
     public ChessGame.TeamColor getTeamColor() {
         return color;
@@ -49,6 +48,31 @@ public class Piece implements ChessPiece{
                     }
                 }
             }
+//            if(first_move) {//Castling
+//                if(getTeamColor() == ChessGame.TeamColor.WHITE) {
+//                    Position rook_west = new Position();
+//                    rook_west.setRow(1);
+//                    rook_west.setColumn(1);
+//                    Position rook_east = new Position();
+//                    rook_east.setRow(1);
+//                    rook_east.setColumn(8);
+//                    Piece rw = (Piece) board.getPiece(rook_west);
+//                    Piece re = (Piece) board.getPiece(rook_east);
+//                    if(myPosition.getRow() == 1 && myPosition.getColumn() == 5) {
+//                        if(rw != null) {
+//                            if(rw.first_move) {
+//
+//                            }
+//                        } else if (re != null) {
+//                            if(re.first_move) {
+//
+//                            }
+//                        }
+//                    }
+//                } else {
+//
+//                }
+//            }
             return moves;
         }
         else if(getPieceType()== PieceType.QUEEN) {
@@ -506,7 +530,7 @@ public class Piece implements ChessPiece{
                         blocked = true;
                     }
                 }
-                if(first_move && !blocked) {
+                if(first_move && !blocked && myPosition.getRow() == 7) {
                     edit_int = 2;
                     first_move = false;
                     if(myPosition.getRow()-edit_int >= 1) {
@@ -578,7 +602,7 @@ public class Piece implements ChessPiece{
                         blocked = true;
                     }
                 }
-                if(first_move && !blocked) {
+                if(first_move && !blocked && myPosition.getRow() == 2) {
                     edit_int = 2;
                     first_move = false;
                     if(myPosition.getRow()+edit_int <= 8) {

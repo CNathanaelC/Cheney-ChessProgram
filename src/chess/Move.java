@@ -51,9 +51,9 @@ public class Move implements ChessMove{
     public boolean equals(Object o) {
         return (this.getStartPosition().getRow() == ((Move)o).getStartPosition().getRow() && this.getStartPosition().getColumn() == ((Move)o).getStartPosition().getColumn() && this.getEndPosition().getRow() == ((Move)o).getEndPosition().getRow() && this.getEndPosition().getColumn() == ((Move)o).getEndPosition().getColumn());
     }
-//
+
 //    @Override
 //    public int hashCode() {
-//        return System.identityHashCode(this);
+//        return System.identityHashCode(pp) * System.identityHashCode(sp) * System.identityHashCode(ep) ;
 //    }
 }
