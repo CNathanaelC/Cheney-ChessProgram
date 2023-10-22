@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="15 failed 43 passed all pieces supposedly work correctly. None in valid moves and invalid make move, full game checkmate, and pinned king also failed">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="phase 1 completed sans enpassant and castling">
+      <change afterPath="$PROJECT_DIR$/src/Model/AuthToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/GameData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ClearApplicationResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/CreateGameResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/DeleteAuthTokenResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/DeleteGameResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/DeleteUserResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ExitGameResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/JoinGameResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ListGamesResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/LoginResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/LogoutResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/RegisterResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/Request.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/DataAccess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/DataAccessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/IDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/2-server-design/starter-code/dataAccess/DataAccessException.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +40,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -35,20 +59,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bubba/IdeaProjects/Chess Program - Copy&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "OverrideImplement.generate.javadoc": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/bubba/IdeaProjects/Chess Program - Copy",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="chess" />
@@ -63,7 +88,7 @@
       <module name="Cheney Chess Program" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chess.*" />
+          <option name="PATTERN" value="Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -226,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696909715294</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="phase 1 completed sans enpassant and castling">
+      <created>1696963938442</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1696963938442</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,7 +282,8 @@
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly maybe" />
     <MESSAGE value="18 failed 40 passed" />
     <MESSAGE value="15 failed 43 passed all pieces supposedly work correctly. None in valid moves and invalid make move, full game checkmate, and pinned king also failed" />
-    <option name="LAST_COMMIT_MESSAGE" value="15 failed 43 passed all pieces supposedly work correctly. None in valid moves and invalid make move, full game checkmate, and pinned king also failed" />
+    <MESSAGE value="phase 1 completed sans enpassant and castling" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase 1 completed sans enpassant and castling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -259,12 +292,6 @@
           <url>file://$PROJECT_DIR$/src/passoffTests/chessTests/ChessGameTests.java</url>
           <line>1004</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="move.getEndPosition().getRow()==6 &amp;&amp; move.getEndPosition().getColumn() == 3" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/chess/Game.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
