@@ -2,7 +2,7 @@ package Service;
 
 public class RegisterResult implements Result {
     /** Creates an instance of RegisterResult and sets it up regarding the success or failure of a request */
-    RegisterResult(Request request, boolean result) {
+    public RegisterResult() {
 
     }
     private String message = "";

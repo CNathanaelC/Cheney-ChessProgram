@@ -1,8 +1,8 @@
 package Service;
 
 public class ClearApplicationResult implements Result {
-    /** Creates an instance of ClearApplicationResult and sets it up regarding the success or failure of a request */
-    ClearApplicationResult(Request request, boolean result) {
+    /** Creates an instance of ClearApplicationResult */
+    ClearApplicationResult() {
 
     }
     private String message = "";

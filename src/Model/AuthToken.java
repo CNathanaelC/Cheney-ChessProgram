@@ -2,12 +2,14 @@ package Model;
 
 import Model.User;
 
+import java.util.UUID;
+
 /** Model class to contain elements of a Authentication Token
  *
  */
 public class AuthToken {
     /** creates an instance of AuthToken ready to customized to a user */
-    AuthToken() {
+    public AuthToken() {
 
     }
     /** the String representation of the Authentication Token */
@@ -20,8 +22,9 @@ public class AuthToken {
      * @param user the user to be associated with the AuthToken to be generated
      */
 
-    public void createUniqueAuthToken(User user) {
-        
+    public void createUniqueAuthToken() {
+        UUID id = UUID.randomUUID();
+        authToken = id.toString();
     }
 
     public String getAuthToken() {

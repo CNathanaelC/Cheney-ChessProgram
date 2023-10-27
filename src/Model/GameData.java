@@ -6,7 +6,7 @@ import chess.Game;
  */
 public class GameData {
     /** Creates an instance of GameData to be adapted to a game session */
-    GameData() {
+    public GameData() {
 
     }
     /** the integer representation unique to the game session */

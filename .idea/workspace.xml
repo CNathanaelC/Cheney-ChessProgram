@@ -7,30 +7,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="phase 1 completed sans enpassant and castling">
-      <change afterPath="$PROJECT_DIR$/src/Model/AuthToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/GameData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/ClearApplicationResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/CreateGameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/DeleteAuthTokenResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/DeleteGameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/DeleteUserResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/ExitGameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/JoinGameResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/ListGamesResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/LoginResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/LogoutResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/RegisterResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataAccess/DataAccess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataAccess/DataAccessException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataAccess/IDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 2 Completed and Modified">
+      <change afterPath="$PROJECT_DIR$/src/Client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Handlers/Handlers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Server/ChessServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ClearApplicationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/passoff-dependencies.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/tyrus-standalone-client-1.15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/passoffTests/serverTests/StandardAPITests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/2-server-design/starter-code/dataAccess/DataAccessException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cheney Chess Program.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Cheney Chess Program.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/3-web-api/starter-code/libs/passoff-dependencies.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/3-web-api/starter-code/libs/tyrus-standalone-client-1.15.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/3-web-api/starter-code/serverTests/StandardAPITests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/3-web-api/starter-code/web/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/3-web-api/starter-code/web/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/3-web-api/starter-code/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/3-web-api/starter-code/web/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AuthToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ClearApplicationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ClearApplicationResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RegisterResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/DataAccess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/IDAO.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,30 +68,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "OverrideImplement.generate.javadoc": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/bubba/IdeaProjects/Chess Program - Copy",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bubba/IdeaProjects/Cheney Chess Program/src/libs&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="chess" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\web" />
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src" />
+      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\passoffTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.passoffTests in Cheney Chess Program">
+  <component name="RunManager" selected="JUnit.StandardAPITests">
+    <configuration name="ChessServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Server.ChessServer" />
+      <module name="Cheney Chess Program" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chess.Main" />
       <module name="Cheney Chess Program" />
@@ -112,16 +136,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChessGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Cheney Chess Program" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.*" />
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.chessTests.ChessGameTests" />
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -141,27 +165,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="passoffTests.chessTests.chessPieceTests in Cheney Chess Program" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Cheney Chess Program" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.chessTests.chessPieceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.chessTests.chessPieceTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="Application.ChessServer" />
         <item itemvalue="JUnit.passoffTests in Cheney Chess Program" />
         <item itemvalue="JUnit.ChessGameTests$ValidMoveTests.kingInDanger" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.passoffTests.chessTests.chessPieceTests in Cheney Chess Program" />
-        <item itemvalue="JUnit.ChessGameTests" />
       </list>
     </recent_temporary>
   </component>
@@ -258,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696963938442</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Phase 2 Completed and Modified">
+      <created>1698008229959</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1698008229959</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -283,7 +300,8 @@
     <MESSAGE value="18 failed 40 passed" />
     <MESSAGE value="15 failed 43 passed all pieces supposedly work correctly. None in valid moves and invalid make move, full game checkmate, and pinned king also failed" />
     <MESSAGE value="phase 1 completed sans enpassant and castling" />
-    <option name="LAST_COMMIT_MESSAGE" value="phase 1 completed sans enpassant and castling" />
+    <MESSAGE value="Phase 2 Completed and Modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 2 Completed and Modified" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
