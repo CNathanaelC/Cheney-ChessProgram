@@ -1,6 +1,6 @@
 package Service;
 
-public class DeleteGameResult implements Result {
+public class DeleteGameResult {
     /** Creates an instance of DeleteGameResult and sets it up regarding the success or failure of a request */
     DeleteGameResult(Request request, boolean result) {
 
@@ -23,11 +23,9 @@ public class DeleteGameResult implements Result {
      * returns the response to an API function depending on success or the different failures in the following format:
      * [responseCode] {message}
      *
-     * @param functionStatus
-     * @return
+     * @return a string that follows the following format: [responseCode] {message}
      */
-    @Override
-    public String toString(boolean functionStatus) {
-        return null;
+    public String toString() {
+        return ("[" + responseCode + "]" + " " + message);
     }
 }

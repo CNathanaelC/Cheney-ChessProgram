@@ -1,6 +1,6 @@
 package Service;
 
-public class CreateGameResult implements Result {
+public class CreateGameResult {
     /** Creates an instance of CreateGameResult and sets it up regarding the success or failure of a request */
     CreateGameResult(Request request, boolean result) {
 
@@ -23,12 +23,10 @@ public class CreateGameResult implements Result {
      * returns the response to an API function depending on success or the different failures in the following format:
      * [responseCode] {message}
      *
-     * @param functionStatus
-     * @return
+     * @return a string that follows the following format: [responseCode] {message}
      */
-    @Override
-    public String toString(boolean functionStatus) {
-        return null;
+    public String toString() {
+        return ("[" + responseCode + "]" + " " + message);
     }
 
 }

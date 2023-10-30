@@ -13,10 +13,9 @@ public interface Result {
 
     /** returns the response to an API function depending on success or the different failures in the following format:
      * [responseCode] {message}
-     * @param functionStatus
-     * @return
+     * @return string in the following format: [responseCode] {message}
      */
-    public String toString(boolean functionStatus);
+    public String toString();
 
 
 }

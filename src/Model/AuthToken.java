@@ -19,7 +19,6 @@ public class AuthToken {
 
     /** Creates a unique identifier for the User
      *
-     * @param user the user to be associated with the AuthToken to be generated
      */
 
     public void createUniqueAuthToken() {

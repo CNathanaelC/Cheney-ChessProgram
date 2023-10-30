@@ -3,6 +3,7 @@ package dataAccess;
 import Model.GameData;
 import chess.Game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,12 +43,31 @@ public class GameDAO {
     /** A method for retrieving all games from the database
      *
      * @return a list of all the games being played or which are available to play
-     * @throws DataAccessException
+     * @throws DataAccessException if it cannot be done
      */
-    public List<Game> findAll() throws DataAccessException {
-        return null;
+    public List<GameData> findAll() throws DataAccessException {
+        List<GameData> games = new ArrayList<>();
+        for(GameData g : allGames.values()) {
+            games.add(g);
+        }
+        if(games.size() == 0) {
+            throw new DataAccessException("{ \"message\": \"Error: description\" }");
+        } else {
+            return games;
+        }
     }
 
+    /** a method for retrieving a string list of all games fromt he database
+     * @return a String of all the games being played or which are available to play
+     * @throws DataAccessException if it cannot be done
+     */
+    public String gameList() throws DataAccessException {
+        StringBuilder games = new StringBuilder();
+        for(String g : allGames.keySet()) {
+            games.append(g);
+        }
+        return games.toString();
+    }
     /** ClaimSpot: A method/methods for claiming a spot in the game. The player's username is provided and should be saved as either the whitePlayer or blackPlayer in the database.
      *
      * @param username the username associated with the user trying to claim a team
@@ -79,6 +99,9 @@ public class GameDAO {
      * @throws DataAccessException if data access fails
      */
     public void clear() throws DataAccessException{
-
+        allGames.clear();
+//        if(allGames.size() != 0) {
+//            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
+//        }
     }
 }

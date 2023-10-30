@@ -25,6 +25,7 @@ public class AuthDAO {
      */
     public void createAuth(AuthToken authToken, User user) throws DataAccessException{
         authToken.createUniqueAuthToken();
+        int bf = allAuths.size();
         allAuths.put(user.getUserUsername(), authToken);
     }
 
@@ -33,6 +34,24 @@ public class AuthDAO {
      * @throws DataAccessException if data access fails
      */
     public void clear() throws DataAccessException{
+        allAuths.clear();
+//        if(allAuths.size() != 0) {
+//            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
+//        }
+    }
+    /** deletes the authToken to logout a user
+     *
+     */
+    public void logout(AuthToken authToken) throws DataAccessException {
+        int bef = allAuths.size();
+        for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
+            if(a.getValue().getAuthToken() == authToken.getAuthToken()) {
+                allAuths.remove(a.getKey());
+            }
+        }
+        if(bef == allAuths.size()) {
+            throw new DataAccessException("{ \"message\": \"Error: User's AuthToken was never deleted\" }");
+        }
 
     }
 }

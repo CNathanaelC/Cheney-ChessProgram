@@ -1,8 +1,8 @@
 package Service;
 
 public class LogoutResult implements Result {
-    /** Creates an instance of LogoutResult and sets it up regarding the success or failure of a request */
-    LogoutResult(Request request, boolean result) {
+    /** Creates an instance of LogoutResult */
+    LogoutResult() {
 
     }
     private String message = "";
@@ -26,7 +26,6 @@ public class LogoutResult implements Result {
      * @param functionStatus
      * @return
      */
-    @Override
     public String toString(boolean functionStatus) {
         return null;
     }

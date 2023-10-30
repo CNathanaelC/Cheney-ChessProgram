@@ -23,12 +23,11 @@ public class RegisterResult implements Result {
      * returns the response to an API function depending on success or the different failures in the following format:
      * [responseCode] {message}
      *
-     * @param functionStatus
      * @return
      */
     @Override
-    public String toString(boolean functionStatus) {
-        return null;
+    public String toString() {
+        return ("[" + responseCode + "]" + " " + message);
     }
 
 }

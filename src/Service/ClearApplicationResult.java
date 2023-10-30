@@ -1,6 +1,6 @@
 package Service;
 
-public class ClearApplicationResult implements Result {
+public class ClearApplicationResult {
     /** Creates an instance of ClearApplicationResult */
     ClearApplicationResult() {
 
@@ -23,12 +23,10 @@ public class ClearApplicationResult implements Result {
      * returns the response to an API function depending on success or the different failures in the following format:
      * [responseCode] {message}
      *
-     * @param functionStatus
-     * @return
+     * @return a string that follows the following format: [responseCode] {message}
      */
-    @Override
-    public String toString(boolean functionStatus) {
-        return null;
+    public String toString() {
+        return ("[" + responseCode + "]" + " " + message);
     }
 
 }

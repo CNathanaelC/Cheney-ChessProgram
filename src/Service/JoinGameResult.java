@@ -26,9 +26,8 @@ public class JoinGameResult implements Result {
      * @param functionStatus
      * @return
      */
-    @Override
-    public String toString(boolean functionStatus) {
-        return null;
+    public String toString() {
+        return ("[" + responseCode + "]" + " " + message);
     }
 
 }

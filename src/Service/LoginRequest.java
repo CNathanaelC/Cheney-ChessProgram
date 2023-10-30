@@ -1,24 +1,18 @@
 package Service;
 
-import Model.AuthToken;
-import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 /** The parameter of the service classes that provides the parameters to perform it
  *
  */
-public class RegisterRequest {
+public class LoginRequest {
     @SerializedName("username")
     /** the proposed username */
     private String username;
     @SerializedName("password")
     /** the proposed password */
     private String password;
-    @SerializedName("email")
-    /** the proposed email */
-    private String email;
 
     public String getUsername() {
         return username;
@@ -36,11 +30,4 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
