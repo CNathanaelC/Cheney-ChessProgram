@@ -27,6 +27,8 @@ public class UserDAO {
     public void createUser(User user) throws DataAccessException{
         if(find(user.getUserUsername()) != null) {
             throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
+        } else if(user.getUserPassword() == null || user.getUserPassword() == null || user.getUserEmail() == null) {
+            throw new DataAccessException("{ \"message\": \"Error: bad request\" }");
         } else {
             allUsers.put(user.getUserUsername(), user);
         }

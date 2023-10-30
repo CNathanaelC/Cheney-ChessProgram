@@ -42,7 +42,7 @@ public class Services {
                 lr.setMessage("{ \"username\":\"" + u.getUserUsername() + "\", \"authToken\":\"" + a.getAuthToken() + "\" }");
             } catch (DataAccessException e) {
                 lr.setMessage(e.getMessage());
-                if(e.getMessage() == "{ \"message\": \"Error: unauthorized\" }") {
+                if(e.getMessage().equals("{ \"message\": \"Error: unauthorized\" }")) {
                     lr.setResponseCode(401);
                 } else {
                     lr.setResponseCode(500);
@@ -66,7 +66,7 @@ public class Services {
                 lr.setMessage("{}");
             } catch(DataAccessException e) {
                 lr.setMessage(e.getMessage());
-                if(e.getMessage() == "{ \"message\": \"Error: unauthorized\" }") {
+                if(e.getMessage().equals("{ \"message\": \"Error: unauthorized\" }")) {
                     lr.setResponseCode(401);
                 } else {
                     lr.setResponseCode(500);
@@ -100,9 +100,9 @@ public class Services {
                 rr.setMessage("{ \"username\":\"" + u.getUserUsername() + "\", \"authToken\":\"" + a.getAuthToken() + "\" }");
             } catch (DataAccessException e) {
                 rr.setMessage(e.getMessage());
-                if(e.getMessage() == "{ \"message\": \"Error: bad request\" }") {
+                if(e.getMessage().equals("{ \"message\": \"Error: bad request\" }")) {
                     rr.setResponseCode(400);
-                } else if(e.getMessage() == "{ \"message\": \"Error: already taken\" }") {
+                } else if(e.getMessage().equals("{ \"message\": \"Error: already taken\" }")) {
                     rr.setResponseCode(403);
                 } else {
                     rr.setResponseCode(500);

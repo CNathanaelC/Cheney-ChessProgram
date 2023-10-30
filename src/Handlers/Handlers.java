@@ -50,9 +50,6 @@ public class Handlers {
     public static Object LogoutHandler(Request request, Response response) {
         Gson r = new Gson();
         Service.LogoutRequest req = r.fromJson(request.body(), LogoutRequest.class);
-        AuthToken a = new AuthToken();
-        a.setAuthToken(request.headers("authorization"));
-        req.setAuthToken(a);
         Services.LoginService service = new Services.LoginService();
         LogoutResult result = service.logoutUser(req);
         response.status(result.getResponseCode());

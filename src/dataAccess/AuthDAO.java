@@ -45,7 +45,7 @@ public class AuthDAO {
     public void logout(AuthToken authToken) throws DataAccessException {
         int bef = allAuths.size();
         for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
-            if(a.getValue().getAuthToken() == authToken.getAuthToken()) {
+            if(a.getValue().getAuthToken().equals(authToken.getAuthToken())) {
                 allAuths.remove(a.getKey());
             }
         }

@@ -7,30 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3 started and first two APIs are completed maybe">
-      <change afterPath="$PROJECT_DIR$/src/Service/ListGamesRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/LogoutRequest.java" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handlers/Handlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Handlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AuthToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/ChessServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ChessServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ClearApplicationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ClearApplicationResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/CreateGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DeleteAuthTokenResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/DeleteAuthTokenResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DeleteGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/DeleteGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DeleteUserResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/DeleteUserResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ExitGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ExitGameResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/JoinGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/JoinGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ListGamesResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LoginResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/LogoutRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LogoutRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/LogoutResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LogoutResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RegisterResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Result.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +35,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2Vuagjk3FsxrhUgjLobzbrUmB5W" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -60,22 +46,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bubba/IdeaProjects/Cheney Chess Program/src/libs&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "OverrideImplement.generate.javadoc": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "create.test.in.the.same.root": "true",
+    "last_opened_file_path": "C:/Users/bubba/IdeaProjects/Cheney Chess Program/src/libs",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="chess" />
@@ -86,7 +73,7 @@
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\passoffTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChessServer">
+  <component name="RunManager" selected="JUnit.StandardAPITests">
     <configuration name="ChessServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Server.ChessServer" />
       <module name="Cheney Chess Program" />
@@ -275,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698367197890</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring">
+      <created>1698698347462</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1698698347462</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -302,7 +296,8 @@
     <MESSAGE value="phase 1 completed sans enpassant and castling" />
     <MESSAGE value="Phase 2 Completed and Modified" />
     <MESSAGE value="Phase 3 started and first two APIs are completed maybe" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 3 started and first two APIs are completed maybe" />
+    <MESSAGE value="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -311,11 +306,6 @@
           <url>file://$PROJECT_DIR$/src/passoffTests/chessTests/ChessGameTests.java</url>
           <line>1004</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Service/LogoutRequest.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.IllegalStateException" package="java.lang" />

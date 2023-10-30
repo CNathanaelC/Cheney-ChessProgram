@@ -23,7 +23,6 @@ public class JoinGameResult implements Result {
      * returns the response to an API function depending on success or the different failures in the following format:
      * [responseCode] {message}
      *
-     * @param functionStatus
      * @return
      */
     public String toString() {

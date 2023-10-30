@@ -9,7 +9,7 @@ import java.util.List;
  *
  */
 public class LogoutRequest {
-//    @SerializedName("authorization")
+    @SerializedName("authorization")
     /** the authToken needed to execute the associated request for a user */
     private AuthToken authToken = new AuthToken();
 
