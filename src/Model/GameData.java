@@ -6,8 +6,8 @@ import chess.Game;
  */
 public class GameData {
     /** Creates an instance of GameData to be adapted to a game session */
-    public GameData() {
-
+    public GameData(int id) {
+        setGameID(id);
     }
     /** the integer representation unique to the game session */
     private int gameID;
@@ -19,6 +19,7 @@ public class GameData {
     private String gameName;
     /** the actual game with its associated board, pieces, moves, and status(ongoing, checkmate, or stalemate) */
     private Game game;
+
 
     public int getGameID() {
         return gameID;

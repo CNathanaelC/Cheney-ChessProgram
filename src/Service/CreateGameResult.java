@@ -2,7 +2,7 @@ package Service;
 
 public class CreateGameResult {
     /** Creates an instance of CreateGameResult and sets it up regarding the success or failure of a request */
-    CreateGameResult(Request request, boolean result) {
+    CreateGameResult() {
 
     }
     private String message = "";

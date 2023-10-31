@@ -1,6 +1,7 @@
 package dataAccess;
 
 import Model.GameData;
+import chess.ChessGame;
 import chess.Game;
 
 import java.util.ArrayList;
@@ -13,9 +14,8 @@ import java.util.Map;
  */
 public class GameDAO {
     /** Stores all the current games of the server */
-    private static Map<String, GameData> allGames = new HashMap<>();
-
-    public Map<String, GameData> getAllGames() {
+    private static Map<Integer, GameData> allGames = new HashMap<>();
+    public Map<Integer, GameData> getAllGames() {
         return allGames;
     }
     /** Creates an Instance of GameDAO*/
@@ -27,17 +27,26 @@ public class GameDAO {
      *
      * @param game the game that is to be inserted into the database
      */
-    public void insert(Game game) throws DataAccessException {
-
+    public void insert(GameData game) throws DataAccessException {
+        int bf = allGames.size();
+        allGames.put(game.getGameID(), game);
+        if(allGames.size() == bf) {
+            throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
+        }
     }
 
     /** A method for retrieving a specified game from the database by gameID.
      *
      * @param gameID the number associated with the game to find
      * @throws DataAccessException if the access fails
+     * @return the GameData for the game associated with the gameID
      */
-    public void find(int gameID) throws DataAccessException {
-
+    public GameData find(int gameID) throws DataAccessException {
+        if(allGames.containsKey(gameID)) {
+            return allGames.get(gameID);
+        } else {
+            throw new DataAccessException("{ \"message\": \"Error: bad request\" }");
+        }
     }
 
     /** A method for retrieving all games from the database
@@ -50,31 +59,36 @@ public class GameDAO {
         for(GameData g : allGames.values()) {
             games.add(g);
         }
-        if(games.size() == 0) {
-            throw new DataAccessException("{ \"message\": \"Error: description\" }");
-        } else {
-            return games;
-        }
+        return games;
     }
 
-    /** a method for retrieving a string list of all games fromt he database
-     * @return a String of all the games being played or which are available to play
-     * @throws DataAccessException if it cannot be done
-     */
-    public String gameList() throws DataAccessException {
-        StringBuilder games = new StringBuilder();
-        for(String g : allGames.keySet()) {
-            games.append(g);
-        }
-        return games.toString();
-    }
     /** ClaimSpot: A method/methods for claiming a spot in the game. The player's username is provided and should be saved as either the whitePlayer or blackPlayer in the database.
      *
      * @param username the username associated with the user trying to claim a team
      * @throws DataAccessException if data access fails
      */
-    public void claimSpot(String username) throws DataAccessException {
-
+    public void claimSpot(String username, String color, int gameID) throws DataAccessException {
+        if(color == "empty" || color == "") {
+            return;
+        } else if (color == "WHITE") {
+            if(allGames.get(gameID).getWhiteUsername() == null) {
+                GameData gd = allGames.get(gameID);
+                gd.setWhiteUsername(username);
+                allGames.put(gameID, gd);
+            } else {
+                throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
+            }
+        } else if (color == "BLACK") {
+            if(allGames.get(gameID).getBlackUsername() == null) {
+                GameData gd = allGames.get(gameID);
+                gd.setBlackUsername(username);
+                allGames.put(gameID, gd);
+            } else {
+                throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
+            }
+        } else {
+            throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
+        }
     }
 
     /** UpdateGame: A method for updating a chessGame in the database. It should replace the chessGame string corresponding to a given gameID with a new chessGame string.

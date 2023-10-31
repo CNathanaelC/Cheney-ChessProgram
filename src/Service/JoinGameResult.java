@@ -1,8 +1,8 @@
 package Service;
 
-public class JoinGameResult implements Result {
+public class JoinGameResult {
     /** Creates an instance of JoinGameResult and sets it up regarding the success or failure of a request */
-    JoinGameResult(Request request, boolean result) {
+    JoinGameResult() {
 
     }
     private String message = "";

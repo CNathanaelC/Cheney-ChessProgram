@@ -2,6 +2,7 @@ package Handlers;
 
 import Model.AuthToken;
 import com.google.gson.stream.JsonReader;
+import dataAccess.AuthDAO;
 import spark.Request;
 import spark.Response;
 import Service.*;
@@ -49,7 +50,10 @@ public class Handlers {
     }
     public static Object LogoutHandler(Request request, Response response) {
         Gson r = new Gson();
-        Service.LogoutRequest req = r.fromJson(request.body(), LogoutRequest.class);
+        Service.LogoutRequest req = new LogoutRequest();
+        AuthToken a = new AuthToken();
+        a.setAuthToken(request.headers("Authorization"));
+        req.setAuthToken(a);
         Services.LoginService service = new Services.LoginService();
         LogoutResult result = service.logoutUser(req);
         response.status(result.getResponseCode());
@@ -60,18 +64,37 @@ public class Handlers {
         Gson r = new Gson();
         Service.ListGamesRequest req = r.fromJson(request.body(), ListGamesRequest.class);
         AuthToken a = new AuthToken();
-        a.setAuthToken(request.headers("authorization"));
+        a.setAuthToken(request.headers("Authorization"));
         req.setAuthToken(a);
         Services.JoinGameService service = new Services.JoinGameService();
         ListGamesResult result = service.getGamesList(req);
-        ListGamesRequest lgr = r.fromJson(request.body(), ListGamesRequest.class);
+        response.status(result.getResponseCode());
+        response.body(result.getMessage());
         return result.getMessage();
     }
     public static Object CreateGameHandler(Request request, Response response) {
-        return null;
+        Gson r = new Gson();
+        Service.CreateGameRequest req = r.fromJson(request.body(), CreateGameRequest.class);
+        AuthToken a = new AuthToken();
+        a.setAuthToken(request.headers("Authorization"));
+        req.setAuthToken(a);
+        Services.JoinGameService service = new Services.JoinGameService();
+        CreateGameResult result = service.createGame(req);
+        response.status(result.getResponseCode());
+        response.body(result.getMessage());
+        return result.getMessage();
     }
     public static Object JoinGameHandler(Request request, Response response) {
-        return null;
+        Gson r = new Gson();
+        Service.JoinGameRequest req = r.fromJson(request.body(), JoinGameRequest.class);
+        AuthToken a = new AuthToken();
+        a.setAuthToken(request.headers("Authorization"));
+        req.setAuthToken(a);
+        Services.JoinGameService service = new Services.JoinGameService();
+        JoinGameResult result = service.joinGame(req);
+        response.status(result.getResponseCode());
+        response.body(result.getMessage());
+        return result.getMessage();
     }
 
 }

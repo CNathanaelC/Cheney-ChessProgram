@@ -3,6 +3,9 @@ import Model.AuthToken;
 import Model.GameData;
 import Model.User;
 import dataAccess.*;
+
+import java.util.Map;
+import java.util.Set;
 //call the DAOs
 /** Class that contains all of the different types of Service classes */
 public class Services {
@@ -61,6 +64,9 @@ public class Services {
             try {
                 AuthToken a = request.getAuthToken();
                 AuthDAO ad = new AuthDAO();
+                for(var d : ad.getAllAuths().entrySet()) {
+                    System.out.println(d.getKey() + "  :::  " + d.getValue().getAuthToken());
+                }
                 ad.logout(a);
                 lr.setResponseCode(200);
                 lr.setMessage("{}");
@@ -93,9 +99,9 @@ public class Services {
                 AuthDAO ad = new AuthDAO();
                 User u = new User();
                 AuthToken a = new AuthToken();
-                a.createUniqueAuthToken();
                 u.register(request.getUsername(), request.getPassword(), request.getEmail());
                 ud.createUser(u);
+                ad.createAuth(a, u);
                 rr.setResponseCode(200);
                 rr.setMessage("{ \"username\":\"" + u.getUserUsername() + "\", \"authToken\":\"" + a.getAuthToken() + "\" }");
             } catch (DataAccessException e) {
@@ -166,8 +172,28 @@ public class Services {
          * @param request contains the needed objects, authentication code, and request associated code
          * @return a result that contains the associated code regarding failure or success and message dependent on the operation and success
          */
-        public CreateGameResult createGame(Request request) {
-            return null;
+        public CreateGameResult createGame(CreateGameRequest request) {
+            CreateGameResult cgr = new CreateGameResult();
+            try {
+                GameDAO gd = new GameDAO();
+                AuthDAO ad = new AuthDAO();
+                ad.validate(request.getAuthToken());
+                GameData newGame = new GameData(gd.getAllGames().size()+1000);
+                newGame.setGameName(request.getGameName());
+                gd.insert(newGame);
+                cgr.setResponseCode(200);
+                cgr.setMessage("{ \"gameID\":" + newGame.getGameID() + " }");
+            } catch (DataAccessException e) {
+                cgr.setMessage(e.getMessage());
+                if(e.getMessage().equals("{ \"message\": \"Error: bad request\" }")) {
+                    cgr.setResponseCode(400);
+                } else if(e.getMessage().equals("{ \"message\": \"Error: unauthorized\" }")) {
+                    cgr.setResponseCode(401);
+                } else {
+                    cgr.setResponseCode(500);
+                }
+            }
+            return cgr;
         }
         /** Verifies that the specified game exists, and,
          * if a color is specified, adds the caller as the requested color to the game.
@@ -176,8 +202,29 @@ public class Services {
          * @param request contains the needed objects, authentication code, and request associated code
          * @return a result that contains the associated code regarding failure or success and message dependent on the operation and success
          */
-        public JoinGameResult joinGame(Request request) {
-            return null;
+        public JoinGameResult joinGame(JoinGameRequest request) {
+            JoinGameResult jgr = new JoinGameResult();
+            try {
+                GameDAO gd = new GameDAO();
+                AuthDAO ad = new AuthDAO();
+                ad.validate(request.getAuthToken());
+                gd.find(request.getGameID());
+                gd.claimSpot(ad.getUsername(request.getAuthToken()), request.getPlayerColor(), request.getGameID());
+                jgr.setResponseCode(200);
+                jgr.setMessage("");
+            } catch (DataAccessException e) {
+                jgr.setMessage(e.getMessage());
+                if(e.getMessage().equals("{ \"message\": \"Error: bad request\" }")) {
+                    jgr.setResponseCode(400);
+                } else if(e.getMessage().equals("{ \"message\": \"Error: unauthorized\" }")) {
+                    jgr.setResponseCode(401);
+                } else if (e.getMessage().equals("{ \"message\": \"Error: already taken\" }")) {
+                    jgr.setResponseCode(403);
+                } else {
+                    jgr.setResponseCode(500);
+                }
+            }
+            return jgr;
         }
 
         /** exits a gamed that a user has joined canceling the game

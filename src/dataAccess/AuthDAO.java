@@ -3,6 +3,7 @@ package dataAccess;
 import Model.AuthToken;
 import Model.User;
 
+import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,8 +51,32 @@ public class AuthDAO {
             }
         }
         if(bef == allAuths.size()) {
-            throw new DataAccessException("{ \"message\": \"Error: User's AuthToken was never deleted\" }");
+            throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
         }
 
+    }
+
+    /** method to validate the authtoken exists
+     *
+     * @param authToken
+     * @return
+     * @throws DataAccessException
+     */
+    public boolean validate(AuthToken authToken) throws DataAccessException {
+        int bef = allAuths.size();
+        for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
+            if(a.getValue().getAuthToken().equals(authToken.getAuthToken())) {
+                return true;
+            }
+        }
+        throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
+    }
+    public String getUsername(AuthToken authToken) throws DataAccessException {
+        for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
+            if(a.getValue().getAuthToken().equals(authToken.getAuthToken())) {
+                return a.getKey();
+            }
+        }
+        throw new DataAccessException("{ \"message\": \"Error: bad request\" }");
     }
 }
