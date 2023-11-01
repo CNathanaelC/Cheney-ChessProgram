@@ -55,11 +55,7 @@ public class GameDAO {
      * @throws DataAccessException if it cannot be done
      */
     public List<GameData> findAll() throws DataAccessException {
-        List<GameData> games = new ArrayList<>();
-        for(GameData g : allGames.values()) {
-            games.add(g);
-        }
-        return games;
+        return new ArrayList<>(allGames.values());
     }
 
     /** ClaimSpot: A method/methods for claiming a spot in the game. The player's username is provided and should be saved as either the whitePlayer or blackPlayer in the database.
@@ -68,21 +64,23 @@ public class GameDAO {
      * @throws DataAccessException if data access fails
      */
     public void claimSpot(String username, String color, int gameID) throws DataAccessException {
-        if(color == "empty" || color == "") {
+        if(color == null) {
             return;
         } else if (color == "WHITE") {
             if(allGames.get(gameID).getWhiteUsername() == null) {
-                GameData gd = allGames.get(gameID);
-                gd.setWhiteUsername(username);
-                allGames.put(gameID, gd);
+                GameData game = allGames.get(gameID);
+                game.setGameID(gameID);
+                game.setWhiteUsername(username);
+                allGames.put(gameID, game);
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }
         } else if (color == "BLACK") {
             if(allGames.get(gameID).getBlackUsername() == null) {
-                GameData gd = allGames.get(gameID);
-                gd.setBlackUsername(username);
-                allGames.put(gameID, gd);
+                GameData game = allGames.get(gameID);
+                game.setGameID(gameID);
+                game.setBlackUsername(username);
+                allGames.put(gameID, game);
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }

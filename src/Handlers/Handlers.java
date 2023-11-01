@@ -14,12 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-//call the services
-//what do the request and response contain are they JSON?
-// is the decoding of the JSON that is the reason why there should be specific Request and result classes
-//how exactly does curl factor into this
-//does Services need to contain a class variable for each of the DAOs so that it is actually changed
-//I think that my design has more flaws than previously thought
+
 public class Handlers {
     public static Object RegisterHandler(Request request, Response response) {
         Gson r = new Gson();
@@ -62,7 +57,7 @@ public class Handlers {
     }
     public static Object ListGamesHandler(Request request, Response response) {
         Gson r = new Gson();
-        Service.ListGamesRequest req = r.fromJson(request.body(), ListGamesRequest.class);
+        Service.ListGamesRequest req = new ListGamesRequest();
         AuthToken a = new AuthToken();
         a.setAuthToken(request.headers("Authorization"));
         req.setAuthToken(a);
@@ -70,6 +65,7 @@ public class Handlers {
         ListGamesResult result = service.getGamesList(req);
         response.status(result.getResponseCode());
         response.body(result.getMessage());
+//        Gson json = new Gson();
         return result.getMessage();
     }
     public static Object CreateGameHandler(Request request, Response response) {

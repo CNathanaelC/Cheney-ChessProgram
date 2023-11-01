@@ -42,9 +42,9 @@ public class UserDAO {
      */
     public void clear() throws DataAccessException {
         allUsers.clear();
-//        if(allUsers.size() != 0) {
-//            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
-//        }
+        if(allUsers.size() != 0) {
+            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
+        }
     }
 
     /** a method to find if a user with a specific username exists in a database

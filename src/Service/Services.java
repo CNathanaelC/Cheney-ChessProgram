@@ -4,6 +4,7 @@ import Model.GameData;
 import Model.User;
 import dataAccess.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 //call the DAOs
@@ -64,9 +65,6 @@ public class Services {
             try {
                 AuthToken a = request.getAuthToken();
                 AuthDAO ad = new AuthDAO();
-                for(var d : ad.getAllAuths().entrySet()) {
-                    System.out.println(d.getKey() + "  :::  " + d.getValue().getAuthToken());
-                }
                 ad.logout(a);
                 lr.setResponseCode(200);
                 lr.setMessage("{}");
@@ -132,25 +130,35 @@ public class Services {
         public ListGamesResult getGamesList(ListGamesRequest request) {
             ListGamesResult lgr = new ListGamesResult();
             try {
+                AuthDAO ad = new AuthDAO();
+                ad.validate(request.getAuthToken());
                 StringBuilder messageToBe = new StringBuilder();
-                messageToBe.append("{ \"games\": [{");
                 GameDAO gd = new GameDAO();
-
-                for(GameData g : gd.findAll()) {
-                    messageToBe.append("\"gameID\": "+g.getGameID()+", ");
-                    messageToBe.append("\"whiteUsername\":\"");
+                messageToBe.append("{ \"games\": [");
+                gd.findAll();
+                List<GameData> games = gd.findAll();
+                for(GameData g : games) {
+//                    GamesListClass glc = new GamesListClass(g);
+//                    lgr.games.add(glc);
+                    messageToBe.append("{\"gameID\": "+g.getGameID()+", ");
+                    messageToBe.append("\"whiteUsername\": \"");
                     if(g.getWhiteUsername() != null) {
-                        messageToBe.append(g.getWhiteUsername()+"\", ");
+                        messageToBe.append(g.getWhiteUsername());
                     } else {
-                        messageToBe.append("null"+"\", ");
+                        messageToBe.append("");
                     }
+                    messageToBe.append("\", ");
                     messageToBe.append("\"blackUsername\":\"");
                     if(g.getBlackUsername() != null) {
-                        messageToBe.append(g.getBlackUsername()+"\", ");
+                        messageToBe.append(g.getBlackUsername());
                     } else {
-                        messageToBe.append("null"+"\", ");
+                        messageToBe.append("");
                     }
-                    messageToBe.append("\"gameName:\""+ g.getGameName() +"\"} \n");
+                    messageToBe.append("\", ");
+                    messageToBe.append("\"gameName\":\""+ g.getGameName() +"\"},");
+                }
+                if(games.size() > 0) {
+                    messageToBe.deleteCharAt(messageToBe.length()-1);
                 }
                 messageToBe.append("]}");
                 lgr.setMessage(messageToBe.toString());
@@ -209,9 +217,10 @@ public class Services {
                 AuthDAO ad = new AuthDAO();
                 ad.validate(request.getAuthToken());
                 gd.find(request.getGameID());
-                gd.claimSpot(ad.getUsername(request.getAuthToken()), request.getPlayerColor(), request.getGameID());
+                String username = ad.getUsername(request.getAuthToken());
+                gd.claimSpot(username, request.getPlayerColor(), request.getGameID());
                 jgr.setResponseCode(200);
-                jgr.setMessage("");
+                jgr.setMessage("{}");
             } catch (DataAccessException e) {
                 jgr.setMessage(e.getMessage());
                 if(e.getMessage().equals("{ \"message\": \"Error: bad request\" }")) {

@@ -71,12 +71,12 @@ public class AuthDAO {
         }
         throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
     }
-    public String getUsername(AuthToken authToken) throws DataAccessException {
+    public String getUsername(AuthToken authToken) {
         for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
-            if(a.getValue().getAuthToken().equals(authToken.getAuthToken())) {
+            if(a.getValue().getAuthToken() == authToken.getAuthToken()) {
                 return a.getKey();
             }
         }
-        throw new DataAccessException("{ \"message\": \"Error: bad request\" }");
+        return null;
     }
 }

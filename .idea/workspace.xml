@@ -7,17 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3: 8/23 passed (first 7 and last 1) login and register complete, and the rest still erroring">
-      <change afterPath="$PROJECT_DIR$/src/Service/CreateGameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/JoinGameRequest.java" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3: 17/23 passed (first 11 and various others) login and register complete, and the list ones are still erroring">
+      <change afterPath="$PROJECT_DIR$/src/Service/GamesListClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handlers/Handlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Handlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/CreateGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/JoinGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/JoinGameResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ListGamesRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ListGamesRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ListGamesResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698700160263</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Phase 3: 17/23 passed (first 11 and various others) login and register complete, and the list ones are still erroring">
+      <created>1698718089309</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1698718089309</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -308,7 +314,8 @@
     <MESSAGE value="Phase 3 started and first two APIs are completed maybe" />
     <MESSAGE value="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring" />
     <MESSAGE value="Phase 3: 8/23 passed (first 7 and last 1) login and register complete, and the rest still erroring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 3: 8/23 passed (first 7 and last 1) login and register complete, and the rest still erroring" />
+    <MESSAGE value="Phase 3: 17/23 passed (first 11 and various others) login and register complete, and the list ones are still erroring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 3: 17/23 passed (first 11 and various others) login and register complete, and the list ones are still erroring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

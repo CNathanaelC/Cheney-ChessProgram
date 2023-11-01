@@ -1,5 +1,9 @@
 package Service;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class ListGamesResult {
     /** Creates an instance of ListGamesResult and sets it up regarding the success or failure of a request */
     ListGamesResult() {
@@ -7,6 +11,8 @@ public class ListGamesResult {
     }
     private String message = "";
     private int responseCode = 0;
+//    @SerializedName("games")
+//    public List<GamesListClass> games;
     public String getMessage() {
         return message;
     }
@@ -19,13 +25,7 @@ public class ListGamesResult {
     public void setResponseCode(int code) {
         responseCode = code;
     }
-    /**
-     * returns the response to an API function depending on success or the different failures in the following format:
-     * [responseCode] {message}
-     *
-     * @param functionStatus
-     * @return
-     */
+
     /**
      * returns the response to an API function depending on success or the different failures in the following format:
      * [responseCode] {message}
