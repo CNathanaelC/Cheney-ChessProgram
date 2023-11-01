@@ -66,7 +66,7 @@ public class GameDAO {
     public void claimSpot(String username, String color, int gameID) throws DataAccessException {
         if(color == null) {
             return;
-        } else if (color == "WHITE") {
+        } else if (color.equals("WHITE")) {
             if(allGames.get(gameID).getWhiteUsername() == null) {
                 GameData game = allGames.get(gameID);
                 game.setGameID(gameID);
@@ -75,7 +75,7 @@ public class GameDAO {
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }
-        } else if (color == "BLACK") {
+        } else if (color.equals("BLACK")) {
             if(allGames.get(gameID).getBlackUsername() == null) {
                 GameData game = allGames.get(gameID);
                 game.setGameID(gameID);

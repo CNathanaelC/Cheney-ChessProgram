@@ -7,7 +7,6 @@ import dataAccess.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-//call the DAOs
 /** Class that contains all of the different types of Service classes */
 public class Services {
     /** Creates an instance of Services */
@@ -65,6 +64,7 @@ public class Services {
             try {
                 AuthToken a = request.getAuthToken();
                 AuthDAO ad = new AuthDAO();
+                ad.validate(a);
                 ad.logout(a);
                 lr.setResponseCode(200);
                 lr.setMessage("{}");
@@ -138,8 +138,6 @@ public class Services {
                 gd.findAll();
                 List<GameData> games = gd.findAll();
                 for(GameData g : games) {
-//                    GamesListClass glc = new GamesListClass(g);
-//                    lgr.games.add(glc);
                     messageToBe.append("{\"gameID\": "+g.getGameID()+", ");
                     messageToBe.append("\"whiteUsername\": \"");
                     if(g.getWhiteUsername() != null) {
@@ -165,7 +163,7 @@ public class Services {
                 lgr.setResponseCode(200);
             } catch(DataAccessException e) {
                 lgr.setMessage(e.getMessage());
-                if(e.getMessage() == "{ \"message\": \"Error: unauthorized\" }") {
+                if(e.getMessage().equals("{ \"message\": \"Error: unauthorized\" }")) {
                     lgr.setResponseCode(401);
                 } else {
                     lgr.setResponseCode(500);

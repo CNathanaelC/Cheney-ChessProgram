@@ -14,8 +14,6 @@ public class AuthToken {
     }
     /** the String representation of the Authentication Token */
     private String authToken;
-    /** the String representation of the AuthToken's associated username */
-    private String username;
 
     /** Creates a unique identifier for the User
      *
@@ -32,13 +30,5 @@ public class AuthToken {
 
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }

@@ -11,8 +11,6 @@ public class ListGamesResult {
     }
     private String message = "";
     private int responseCode = 0;
-//    @SerializedName("games")
-//    public List<GamesListClass> games;
     public String getMessage() {
         return message;
     }

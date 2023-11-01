@@ -12,8 +12,8 @@ import java.util.Map;
  */
 public class AuthDAO {
     /** Stores all the current Authentication Tokens of the server */
-    private static Map<String, AuthToken> allAuths = new HashMap<>();
-    public Map<String, AuthToken> getAllAuths() {
+    private static Map<String, String> allAuths = new HashMap<>();
+    public Map<String, String> getAllAuths() {
         return allAuths;
     }
 
@@ -26,8 +26,11 @@ public class AuthDAO {
      */
     public void createAuth(AuthToken authToken, User user) throws DataAccessException{
         authToken.createUniqueAuthToken();
-        int bf = allAuths.size();
-        allAuths.put(user.getUserUsername(), authToken);
+        final int bf = allAuths.size();
+        allAuths.put(authToken.getAuthToken(), user.getUserUsername());
+        if(bf == allAuths.size()) {
+            throw new DataAccessException("\"{ \"message\": \"Error: AuthToken never created\" }\"");
+        }
     }
 
     /** Clear: A method for clearing all AuthTokens from the database
@@ -36,24 +39,23 @@ public class AuthDAO {
      */
     public void clear() throws DataAccessException{
         allAuths.clear();
-//        if(allAuths.size() != 0) {
-//            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
-//        }
+        if(allAuths.size() != 0) {
+            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
+        }
     }
     /** deletes the authToken to logout a user
      *
      */
     public void logout(AuthToken authToken) throws DataAccessException {
-        int bef = allAuths.size();
-        for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
-            if(a.getValue().getAuthToken().equals(authToken.getAuthToken())) {
-                allAuths.remove(a.getKey());
+        final int bef = allAuths.size();
+        for(String a : allAuths.keySet()) {
+            if(a.equals(authToken.getAuthToken())) {
+                allAuths.remove(a);
             }
         }
         if(bef == allAuths.size()) {
             throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
         }
-
     }
 
     /** method to validate the authtoken exists
@@ -63,20 +65,14 @@ public class AuthDAO {
      * @throws DataAccessException
      */
     public boolean validate(AuthToken authToken) throws DataAccessException {
-        int bef = allAuths.size();
-        for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
-            if(a.getValue().getAuthToken().equals(authToken.getAuthToken())) {
+        for(String a : allAuths.keySet()) {
+            if(a.equals(authToken.getAuthToken())) {
                 return true;
             }
         }
         throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
     }
     public String getUsername(AuthToken authToken) {
-        for(Map.Entry<String, AuthToken> a : allAuths.entrySet()) {
-            if(a.getValue().getAuthToken() == authToken.getAuthToken()) {
-                return a.getKey();
-            }
-        }
-        return null;
+        return allAuths.get(authToken.getAuthToken());
     }
 }
