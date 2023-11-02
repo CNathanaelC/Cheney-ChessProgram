@@ -21,8 +21,12 @@ public class AuthDAO {
     public AuthDAO() {
 
     }
+
     /** Create authorization code in the database
      *
+     * @param authToken
+     * @param user
+     * @throws DataAccessException
      */
     public void createAuth(AuthToken authToken, User user) throws DataAccessException{
         authToken.createUniqueAuthToken();
@@ -43,8 +47,11 @@ public class AuthDAO {
             throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
         }
     }
+
     /** deletes the authToken to logout a user
      *
+     * @param authToken
+     * @throws DataAccessException
      */
     public void logout(AuthToken authToken) throws DataAccessException {
         final int bef = allAuths.size();
@@ -74,5 +81,14 @@ public class AuthDAO {
     }
     public String getUsername(AuthToken authToken) {
         return allAuths.get(authToken.getAuthToken());
+    }
+
+    public Boolean check(String username) {
+        for(String u : allAuths.values()) {
+            if(username.equals(u)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

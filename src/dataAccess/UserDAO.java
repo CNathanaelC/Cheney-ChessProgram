@@ -74,4 +74,11 @@ public class UserDAO {
             throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
         }
     }
+    public Boolean check(String username) {
+        if(allUsers.containsKey(username)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

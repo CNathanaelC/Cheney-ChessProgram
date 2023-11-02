@@ -1,6 +1,7 @@
 package passoffTests.unitTests;
 import Service.Services.*;
 import Service.*;
+import chess.Game;
 import dataAccess.AuthDAO;
 import dataAccess.DataAccessException;
 import dataAccess.GameDAO;
@@ -33,6 +34,7 @@ public class ServiceClassTests {
         sampleUser3.register("Palps", "JustD3wIt!", "notfromajedi@darkside.org");
         sampleGame = new GameData(1000);
         sampleGame.setBlackUsername("DarthVader");
+        sampleGame.setGameName("Now, I am the Master");
         UserDAO ud = new UserDAO();
         AuthDAO ad = new AuthDAO();
         GameDAO gd = new GameDAO();
@@ -71,6 +73,8 @@ public class ServiceClassTests {
         request.setPassword("P0werCable$");
         LoginResult result = service.loginUser(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
+        AuthDAO ad = new AuthDAO();
+        Assertions.assertTrue(ad.check("LukeSky"), "Username did not receive authToken");
     }
     @Test
     @Order(2)
@@ -81,6 +85,8 @@ public class ServiceClassTests {
         request.setAuthToken(authToken1);
         LogoutResult result = service.logoutUser(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
+        AuthDAO ad = new AuthDAO();
+        Assertions.assertFalse(ad.check("DarthVader"), "User's authToken was not deleted");
     }
     @Test
     @Order(3)
@@ -93,6 +99,8 @@ public class ServiceClassTests {
         request.setEmail("theforceismyally@dagobah.io");
         RegisterResult result = service.registerNewUser(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
+        UserDAO ud = new UserDAO();
+        Assertions.assertTrue(ud.check("YodaBomb"),"User was never added");
     }
     @Test
     @Order(4)
@@ -103,6 +111,7 @@ public class ServiceClassTests {
         request.setAuthToken(authToken1);
         ListGamesResult result = service.getGamesList(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
+        Assertions.assertEquals((String)"{ \"games\": [{\"gameID\": 1000, \"blackUsername\":\"DarthVader\", \"gameName\":\"Now, I am the Master\"}]}", (String)result.getMessage(),"Expected Message was not generated");
     }
     @Test
     @Order(5)
@@ -110,10 +119,20 @@ public class ServiceClassTests {
     public void creategame() {
         JoinGameService service = new JoinGameService();
         CreateGameRequest request = new CreateGameRequest();
+        GameData game = new GameData(1001);
         request.setAuthToken(authToken1);
         request.setGameName("Cloud City Trap");
+        game.setGameName("Cloud City Trap");
         CreateGameResult result = service.createGame(request);
+        GameDAO gd = new GameDAO();
+        try {
+            GameData g = gd.find(1001);
+            System.out.println(g.getWhiteUsername());
+        } catch (DataAccessException e) {
+
+        }
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
+        Assertions.assertTrue(gd.check(game), "Game as set was not found in DAO");
     }
     @Test
     @Order(6)
@@ -121,11 +140,15 @@ public class ServiceClassTests {
     public void joingame() {
         JoinGameService service = new JoinGameService();
         JoinGameRequest request = new JoinGameRequest();
+        GameDAO gd = new GameDAO();
+        GameData game = new GameData(1000);
         request.setAuthToken(authToken2);
         request.setPlayerColor("WHITE");
-        request.setGameID(sampleGame.getGameID());
+        game.setWhiteUsername(sampleUser3.getUserUsername());
+        request.setGameID(1000);
         JoinGameResult result = service.joinGame(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
+        Assertions.assertTrue(gd.check(game), "Game as set was not found in DAO");
     }
     @Test
     @Order(7)
@@ -135,6 +158,9 @@ public class ServiceClassTests {
         ClearApplicationRequest request = new ClearApplicationRequest();
         ClearApplicationResult result = service.clearApp(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
+        Assertions.assertFalse(new GameDAO().check(sampleGame), "Games were not cleared");
+        Assertions.assertFalse(new UserDAO().check(sampleUser1.getUserUsername()), "Users were not cleared");
+        Assertions.assertFalse(new AuthDAO().check(authToken1.getAuthToken()), "AuthTokens were not cleared");
     }
     @Test
     @Order(8)

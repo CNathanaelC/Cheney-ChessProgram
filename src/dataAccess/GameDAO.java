@@ -112,8 +112,34 @@ public class GameDAO {
      */
     public void clear() throws DataAccessException{
         allGames.clear();
-//        if(allGames.size() != 0) {
-//            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
-//        }
+        if(allGames.size() != 0) {
+            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
+        }
+    }
+    public Boolean check(GameData game) {
+        if(allGames.containsKey(game.getGameID())) {
+            if(allGames.get(game.getGameID()).getGameName().equals(game.getGameName())) {
+                if(allGames.get(game.getGameID()).getBlackUsername() != null && game.getBlackUsername() != null) {
+                    if(allGames.get(game.getGameID()).getBlackUsername().equals(game.getBlackUsername())) {
+                        if(allGames.get(game.getGameID()).getWhiteUsername() != null && game.getWhiteUsername() != null) {
+                            if(allGames.get(game.getGameID()).getWhiteUsername().equals(game.getWhiteUsername())) {
+                                return true;
+                            }
+                        } else if(allGames.get(game.getGameID()).getWhiteUsername() == game.getWhiteUsername()) {
+                            return true;
+                        }
+                    }
+                } else if(allGames.get(game.getGameID()).getBlackUsername() == game.getBlackUsername()) {
+                    if(allGames.get(game.getGameID()).getWhiteUsername() != null && game.getWhiteUsername() != null) {
+                        if(allGames.get(game.getGameID()).getWhiteUsername().equals(game.getWhiteUsername())) {
+                            return true;
+                        }
+                    } else if(allGames.get(game.getGameID()).getBlackUsername() == game.getBlackUsername()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

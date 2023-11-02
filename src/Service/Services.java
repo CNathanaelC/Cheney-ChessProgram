@@ -139,20 +139,16 @@ public class Services {
                 List<GameData> games = gd.findAll();
                 for(GameData g : games) {
                     messageToBe.append("{\"gameID\": "+g.getGameID()+", ");
-                    messageToBe.append("\"whiteUsername\": \"");
                     if(g.getWhiteUsername() != null) {
+                        messageToBe.append("\"whiteUsername\": \"");
                         messageToBe.append(g.getWhiteUsername());
-                    } else {
-                        messageToBe.append("");
+                        messageToBe.append("\", ");
                     }
-                    messageToBe.append("\", ");
-                    messageToBe.append("\"blackUsername\":\"");
                     if(g.getBlackUsername() != null) {
+                        messageToBe.append("\"blackUsername\":\"");
                         messageToBe.append(g.getBlackUsername());
-                    } else {
-                        messageToBe.append("");
+                        messageToBe.append("\", ");
                     }
-                    messageToBe.append("\", ");
                     messageToBe.append("\"gameName\":\""+ g.getGameName() +"\"},");
                 }
                 if(games.size() > 0) {

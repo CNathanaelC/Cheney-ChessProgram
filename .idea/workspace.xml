@@ -7,14 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail)">
-      <change afterPath="$PROJECT_DIR$/src/passoffTests/unitTests/ServiceClassTests.java" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail due to not being null? weird)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AuthToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ListGamesResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/passoffTests/unitTests/ServiceClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/passoffTests/unitTests/ServiceClassTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,7 @@
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\passoffTests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChessServer">
+  <component name="RunManager" selected="JUnit.ServiceClassTests">
     <configuration name="ChessServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Server.ChessServer" />
       <module name="Cheney Chess Program" />
@@ -98,6 +97,22 @@
       <option name="PACKAGE_NAME" value="passoffTests.unitTests" />
       <option name="MAIN_CLASS_NAME" value="passoffTests.unitTests.ServiceClassTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceClassTests.logout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Cheney Chess Program" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.unitTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.unitTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.unitTests.ServiceClassTests" />
+      <option name="METHOD_NAME" value="logout" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -133,29 +148,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests.successLogout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Cheney Chess Program" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="METHOD_NAME" value="successLogout" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServiceClassTests" />
+        <item itemvalue="JUnit.ServiceClassTests.logout" />
         <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="Application.ChessServer" />
         <item itemvalue="JUnit.StandardAPITests.goodJoin" />
-        <item itemvalue="JUnit.StandardAPITests.successLogout" />
-        <item itemvalue="JUnit.ServiceClassTests" />
       </list>
     </recent_temporary>
   </component>
@@ -294,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698798101340</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail due to not being null? weird)">
+      <created>1698880084251</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1698880084251</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,7 +331,8 @@
     <MESSAGE value="Phase 3: 8/23 passed (first 7 and last 1) login and register complete, and the rest still erroring" />
     <MESSAGE value="Phase 3: 17/23 passed (first 11 and various others) login and register complete, and the list ones are still erroring" />
     <MESSAGE value="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail)" />
+    <MESSAGE value="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail due to not being null? weird)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail due to not being null? weird)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
