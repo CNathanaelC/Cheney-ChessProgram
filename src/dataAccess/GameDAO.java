@@ -89,22 +89,6 @@ public class GameDAO {
         }
     }
 
-    /** UpdateGame: A method for updating a chessGame in the database. It should replace the chessGame string corresponding to a given gameID with a new chessGame string.
-     *
-     * @param gameID the number associated with the game that is to be updated
-     * @throws DataAccessException if data access fails
-     */
-    public void updateGame(int gameID) throws DataAccessException {
-
-    }
-
-    /** Remove: A method for removing a game from the database
-     *
-     * @param gameID the number associated with the game you are trying to remove
-     */
-    public void remove(int gameID) throws DataAccessException {
-
-    }
 
     /** Clear: A method for clearing all games from the database
      *
@@ -115,31 +99,5 @@ public class GameDAO {
         if(allGames.size() != 0) {
             throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
         }
-    }
-    public Boolean check(GameData game) {
-        if(allGames.containsKey(game.getGameID())) {
-            if(allGames.get(game.getGameID()).getGameName().equals(game.getGameName())) {
-                if(allGames.get(game.getGameID()).getBlackUsername() != null && game.getBlackUsername() != null) {
-                    if(allGames.get(game.getGameID()).getBlackUsername().equals(game.getBlackUsername())) {
-                        if(allGames.get(game.getGameID()).getWhiteUsername() != null && game.getWhiteUsername() != null) {
-                            if(allGames.get(game.getGameID()).getWhiteUsername().equals(game.getWhiteUsername())) {
-                                return true;
-                            }
-                        } else if(allGames.get(game.getGameID()).getWhiteUsername() == game.getWhiteUsername()) {
-                            return true;
-                        }
-                    }
-                } else if(allGames.get(game.getGameID()).getBlackUsername() == game.getBlackUsername()) {
-                    if(allGames.get(game.getGameID()).getWhiteUsername() != null && game.getWhiteUsername() != null) {
-                        if(allGames.get(game.getGameID()).getWhiteUsername().equals(game.getWhiteUsername())) {
-                            return true;
-                        }
-                    } else if(allGames.get(game.getGameID()).getBlackUsername() == game.getBlackUsername()) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 }

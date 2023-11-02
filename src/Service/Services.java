@@ -229,15 +229,6 @@ public class Services {
             }
             return jgr;
         }
-
-        /** exits a gamed that a user has joined canceling the game
-         *
-         * @param request contains the needed objects, authentication code, and request associated code
-         * @return a result that contains the associated code regarding failure or success and message dependent on the operation and success
-         */
-        public ExitGameResult exitGame(Request request) {
-            return null;
-        }
     }
     /** Manages functions regarding deleting data of various forms both incompletely and completely */
     public static class DestroyDataService {
@@ -267,24 +258,5 @@ public class Services {
             }
             return car;
         }
-
-        /** Removes a user
-         *
-         * @param request contains the needed objects, authentication code, and request associated code
-         * @return a result that contains the associated code regarding failure or success and message dependent on the operation and success
-         */
-        public DeleteUserResult deleteUser(Request request) { return  null;}
-        /** Removes a Game
-         *
-         * @param request contains the needed objects, authentication code, and request associated code
-         * @return a result that contains the associated code regarding failure or success and message dependent on the operation and success
-         */
-        public Result deleteGame(Request request) { return null;}
-        /** Removes an Authentication Token
-         *
-         * @param request contains the needed objects, authentication code, and request associated code
-         * @return a result that contains the associated code regarding failure or success and message dependent on the operation and success
-         */
-        public Result deleteAuthToken(Request request) { return  null;}
     }
 }

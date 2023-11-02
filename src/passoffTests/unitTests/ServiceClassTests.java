@@ -20,6 +20,16 @@ public class ServiceClassTests {
 
     @BeforeEach
     public void setup() {
+        UserDAO ud = new UserDAO();
+        AuthDAO ad = new AuthDAO();
+        GameDAO gd = new GameDAO();
+        try {
+            ad.clear();
+            ud.clear();
+            gd.clear();
+        } catch (DataAccessException e) {
+            System.out.println("Something in the clears sucks");
+        }
         sampleUser1 = new User();
         sampleUser1.register("DarthVader", "Ih@teS4nd", "skyvader@darkside.org");
         authToken1 = new AuthToken();
@@ -35,19 +45,10 @@ public class ServiceClassTests {
         sampleGame = new GameData(1000);
         sampleGame.setBlackUsername("DarthVader");
         sampleGame.setGameName("Now, I am the Master");
-        UserDAO ud = new UserDAO();
-        AuthDAO ad = new AuthDAO();
-        GameDAO gd = new GameDAO();
-        try {
-            ad.clear();
-            ud.clear();
-            gd.clear();
-        } catch (DataAccessException e) {
-            System.out.println("Something in the clears sucks");
-        }
         try {
             ud.createUser(sampleUser1);
             ud.createUser(sampleUser2);
+            ud.createUser(sampleUser3);
         } catch (DataAccessException e) {
             System.out.println("Something in UserDAO sucks");
         }
@@ -125,14 +126,10 @@ public class ServiceClassTests {
         game.setGameName("Cloud City Trap");
         CreateGameResult result = service.createGame(request);
         GameDAO gd = new GameDAO();
-        try {
-            GameData g = gd.find(1001);
-            System.out.println(g.getWhiteUsername());
-        } catch (DataAccessException e) {
-
-        }
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
-        Assertions.assertTrue(gd.check(game), "Game as set was not found in DAO");
+        Assertions.assertEquals("Cloud City Trap", gd.getAllGames().get(1001).getGameName(), "GameName does not match");
+        Assertions.assertEquals(null, gd.getAllGames().get(1001).getWhiteUsername(), "White username does not match");
+        Assertions.assertEquals(null, gd.getAllGames().get(1001).getBlackUsername(), "Black username does not match");
     }
     @Test
     @Order(6)
@@ -141,14 +138,14 @@ public class ServiceClassTests {
         JoinGameService service = new JoinGameService();
         JoinGameRequest request = new JoinGameRequest();
         GameDAO gd = new GameDAO();
-        GameData game = new GameData(1000);
         request.setAuthToken(authToken2);
         request.setPlayerColor("WHITE");
-        game.setWhiteUsername(sampleUser3.getUserUsername());
         request.setGameID(1000);
         JoinGameResult result = service.joinGame(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
-        Assertions.assertTrue(gd.check(game), "Game as set was not found in DAO");
+        Assertions.assertEquals("Now, I am the Master", gd.getAllGames().get(1000).getGameName(), "GameName does not match");
+        Assertions.assertEquals("Palps", gd.getAllGames().get(1000).getWhiteUsername(), "White username does not match");
+        Assertions.assertEquals("DarthVader", gd.getAllGames().get(1000).getBlackUsername(), "Black username does not match");
     }
     @Test
     @Order(7)
@@ -158,7 +155,7 @@ public class ServiceClassTests {
         ClearApplicationRequest request = new ClearApplicationRequest();
         ClearApplicationResult result = service.clearApp(request);
         Assertions.assertEquals(200, result.getResponseCode(), "Response code was not 200");
-        Assertions.assertFalse(new GameDAO().check(sampleGame), "Games were not cleared");
+        Assertions.assertNull(new GameDAO().getAllGames().get(sampleGame.getGameID()), "Games were not cleared");
         Assertions.assertFalse(new UserDAO().check(sampleUser1.getUserUsername()), "Users were not cleared");
         Assertions.assertFalse(new AuthDAO().check(authToken1.getAuthToken()), "AuthTokens were not cleared");
     }

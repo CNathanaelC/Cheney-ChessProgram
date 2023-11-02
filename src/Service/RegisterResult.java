@@ -1,6 +1,6 @@
 package Service;
 
-public class RegisterResult implements Result {
+public class RegisterResult {
     /** Creates an instance of RegisterResult and sets it up regarding the success or failure of a request */
     public RegisterResult() {
 
