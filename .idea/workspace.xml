@@ -7,20 +7,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3: 23/23 passed (working on join game unit test)">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 3: Complete">
+      <change afterPath="$PROJECT_DIR$/src/dataAccess/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/passoffTests/serverTests/PersistenceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/passoffTests/unitTests/DAOClassTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cheney Chess Program.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Cheney Chess Program.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/4-database/starter-code/dataAccess/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/4-database/starter-code/serverTests/PersistenceTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/ChessServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ChessServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DeleteAuthTokenResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DeleteGameResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DeleteUserResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ExitGameResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/GamesListClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/RegisterResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Request.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Result.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/passoffTests/unitTests/ServiceClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/passoffTests/unitTests/ServiceClassTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/UserDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,12 +72,14 @@
       <recent name="chess" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\passoffTests\serverTests" />
+      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\dataAccess" />
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\web" />
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src" />
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\passoffTests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests">
+  <component name="RunManager" selected="Application.ChessServer">
     <configuration name="ChessServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Server.ChessServer" />
       <module name="Cheney Chess Program" />
@@ -89,6 +89,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Cheney Chess Program" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="passoffTests.serverTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
+      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.PersistenceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -124,22 +139,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServiceClassTests.logout" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Cheney Chess Program" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.unitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.unitTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.unitTests.ServiceClassTests" />
-      <option name="METHOD_NAME" value="logout" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Cheney Chess Program" />
       <extension name="coverage">
@@ -157,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="Application.ChessServer" />
+        <item itemvalue="JUnit.PersistenceTest" />
+        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="JUnit.ServiceClassTests" />
         <item itemvalue="JUnit.ServiceClassTests.joingame" />
-        <item itemvalue="JUnit.ServiceClassTests.logout" />
       </list>
     </recent_temporary>
   </component>
@@ -314,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698886238854</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Phase 3: Complete">
+      <created>1698951092552</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1698951092552</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -347,7 +353,9 @@
     <MESSAGE value="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail)" />
     <MESSAGE value="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail due to not being null? weird)" />
     <MESSAGE value="Phase 3: 23/23 passed (working on join game unit test)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 3: 23/23 passed (working on join game unit test)" />
+    <MESSAGE value="Phase 3: 23/23 passed" />
+    <MESSAGE value="Phase 3: Complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 3: Complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,6 +4,8 @@ import Model.GameData;
 import chess.ChessGame;
 import chess.Game;
 
+import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.Map;
 public class GameDAO {
     /** Stores all the current games of the server */
     private static Map<Integer, GameData> allGames = new HashMap<>();
+    //TODO:: needs to access database
     public Map<Integer, GameData> getAllGames() {
         return allGames;
     }
@@ -28,10 +31,39 @@ public class GameDAO {
      * @param game the game that is to be inserted into the database
      */
     public void insert(GameData game) throws DataAccessException {
-        int bf = allGames.size();
+        int bf = getAllGames().size();
+        Database db = new Database();
+        try (Connection connection = db.getConnection()) {
+            String insertGameData = "INSERT INTO allGameData (id, name, blackUsername, whiteUsername, game) VALUES (?,?,?,?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertGameData)) {
+                preparedStatement.setInt(1, game.getGameID());
+                preparedStatement.setString(2, game.getGameName());
+                preparedStatement.setString(3, game.getBlackUsername());
+                preparedStatement.setString(4, game.getWhiteUsername());
+                //TODO::replace with deserialized game string
+                preparedStatement.setString(5, "JSON string");
+                preparedStatement.executeUpdate();
+            }
+        } catch (DataAccessException | SQLException e) {
+            throw new DataAccessException("{ \"message\": \"Error: game data could not be inserted into the database\" }");
+        }
         allGames.put(game.getGameID(), game);
-        if(allGames.size() == bf) {
+        if(getAllGames().size() == bf) {
             throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
+        }
+    }
+    public void update(int gameID, Game game) throws DataAccessException{
+        Database db = new Database();
+        try (Connection connection = db.getConnection()) {
+            String insertGameData = "UPDATE allGameData SET game = ? WHERE id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertGameData)) {
+                //TODO::replace with deserialized game string
+                preparedStatement.setString(1, "JSON string");
+                preparedStatement.setInt(2, gameID);
+                preparedStatement.executeUpdate();
+            }
+        } catch (DataAccessException | SQLException e) {
+            throw new DataAccessException("{ \"message\": \"Error: game data could not be inserted into the database\" }");
         }
     }
 
@@ -42,8 +74,8 @@ public class GameDAO {
      * @return the GameData for the game associated with the gameID
      */
     public GameData find(int gameID) throws DataAccessException {
-        if(allGames.containsKey(gameID)) {
-            return allGames.get(gameID);
+        if(getAllGames().containsKey(gameID)) {
+            return getAllGames().get(gameID);
         } else {
             throw new DataAccessException("{ \"message\": \"Error: bad request\" }");
         }
@@ -55,7 +87,7 @@ public class GameDAO {
      * @throws DataAccessException if it cannot be done
      */
     public List<GameData> findAll() throws DataAccessException {
-        return new ArrayList<>(allGames.values());
+        return new ArrayList<>(getAllGames().values());
     }
 
     /** ClaimSpot: A method/methods for claiming a spot in the game. The player's username is provided and should be saved as either the whitePlayer or blackPlayer in the database.
@@ -67,19 +99,41 @@ public class GameDAO {
         if(color == null) {
             return;
         } else if (color.equals("WHITE")) {
-            if(allGames.get(gameID).getWhiteUsername() == null) {
-                GameData game = allGames.get(gameID);
+            if(getAllGames().get(gameID).getWhiteUsername() == null) {
+                GameData game = getAllGames().get(gameID);
                 game.setGameID(gameID);
                 game.setWhiteUsername(username);
+                Database db = new Database();
+                try (Connection connection = db.getConnection()) {
+                    String insertGameData = "UPDATE allGameData SET whiteUsername = ? WHERE id = ?";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(insertGameData)) {
+                        preparedStatement.setString(1, game.getWhiteUsername());
+                        preparedStatement.setInt(2, gameID);
+                        preparedStatement.executeUpdate();
+                    }
+                } catch (DataAccessException | SQLException e) {
+                    throw new DataAccessException("{ \"message\": \"Error: White username could not be updated in the database\" }");
+                }
                 allGames.put(gameID, game);
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }
         } else if (color.equals("BLACK")) {
-            if(allGames.get(gameID).getBlackUsername() == null) {
-                GameData game = allGames.get(gameID);
+            if(getAllGames().get(gameID).getBlackUsername() == null) {
+                GameData game = getAllGames().get(gameID);
                 game.setGameID(gameID);
                 game.setBlackUsername(username);
+                Database db = new Database();
+                try (Connection connection = db.getConnection()) {
+                    String insertGameData = "UPDATE allGameData SET blackUsername = ? WHERE id = ?";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(insertGameData)) {
+                        preparedStatement.setString(1, game.getBlackUsername());
+                        preparedStatement.setInt(2, gameID);
+                        preparedStatement.executeUpdate();
+                    }
+                } catch (DataAccessException | SQLException e) {
+                    throw new DataAccessException("{ \"message\": \"Error: Black username could not be updated in the database\" }");
+                }
                 allGames.put(gameID, game);
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
@@ -96,7 +150,7 @@ public class GameDAO {
      */
     public void clear() throws DataAccessException{
         allGames.clear();
-        if(allGames.size() != 0) {
+        if(getAllGames().size() != 0) {
             throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
         }
     }

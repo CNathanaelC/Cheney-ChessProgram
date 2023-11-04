@@ -4,6 +4,7 @@ import Model.AuthToken;
 import Model.User;
 
 import javax.xml.crypto.Data;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,23 @@ public class AuthDAO {
     /** Stores all the current Authentication Tokens of the server */
     private static Map<String, String> allAuths = new HashMap<>();
     public Map<String, String> getAllAuths() {
-        return allAuths;
+        Database db = new Database();
+        Map<String, String> auths = new HashMap<>();
+        try (Connection connection = db.getConnection()) {
+            String selectAuths = "SELECT * FROM allAuths";
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(selectAuths)) {
+                while (resultSet.next()) {
+                    String username = resultSet.getString("username");
+                    String authToken = resultSet.getString("authToken");
+                    auths.put(authToken, username);
+                }
+            }
+        } catch (DataAccessException | SQLException e) {
+//            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
+        }
+        return auths;
+//        return allAuths;
     }
 
     /** Creates an Instance of AuthDAO */
@@ -30,9 +47,20 @@ public class AuthDAO {
      */
     public void createAuth(AuthToken authToken, User user) throws DataAccessException{
         authToken.createUniqueAuthToken();
-        final int bf = allAuths.size();
+        final int bf = getAllAuths().size();
+        Database db = new Database();
+        try (Connection connection = db.getConnection()) {
+            String insertUser = "INSERT INTO allAuths (authToken, username) VALUES (?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertUser)) {
+                preparedStatement.setString(1, authToken.getAuthToken());
+                preparedStatement.setString(2, user.getUserUsername());
+                preparedStatement.executeUpdate();
+            }
+        } catch (DataAccessException | SQLException e) {
+            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
+        }
         allAuths.put(authToken.getAuthToken(), user.getUserUsername());
-        if(bf == allAuths.size()) {
+        if(bf == getAllAuths().size()) {
             throw new DataAccessException("\"{ \"message\": \"Error: AuthToken never created\" }\"");
         }
     }
@@ -43,7 +71,7 @@ public class AuthDAO {
      */
     public void clear() throws DataAccessException{
         allAuths.clear();
-        if(allAuths.size() != 0) {
+        if(getAllAuths().size() != 0) {
             throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
         }
     }
@@ -53,14 +81,15 @@ public class AuthDAO {
      * @param authToken
      * @throws DataAccessException
      */
+    //TODO:: needs to access database
     public void logout(AuthToken authToken) throws DataAccessException {
-        final int bef = allAuths.size();
+        final int bef = getAllAuths().size();
         for(String a : allAuths.keySet()) {
             if(a.equals(authToken.getAuthToken())) {
                 allAuths.remove(a);
             }
         }
-        if(bef == allAuths.size()) {
+        if(bef == getAllAuths().size()) {
             throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
         }
     }
@@ -72,7 +101,7 @@ public class AuthDAO {
      * @throws DataAccessException
      */
     public boolean validate(AuthToken authToken) throws DataAccessException {
-        for(String a : allAuths.keySet()) {
+        for(String a : getAllAuths().keySet()) {
             if(a.equals(authToken.getAuthToken())) {
                 return true;
             }
@@ -80,11 +109,29 @@ public class AuthDAO {
         throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
     }
     public String getUsername(AuthToken authToken) {
-        return allAuths.get(authToken.getAuthToken());
+        Database db = new Database();
+        Map<String, String> auths = new HashMap<>();
+        try (Connection connection = db.getConnection()) {
+            String selectAuths = "SELECT username FROM allAuths WHERE authToken = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(selectAuths)) {
+                preparedStatement.setString(1, authToken.getAuthToken());
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getString("username");
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        } catch (DataAccessException | SQLException e) {
+//            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
+        }
+        return null;
+//        return allAuths.get(authToken.getAuthToken());
     }
 
     public Boolean check(String username) {
-        for(String u : allAuths.values()) {
+        for(String u : getAllAuths().values()) {
             if(username.equals(u)) {
                 return true;
             }
