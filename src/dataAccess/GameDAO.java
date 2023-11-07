@@ -1,8 +1,10 @@
 package dataAccess;
 
 import Model.GameData;
+import Model.User;
 import chess.ChessGame;
 import chess.Game;
+import com.google.gson.Gson;
 
 import java.sql.*;
 import java.sql.SQLException;
@@ -16,10 +18,42 @@ import java.util.Map;
  */
 public class GameDAO {
     /** Stores all the current games of the server */
-    private static Map<Integer, GameData> allGames = new HashMap<>();
-    //TODO:: needs to access database
+//    private static Map<Integer, GameData> allGames = new HashMap<>();
     public Map<Integer, GameData> getAllGames() {
-        return allGames;
+        Database db = new Database();
+        Map<Integer, GameData> games = new HashMap<>();
+        try (Connection connection = db.getConnection()) {
+            String selectGameData = "SELECT * FROM allGameData";
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(selectGameData)) {
+                while (resultSet.next()) {
+                    /*id INT NOT NULL,
+                    name VARCHAR(255) NOT NULL,
+                    blackUsername VARCHAR(255),
+                    whiteUsername VARCHAR(255),
+                    game JSON;
+                    PRIMARY KEY (id)*/
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("name");
+                    String blackUsername = resultSet.getString("blackUsername");
+                    String whiteUsername = resultSet.getString("whiteUsername");
+                    String json = resultSet.getString("game");
+                    Gson gson = new Gson();
+                    Game game = gson.fromJson(json, Game.class);
+                    GameData gameData = new GameData(id);
+                    gameData.setGameName(name);
+                    gameData.setGame(game);
+                    gameData.setWhiteUsername(whiteUsername);
+                    gameData.setBlackUsername(blackUsername);
+                    games.put(id, gameData);
+                }
+            }
+            db.closeConnection(connection);
+        } catch (DataAccessException | SQLException e) {
+//            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
+        }
+        return games;
+//        return allGames;
     }
     /** Creates an Instance of GameDAO*/
     public GameDAO() {
@@ -40,25 +74,31 @@ public class GameDAO {
                 preparedStatement.setString(2, game.getGameName());
                 preparedStatement.setString(3, game.getBlackUsername());
                 preparedStatement.setString(4, game.getWhiteUsername());
-                //TODO::replace with deserialized game string
-                preparedStatement.setString(5, "JSON string");
+                game.setGame(new Game());
+                Gson gson = new Gson();
+                String json = gson.toJson(game.getGame());
+                preparedStatement.setString(5, json);
                 preparedStatement.executeUpdate();
             }
         } catch (DataAccessException | SQLException e) {
             throw new DataAccessException("{ \"message\": \"Error: game data could not be inserted into the database\" }");
         }
-        allGames.put(game.getGameID(), game);
+//        allGames.put(game.getGameID(), game);
         if(getAllGames().size() == bf) {
             throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
         }
     }
     public void update(int gameID, Game game) throws DataAccessException{
+        if(!getAllGames().containsKey(gameID)) {
+            throw new DataAccessException("{ \"message\": \"Error: provided gameID does not exist\" }");
+        }
         Database db = new Database();
         try (Connection connection = db.getConnection()) {
-            String insertGameData = "UPDATE allGameData SET game = ? WHERE id = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(insertGameData)) {
-                //TODO::replace with deserialized game string
-                preparedStatement.setString(1, "JSON string");
+            String updateGameData = "UPDATE allGameData SET game = ? WHERE id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateGameData)) {
+                Gson gson = new Gson();
+                String json = gson.toJson(game);
+                preparedStatement.setString(1, json);
                 preparedStatement.setInt(2, gameID);
                 preparedStatement.executeUpdate();
             }
@@ -100,41 +140,43 @@ public class GameDAO {
             return;
         } else if (color.equals("WHITE")) {
             if(getAllGames().get(gameID).getWhiteUsername() == null) {
-                GameData game = getAllGames().get(gameID);
-                game.setGameID(gameID);
-                game.setWhiteUsername(username);
+//                GameData game = getAllGames().get(gameID);
+//                game.setGameID(gameID);
+//                game.setWhiteUsername(username);
                 Database db = new Database();
                 try (Connection connection = db.getConnection()) {
-                    String insertGameData = "UPDATE allGameData SET whiteUsername = ? WHERE id = ?";
-                    try (PreparedStatement preparedStatement = connection.prepareStatement(insertGameData)) {
-                        preparedStatement.setString(1, game.getWhiteUsername());
+                    String updateGameData = "UPDATE allGameData SET whiteUsername = ? WHERE id = ?";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(updateGameData)) {
+                        preparedStatement.setString(1, username);
                         preparedStatement.setInt(2, gameID);
                         preparedStatement.executeUpdate();
                     }
+                    db.closeConnection(connection);
                 } catch (DataAccessException | SQLException e) {
                     throw new DataAccessException("{ \"message\": \"Error: White username could not be updated in the database\" }");
                 }
-                allGames.put(gameID, game);
+//                allGames.put(gameID, game);
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }
         } else if (color.equals("BLACK")) {
             if(getAllGames().get(gameID).getBlackUsername() == null) {
-                GameData game = getAllGames().get(gameID);
-                game.setGameID(gameID);
-                game.setBlackUsername(username);
+//                GameData game = getAllGames().get(gameID);
+//                game.setGameID(gameID);
+//                game.setBlackUsername(username);
                 Database db = new Database();
                 try (Connection connection = db.getConnection()) {
-                    String insertGameData = "UPDATE allGameData SET blackUsername = ? WHERE id = ?";
-                    try (PreparedStatement preparedStatement = connection.prepareStatement(insertGameData)) {
-                        preparedStatement.setString(1, game.getBlackUsername());
+                    String updateGameData = "UPDATE allGameData SET blackUsername = ? WHERE id = ?";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(updateGameData)) {
+                        preparedStatement.setString(1, username);
                         preparedStatement.setInt(2, gameID);
                         preparedStatement.executeUpdate();
                     }
+                    db.closeConnection(connection);
                 } catch (DataAccessException | SQLException e) {
                     throw new DataAccessException("{ \"message\": \"Error: Black username could not be updated in the database\" }");
                 }
-                allGames.put(gameID, game);
+//                allGames.put(gameID, game);
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }
@@ -149,7 +191,17 @@ public class GameDAO {
      * @throws DataAccessException if data access fails
      */
     public void clear() throws DataAccessException{
-        allGames.clear();
+        Database db = new Database();
+        try (Connection connection = db.getConnection()) {
+            String deleteGameData = "DELETE FROM allGameData";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteGameData)) {
+                preparedStatement.executeUpdate();
+            }
+            db.closeConnection(connection);
+        } catch (DataAccessException | SQLException e) {
+            throw new DataAccessException("{ \"message\": \"Error: authTokens could not be cleared from the database\" }");
+        }
+//        allGames.clear();
         if(getAllGames().size() != 0) {
             throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
         }

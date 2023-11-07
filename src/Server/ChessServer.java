@@ -22,6 +22,7 @@ public class ChessServer {
             db.configureDatabase();
         } catch (SQLException e) {
             System.out.println("SQL failed");
+            e.printStackTrace();
         }
         // Register handlers for each endpoint using the method reference syntax
         Spark.delete("/db", Handlers::ClearApplicationHandler);

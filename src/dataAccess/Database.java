@@ -26,43 +26,42 @@ import java.util.LinkedList;
 public class Database {
 
     // FIXME: Change these fields, if necessary, to match your database configuration
-    public static final String DB_NAME = "chess";
+    public static final String DB_NAME = "chess_db";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "W!tchK!ng0f4ngmar";
 
-    private static final String CONNECTION_URL = "jdbc:mysql://localhost:3306";
+    private static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
 
     private final LinkedList<Connection> connections = new LinkedList<>();
 
     /**
-     * Get a connection to the database. This pulls a connection out of a simple
-     * pool implementation. The connection must be returned to the pool after
-     * you are done with it by calling {@link #returnConnection(Connection) returnConnection}.
+     * Gets a connection to the database.
      *
-     * @return Connection
+     * @return Connection the connection.
+     * @throws DataAccessException if a data access error occurs.
      */
-    synchronized public Connection getConnection() throws DataAccessException {
+    public Connection getConnection() throws DataAccessException {
         try {
-            Connection connection;
-            if (connections.isEmpty()) {
-                connection = DriverManager.getConnection(CONNECTION_URL, DB_USERNAME, DB_PASSWORD);
-                connection.setCatalog(DB_NAME);
-            } else {
-                connection = connections.removeFirst();
-            }
-            return connection;
+            return DriverManager.getConnection(CONNECTION_URL, DB_USERNAME, DB_PASSWORD);
         } catch (SQLException e) {
             throw new DataAccessException(e.getMessage());
         }
     }
 
     /**
-     * Return a previously acquired connection to the pool.
+     * Closes the specified connection.
      *
-     * @param connection previous obtained by calling {@link #getConnection() getConnection}.
+     * @param connection the connection to be closed.
+     * @throws DataAccessException if a data access error occurs while closing the connection.
      */
-    synchronized public void returnConnection(Connection connection) {
-        connections.add(connection);
+    public void closeConnection(Connection connection) throws DataAccessException {
+        if(connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new DataAccessException(e.getMessage());
+            }
+        }
     }
 
     public void configureDatabase() throws SQLException {
@@ -90,7 +89,7 @@ public class Database {
                 name VARCHAR(255) NOT NULL,
                 blackUsername VARCHAR(255),
                 whiteUsername VARCHAR(255),
-                game JSON;
+                game JSON,
                 PRIMARY KEY (id)
             )""";
 

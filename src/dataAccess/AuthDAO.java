@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class AuthDAO {
     /** Stores all the current Authentication Tokens of the server */
-    private static Map<String, String> allAuths = new HashMap<>();
+//    private static Map<String, String> allAuths = new HashMap<>();
     public Map<String, String> getAllAuths() {
         Database db = new Database();
         Map<String, String> auths = new HashMap<>();
@@ -27,6 +27,7 @@ public class AuthDAO {
                     auths.put(authToken, username);
                 }
             }
+            db.closeConnection(connection);
         } catch (DataAccessException | SQLException e) {
 //            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
         }
@@ -56,10 +57,11 @@ public class AuthDAO {
                 preparedStatement.setString(2, user.getUserUsername());
                 preparedStatement.executeUpdate();
             }
+            db.closeConnection(connection);
         } catch (DataAccessException | SQLException e) {
             throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
         }
-        allAuths.put(authToken.getAuthToken(), user.getUserUsername());
+//        allAuths.put(authToken.getAuthToken(), user.getUserUsername());
         if(bf == getAllAuths().size()) {
             throw new DataAccessException("\"{ \"message\": \"Error: AuthToken never created\" }\"");
         }
@@ -70,7 +72,17 @@ public class AuthDAO {
      * @throws DataAccessException if data access fails
      */
     public void clear() throws DataAccessException{
-        allAuths.clear();
+        Database db = new Database();
+        try (Connection connection = db.getConnection()) {
+            String deleteAuths = "DELETE FROM allAuths";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteAuths)) {
+                preparedStatement.executeUpdate();
+            }
+            db.closeConnection(connection);
+        } catch (DataAccessException | SQLException e) {
+            throw new DataAccessException("{ \"message\": \"Error: authTokens could not be cleared from the database\" }");
+        }
+//        allAuths.clear();
         if(getAllAuths().size() != 0) {
             throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
         }
@@ -81,14 +93,24 @@ public class AuthDAO {
      * @param authToken
      * @throws DataAccessException
      */
-    //TODO:: needs to access database
     public void logout(AuthToken authToken) throws DataAccessException {
         final int bef = getAllAuths().size();
-        for(String a : allAuths.keySet()) {
-            if(a.equals(authToken.getAuthToken())) {
-                allAuths.remove(a);
+        Database db = new Database();
+        try (Connection connection = db.getConnection()) {
+            String deleteAuths = "DELETE FROM allAuths WHERE authToken = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteAuths)) {
+                preparedStatement.setString(1, authToken.getAuthToken());
+                preparedStatement.executeUpdate();
             }
+            db.closeConnection(connection);
+        } catch (DataAccessException | SQLException e) {
+            throw new DataAccessException("{ \"message\": \"Error: authToken associated with user could not be cleared from the database\" }");
         }
+//        for(String a : getAllAuths().keySet()) {
+//            if(a.equals(authToken.getAuthToken())) {
+//                allAuths.remove(a);
+//            }
+//        }
         if(bef == getAllAuths().size()) {
             throw new DataAccessException("{ \"message\": \"Error: unauthorized\" }");
         }
@@ -117,6 +139,7 @@ public class AuthDAO {
                 preparedStatement.setString(1, authToken.getAuthToken());
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
+
                         return resultSet.getString("username");
                     } else {
                         return null;
@@ -127,7 +150,6 @@ public class AuthDAO {
 //            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
         }
         return null;
-//        return allAuths.get(authToken.getAuthToken());
     }
 
     public Boolean check(String username) {

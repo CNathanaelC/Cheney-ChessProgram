@@ -60,4 +60,5 @@ public class GameData {
     public void setGame(Game game) {
         this.game = game;
     }
+
 }

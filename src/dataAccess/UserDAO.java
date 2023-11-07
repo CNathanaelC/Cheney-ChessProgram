@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class UserDAO {
     /** Stores all the current users of the server */
-    private static Map<String, User> allUsers = new HashMap<>();
+//    private static Map<String, User> allUsers = new HashMap<>();
     public Map<String, User> getAllUsers() {
         Database db = new Database();
         Map<String, User> users = new HashMap<>();
@@ -29,11 +29,11 @@ public class UserDAO {
                     users.put(username, user);
                 }
             }
+            db.closeConnection(connection);
         } catch (DataAccessException | SQLException e) {
 //            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
         }
         return users;
-//        return allUsers;
     }
     /** Creates an Instance of UserDAO */
     public UserDAO() {
@@ -60,22 +60,31 @@ public class UserDAO {
                     preparedStatement.setString(3, user.getUserEmail());
                     preparedStatement.executeUpdate();
                 }
+                db.closeConnection(connection);
             } catch (DataAccessException | SQLException e) {
                 throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
             }
-            allUsers.put(user.getUserUsername(), user);
+//            allUsers.put(user.getUserUsername(), user);
         }
     }
 
 
-    //TODO::needs to access database
     /** Clear: A method for clearing all users from the database
      *
      * @throws DataAccessException if data access fails
      */
-    //TODO::needs to access database
     public void clear() throws DataAccessException {
-        allUsers.clear();
+        Database db = new Database();
+        try (Connection connection = db.getConnection()) {
+            String deleteUsers = "DELETE FROM allUsers";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(deleteUsers)) {
+                preparedStatement.executeUpdate();
+            }
+            db.closeConnection(connection);
+        } catch (DataAccessException | SQLException e) {
+            throw new DataAccessException("{ \"message\": \"Error: users could not be cleared from the database\" }");
+        }
+//        allUsers.clear();
         if(getAllUsers().size() != 0) {
             throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
         }
