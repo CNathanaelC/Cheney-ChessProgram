@@ -2,11 +2,12 @@ package Service;
 import Model.AuthToken;
 import Model.GameData;
 import Model.User;
+import Requests.*;
+import Results.*;
 import dataAccess.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 /** Class that contains all of the different types of Service classes */
 public class Services {
     /** Creates an instance of Services */

@@ -1,8 +1,6 @@
 package dataAccess;
 
 import Model.GameData;
-import Model.User;
-import chess.ChessGame;
 import chess.Game;
 import com.google.gson.Gson;
 

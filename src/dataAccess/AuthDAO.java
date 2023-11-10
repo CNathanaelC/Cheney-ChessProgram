@@ -3,7 +3,6 @@ package dataAccess;
 import Model.AuthToken;
 import Model.User;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
