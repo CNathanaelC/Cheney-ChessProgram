@@ -1,10 +1,12 @@
 package ui;
 
+import java.io.IOException;
 import java.util.Arrays;
 import static ui.EscapeSequences.*;
 
 public class ChessClient {
     public boolean sessionLogin = false;
+    private static ServerFacade server = new ServerFacade();
     public static void main(String[] args) {
         new Repl().run();
     }
@@ -66,42 +68,60 @@ public class ChessClient {
     }
     public String login(String...params) throws ResponseException {
         if(params.length == 2) {
-            //login operation
-            sessionLogin = true;
-            return "User was successfully logged in as " + params[0] + ".\n";
+            if(server.login(params[0], params[1])) {
+                sessionLogin = true;
+                return "User was successfully logged in as " + params[0] + ".\n";
+            } else {
+                throw new ResponseException("Login Failure");
+            }
         } else {
             throw new ResponseException("Incorrect number of elements\n");
         }
     }
     public String logout() throws ResponseException {
-        //logout operation
-        sessionLogin = false;
-        return "User was successfully logged out\n";
+        if(server.logout()) {
+            sessionLogin = false;
+            return "User was successfully logged out\n";
+        } else {
+            throw new ResponseException("Logout Failure");
+        }
     }
     public String register(String...params) throws ResponseException {
         if(params.length == 3) {
-            //register operation
-            sessionLogin = true;
-            return "User was successfully registered and logged in as " + params[0] + ".\n";
+            if(server.register(params[0], params[1], params[2])) {
+                sessionLogin = true;
+                return "User was successfully logged in as " + params[0] + ".\n";
+            } else {
+                throw new ResponseException("Register Failure");
+            }
         } else {
             throw new ResponseException("Incorrect number of elements\n");
         }
     }
     public String createGame(String...params) throws ResponseException {
         if(params.length == 1) {
-            //create operation
+            if(server.createGame(params[0])) {
+
+            } else {
+                throw new ResponseException("Game Creation Failure");
+            }
+
             return "Game was successfully created\n";
         } else {
             throw new ResponseException("Incorrect number of elements\n");
         }
     }
     public String listGames() throws ResponseException {
-        //list game operation and return string edit
-        return "ID: 1000, Name: Duel of the Fates, Black: available, White: unavailable\n";
+        if(server.listGames()) {
+            //FIXME::have it actually print out the game list
+            return "/Gamelist/";
+        } else {
+            throw new ResponseException(" Failure");
+        }
     }
     public String joinGame(String...params) throws ResponseException {
         if(params.length == 2) {
-            //join operation
+            server.joinPlayer(params[0], Integer.parseInt(params[1]));
             printChessBoard();
             return "Game " + params[0] + " was successfully joined as the " + params[1].toLowerCase() + " player.\n";
         } else if (params.length == 1) {
@@ -112,7 +132,7 @@ public class ChessClient {
     }
     public String joinObserver(String...params) throws ResponseException {
         if(params.length == 1) {
-            //join operation
+            server.joinObserver(Integer.parseInt(params[0]));
             return "Game " + params[0] + " was successfully joined as an observer.\n";
         } else {
             throw new ResponseException("Incorrect number of elements\n");
@@ -120,5 +140,12 @@ public class ChessClient {
     }
     public void printChessBoard() {
 
+    }
+    public void destroy(String p) throws ResponseException {
+        if(p.equals("samplePassword")) {
+            server.clear();
+        } else {
+            throw new ResponseException("You really thought that would work didn't you");
+        }
     }
 }

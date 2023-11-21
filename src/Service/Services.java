@@ -1,7 +1,5 @@
 package Service;
-import Model.AuthToken;
-import Model.GameData;
-import Model.User;
+import Model.*;
 import Requests.*;
 import Results.*;
 import dataAccess.*;

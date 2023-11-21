@@ -299,8 +299,7 @@ public class DAOClassTests {
     }
     @Test
     @Order(31)
-    @DisplayName("Update Game Failure")
-    public void badUpdateGame() {
+    @DisplayName("Update Game Failure")    public void badUpdateGame() {
         Assertions.assertThrows(DataAccessException.class, () -> new GameDAO().update(999, new Game()));
     }
     @Test

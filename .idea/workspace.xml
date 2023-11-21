@@ -7,62 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: structure set up with basic functionality without accessing or storing info">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/client_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_simple.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sparkjava_spark_core.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/EscapeSequences.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/ResponseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/starter/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad">
+      <change afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/test/ClientTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cheney Chess Program.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Cheney Chess Program.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/5-pregame/starter-code/EscapeSequences.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handlers/Handlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Handlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Model/AuthToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Model/GameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ClearApplicationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Requests/ClearApplicationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ClearApplicationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/ClearApplicationResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/CreateGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Requests/CreateGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/CreateGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/CreateGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/JoinGameRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Requests/JoinGameRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/JoinGameResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/JoinGameResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ListGamesRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Requests/ListGamesRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ListGamesResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/ListGamesResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Requests/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/LoginResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LogoutRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Requests/LogoutRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/LogoutResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/LogoutResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Requests/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/RegisterResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/ChessPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/ChessPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/InvalidMoveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/InvalidMoveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/passoffTests/unitTests/DAOClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/passoffTests/unitTests/DAOClassTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/passoffTests/unitTests/ServiceClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/passoffTests/unitTests/ServiceClassTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,25 +47,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "OverrideImplement.generate.javadoc": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "create.test.in.the.same.root": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-20",
-    "last_opened_file_path": "C:/Users/bubba/IdeaProjects/Cheney Chess Program/src/libs",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bubba/IdeaProjects/Cheney Chess Program/src/libs&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="chess" />
@@ -128,7 +81,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChessServer">
+  <component name="RunManager" selected="JUnit.ClientTests">
     <configuration name="ChessClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.ChessClient" />
       <module name="client" />
@@ -155,32 +108,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOClassTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Cheney Chess Program" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.unitTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.unitTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.unitTests.DAOClassTests" />
+    <configuration name="ClientTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ClientTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PersistenceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Cheney Chess Program" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.PersistenceTest" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="ClientTests.register" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ClientTests" />
+      <option name="METHOD_NAME" value="register" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -202,11 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ChessServer" />
-        <item itemvalue="JUnit.StandardAPITests" />
+        <item itemvalue="JUnit.ClientTests" />
         <item itemvalue="Application.ChessClient" />
-        <item itemvalue="JUnit.DAOClassTests" />
-        <item itemvalue="JUnit.PersistenceTest" />
+        <item itemvalue="Application.ChessServer" />
+        <item itemvalue="JUnit.ClientTests.register" />
+        <item itemvalue="JUnit.StandardAPITests" />
       </list>
     </recent_temporary>
   </component>
@@ -380,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699321465567</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad">
+      <created>1699578184571</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1699578184571</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -419,7 +368,8 @@
     <MESSAGE value="Phase 5: Completed likely" />
     <MESSAGE value="Phase 4: Completed likely" />
     <MESSAGE value="Phase 5: structure set up with basic functionality without accessing or storing info" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: structure set up with basic functionality without accessing or storing info" />
+    <MESSAGE value="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
