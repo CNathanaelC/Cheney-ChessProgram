@@ -9,6 +9,7 @@ public class LoginResult {
     private String message = "";
     /** the code that indicates the status: failure or success */
     private int responseCode = 0;
+    private String authorization;
     public String getMessage() {
         return message;
     }
@@ -20,6 +21,12 @@ public class LoginResult {
     }
     public void setResponseCode(int code) {
         responseCode = code;
+    }
+    public String getAuth() {
+        return authorization;
+    }
+    public void setAuth(String auth) {
+        authorization = auth;
     }
     /**
      * returns the response to an API function depending on success or the different failures in the following format:

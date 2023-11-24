@@ -159,4 +159,12 @@ public class AuthDAO {
         }
         return false;
     }
+    public String getAuth(String username) {
+        for(String u : getAllAuths().keySet()) {
+            if(username.equals(getAllAuths().get(u))) {
+                return u;
+            }
+        }
+        return "";
+    }
 }

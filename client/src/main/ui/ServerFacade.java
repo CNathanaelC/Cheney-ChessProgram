@@ -150,10 +150,11 @@ public class ServerFacade {
             connection.setRequestMethod(method);
             connection.setDoOutput(true);
             connection.addRequestProperty("Accept", "application/json");
-            if(operation.equals("Logout") || operation.equals("List Games")) {
+            if(operation.equals("Logout") || operation.equals("List Games") || operation.equals("Create Game")) {
                 connection.addRequestProperty("Authorization", userAuth);
             }
             connection.connect();
+
             if(body.length >= 1) {
 //                connection.setRequestProperty("Content-Type", "application/json; utf-8");
                 connection.getOutputStream().write(body[0].getBytes("UTF-8"));
@@ -161,16 +162,16 @@ public class ServerFacade {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == 200) {
-                if (body.length > 0) {
-                    connection.getOutputStream().write(body[0].getBytes());
-                }
                 if(method.equals("POST") && (path.equals("/user") || path.equals("/session"))) {
-                    userAuth = connection.getRequestProperty("Authorization");
+                    userAuth = connection.getHeaderField("Authorization");
                 }
                 System.out.println(operation + " Operation Success");
+                if(operation.equals("List Games")) {
+                    System.out.println(connection.getResponseMessage());
+                }
                 returnVal = true;
             } else {
-                System.out.println(operation + " Operation Failure");
+                System.out.println(operation + " Operation Failure: " + connection.getResponseMessage());
                 returnVal = false;
             }
         } finally {

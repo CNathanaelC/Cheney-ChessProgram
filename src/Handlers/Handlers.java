@@ -17,6 +17,7 @@ public class Handlers {
         RegisterResult result = service.registerNewUser(req);
         response.status(result.getResponseCode());
         response.body(result.getMessage());
+        response.header("Authorization", result.getAuth());
         return result.getMessage();
     }
     public static Object ClearApplicationHandler(Request request, Response response) {
@@ -35,6 +36,7 @@ public class Handlers {
         LoginResult result = service.loginUser(req);
         response.status(result.getResponseCode());
         response.body(result.getMessage());
+        response.header("Authorization", result.getAuth());
         return result.getMessage();
     }
     public static Object LogoutHandler(Request request, Response response) {
@@ -59,7 +61,6 @@ public class Handlers {
         ListGamesResult result = service.getGamesList(req);
         response.status(result.getResponseCode());
         response.body(result.getMessage());
-//        Gson json = new Gson();
         return result.getMessage();
     }
     public static Object CreateGameHandler(Request request, Response response) {

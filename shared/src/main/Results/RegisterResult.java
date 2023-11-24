@@ -7,6 +7,7 @@ public class RegisterResult {
     }
     private String message = "";
     private int responseCode = 0;
+    private String authorization;
     public String getMessage() {
         return message;
     }
@@ -18,6 +19,13 @@ public class RegisterResult {
     }
     public void setResponseCode(int code) {
         responseCode = code;
+    }
+
+    public String getAuth() {
+        return authorization;
+    }
+    public void setAuth(String auth) {
+        authorization = auth;
     }
     /**
      * returns the response to an API function depending on success or the different failures in the following format:

@@ -7,15 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad">
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/test/ClientTests.java" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/test/ClientTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/ClientTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/Results/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/LoginResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/Results/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/RegisterResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handlers/Handlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Handlers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/passoffTests/unitTests/DAOClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/passoffTests/unitTests/DAOClassTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +82,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClientTests">
+  <component name="RunManager" selected="Application.ChessClient">
     <configuration name="ChessClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.ChessClient" />
       <module name="client" />
@@ -117,11 +118,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientTests.register" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientTests.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ClientTests" />
-      <option name="METHOD_NAME" value="register" />
+      <option name="METHOD_NAME" value="create" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -144,10 +145,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClientTests" />
         <item itemvalue="Application.ChessClient" />
+        <item itemvalue="JUnit.ClientTests" />
         <item itemvalue="Application.ChessServer" />
-        <item itemvalue="JUnit.ClientTests.register" />
+        <item itemvalue="JUnit.ClientTests.create" />
         <item itemvalue="JUnit.StandardAPITests" />
       </list>
     </recent_temporary>
@@ -329,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699578184571</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented">
+      <created>1700595643761</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1700595643761</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -344,7 +352,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implemented a couple methods without editing" />
     <MESSAGE value="implemented a couple methods" />
     <MESSAGE value="implemented a couple methods and fixd testfactory" />
     <MESSAGE value="implemented a couple methods and fixed testfactory and chess board tests are passed" />
@@ -369,7 +376,8 @@
     <MESSAGE value="Phase 4: Completed likely" />
     <MESSAGE value="Phase 5: structure set up with basic functionality without accessing or storing info" />
     <MESSAGE value="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad" />
+    <MESSAGE value="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

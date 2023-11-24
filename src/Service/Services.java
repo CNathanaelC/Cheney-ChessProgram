@@ -42,6 +42,7 @@ public class Services {
                 ad.createAuth(a, u);
                 lr.setResponseCode(200);
                 lr.setMessage("{ \"username\":\"" + u.getUserUsername() + "\", \"authToken\":\"" + a.getAuthToken() + "\" }");
+                lr.setAuth(ad.getAuth(request.getUsername()));
             } catch (DataAccessException e) {
                 lr.setMessage(e.getMessage());
                 if(e.getMessage().equals("{ \"message\": \"Error: unauthorized\" }")) {
@@ -101,6 +102,7 @@ public class Services {
                 ad.createAuth(a, u);
                 rr.setResponseCode(200);
                 rr.setMessage("{ \"username\":\"" + u.getUserUsername() + "\", \"authToken\":\"" + a.getAuthToken() + "\" }");
+                rr.setAuth(ad.getAuth(request.getUsername()));
             } catch (DataAccessException e) {
                 rr.setMessage(e.getMessage());
                 if(e.getMessage().equals("{ \"message\": \"Error: bad request\" }")) {

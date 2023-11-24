@@ -55,7 +55,7 @@ public class ChessClient {
         } else {
             return "create <NAME> - to create a new game\n" +
                     "list - to list all of the games available to join\n" +
-                    "play <ID> <[WHITE|BLACK|<empty>]> - to join a game\n" +
+                    "play <[WHITE|BLACK|<empty>]> <ID> - to join a game\n" +
                     "observe <ID> - to observe a game\n" +
                     "logout - to stop playing chess\n" +
                     "quit - to quit playing chess\n" +
@@ -123,7 +123,7 @@ public class ChessClient {
         if(params.length == 2) {
             server.joinPlayer(params[0], Integer.parseInt(params[1]));
             printChessBoard();
-            return "Game " + params[0] + " was successfully joined as the " + params[1].toLowerCase() + " player.\n";
+            return "Game " + params[1] + " was successfully joined as the " + params[0].toLowerCase() + " player.\n";
         } else if (params.length == 1) {
             return joinObserver(params);
         } else {
