@@ -114,16 +114,19 @@ public class ChessClient {
     public String listGames() throws ResponseException {
         if(server.listGames()) {
             //FIXME::have it actually print out the game list
-            return "/Gamelist/";
+            return "/Gamelist/\n";
         } else {
-            throw new ResponseException(" Failure");
+            throw new ResponseException("List Games Failure");
         }
     }
     public String joinGame(String...params) throws ResponseException {
         if(params.length == 2) {
-            server.joinPlayer(params[0], Integer.parseInt(params[1]));
-            printChessBoard();
-            return "Game " + params[1] + " was successfully joined as the " + params[0].toLowerCase() + " player.\n";
+            if(server.joinPlayer(params[0], Integer.parseInt(params[1]))) {
+                printChessBoard();
+                return "Game " + params[1] + " was successfully joined as the " + params[0].toLowerCase() + " player.\n";
+            } else {
+                throw new ResponseException("Game Join Failure\n");
+            }
         } else if (params.length == 1) {
             return joinObserver(params);
         } else {
@@ -132,8 +135,12 @@ public class ChessClient {
     }
     public String joinObserver(String...params) throws ResponseException {
         if(params.length == 1) {
-            server.joinObserver(Integer.parseInt(params[0]));
-            return "Game " + params[0] + " was successfully joined as an observer.\n";
+            if(server.joinObserver(Integer.parseInt(params[0]))) {
+                printChessBoard();
+                return "Game " + params[0] + " was successfully joined as the observer.\n";
+            } else {
+                throw new ResponseException("Game Observe Failure\n");
+            }
         } else {
             throw new ResponseException("Incorrect number of elements\n");
         }
@@ -143,7 +150,9 @@ public class ChessClient {
     }
     public void destroy(String p) throws ResponseException {
         if(p.equals("samplePassword")) {
-            server.clear();
+            if(!server.clear()) {
+                throw new ResponseException("Clear Failure");
+            }
         } else {
             throw new ResponseException("You really thought that would work didn't you");
         }

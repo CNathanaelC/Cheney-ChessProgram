@@ -41,15 +41,14 @@ public class ClientTests {
     }
     @Test
     @Order(3)
-    @DisplayName("Logout Success")
-    public void logout() {
-        Assertions.assertDoesNotThrow(() -> client.logout(), "Error was thrown");
-    }
-    @Test
-    @Order(4)
     @DisplayName("List Games Success")
     public void list() {
         Assertions.assertDoesNotThrow(() -> client.listGames(), "Error was thrown");
+    }
+    @Order(4)
+    @DisplayName("Logout Success")
+    public void logout() {
+        Assertions.assertDoesNotThrow(() -> client.logout(), "Error was thrown");
     }
     @Test
     @Order(5)

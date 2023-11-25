@@ -6,12 +6,14 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.Scanner;
+
 import org.eclipse.jetty.websocket.api.Session;
 import spark.Request;
 
 public class ServerFacade {
     private Session session;
-    private String userAuth;
+    private static String userAuth;
     public String output;
     private String userName;
     private String serverURL = "http://localhost:8080";
@@ -150,28 +152,28 @@ public class ServerFacade {
             connection.setRequestMethod(method);
             connection.setDoOutput(true);
             connection.addRequestProperty("Accept", "application/json");
-            if(operation.equals("Logout") || operation.equals("List Games") || operation.equals("Create Game")) {
-                connection.addRequestProperty("Authorization", userAuth);
-            }
+            connection.addRequestProperty("Authorization", userAuth);
             connection.connect();
 
             if(body.length >= 1) {
-//                connection.setRequestProperty("Content-Type", "application/json; utf-8");
                 connection.getOutputStream().write(body[0].getBytes("UTF-8"));
             }
-
             int responseCode = connection.getResponseCode();
+            String message;
+            try (Scanner scanner = new Scanner(connection.getInputStream(), "UTF-8")) {
+                message = scanner.nextLine();
+            }
             if (responseCode == 200) {
                 if(method.equals("POST") && (path.equals("/user") || path.equals("/session"))) {
                     userAuth = connection.getHeaderField("Authorization");
                 }
-                System.out.println(operation + " Operation Success");
                 if(operation.equals("List Games")) {
-                    System.out.println(connection.getResponseMessage());
+                    System.out.println(message);
                 }
+                System.out.println(operation + " Operation Success");
                 returnVal = true;
             } else {
-                System.out.println(operation + " Operation Failure: " + connection.getResponseMessage());
+                System.out.println(operation + " Operation Failure: " + message);
                 returnVal = false;
             }
         } finally {

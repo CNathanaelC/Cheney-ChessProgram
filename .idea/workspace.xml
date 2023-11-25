@@ -7,16 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/ClientTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/ClientTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/Results/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/LoginResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/Results/RegisterResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Results/RegisterResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handlers/Handlers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Handlers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Services.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +77,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChessClient">
+  <component name="RunManager" selected="Application.ChessServer">
     <configuration name="ChessClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.ChessClient" />
       <module name="client" />
@@ -128,28 +123,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StandardAPITests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Cheney Chess Program" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="passoffTests.serverTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="passoffTests.serverTests" />
-      <option name="MAIN_CLASS_NAME" value="passoffTests.serverTests.StandardAPITests" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="ClientTests.list" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ClientTests" />
+      <option name="METHOD_NAME" value="list" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ChessClient" />
         <item itemvalue="JUnit.ClientTests" />
         <item itemvalue="Application.ChessServer" />
+        <item itemvalue="JUnit.ClientTests.list" />
+        <item itemvalue="Application.ChessClient" />
         <item itemvalue="JUnit.ClientTests.create" />
-        <item itemvalue="JUnit.StandardAPITests" />
       </list>
     </recent_temporary>
   </component>
@@ -337,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700595643761</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed">
+      <created>1700784088016</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1700784088016</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -352,7 +349,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implemented a couple methods" />
     <MESSAGE value="implemented a couple methods and fixd testfactory" />
     <MESSAGE value="implemented a couple methods and fixed testfactory and chess board tests are passed" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt;" />
@@ -377,7 +373,8 @@
     <MESSAGE value="Phase 5: structure set up with basic functionality without accessing or storing info" />
     <MESSAGE value="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad" />
     <MESSAGE value="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented" />
+    <MESSAGE value="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -391,6 +388,11 @@
           <url>file://$PROJECT_DIR$/src/passoffTests/serverTests/StandardAPITests.java</url>
           <line>462</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/ui/ServerFacade.java</url>
+          <line>149</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
