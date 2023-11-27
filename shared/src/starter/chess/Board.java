@@ -137,64 +137,123 @@ public class Board implements ChessBoard {
         }
     }
 
-    public String toString() {
+    public String toString(String color) {
         StringBuilder picture = new StringBuilder();
-        picture.append(8);
-        for(int r = 7; r > -1; r--) {
-            if(r != 7) {
-                //FIXME::get rid of sum_r and adding it to the append as well as the picture.append(8) above for final tostring
-                int sum_r = r+1;
-                picture.append("|\n"+sum_r);
-            }
-            for(int c = 0; c < 8; c++) {
-                picture.append('|');
-                Piece piece = new Piece();
-                piece = board[r][c];
-                if(piece != null) {
-                    if(piece.getPieceType() == KING) {
-                        if(piece.getTeamColor() != BLACK) {
-                            picture.append('K');
-                        } else {
-                            picture.append('k');
+        int rowS;
+        int rowE;
+        if(color.equals("WHITE")) {
+            picture.append(8);
+            for(int r = 7; r > -1; r--) {
+                if(r != 7) {
+                    int sum_r = r+1;
+                    picture.append(r+2 + "|\n"+sum_r);
+                }
+                for(int c = 0; c < 8; c++) {
+                    picture.append('|');
+                    Piece piece = new Piece();
+                    piece = board[r][c];
+                    if(piece != null) {
+                        if(piece.getPieceType() == KING) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('K');
+                            } else {
+                                picture.append('k');
+                            }
+                        } else if(piece.getPieceType() == QUEEN) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('Q');
+                            } else {
+                                picture.append('q');
+                            }
+                        } else if(piece.getPieceType() == BISHOP) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('B');
+                            } else {
+                                picture.append('b');
+                            }
+                        } else if(piece.getPieceType() == KNIGHT) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('N');
+                            } else {
+                                picture.append('n');
+                            }
+                        } else if(piece.getPieceType() == ROOK) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('R');
+                            } else {
+                                picture.append('r');
+                            }
+                        } else if (piece.getPieceType() == PAWN) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('P');
+                            } else {
+                                picture.append('p');
+                            }
                         }
-                    } else if(piece.getPieceType() == QUEEN) {
-                        if(piece.getTeamColor() != BLACK) {
-                            picture.append('Q');
-                        } else {
-                            picture.append('q');
-                        }
-                    } else if(piece.getPieceType() == BISHOP) {
-                        if(piece.getTeamColor() != BLACK) {
-                            picture.append('B');
-                        } else {
-                            picture.append('b');
-                        }
-                    } else if(piece.getPieceType() == KNIGHT) {
-                        if(piece.getTeamColor() != BLACK) {
-                            picture.append('N');
-                        } else {
-                            picture.append('n');
-                        }
-                    } else if(piece.getPieceType() == ROOK) {
-                        if(piece.getTeamColor() != BLACK) {
-                            picture.append('R');
-                        } else {
-                            picture.append('r');
-                        }
-                    } else if (piece.getPieceType() == PAWN) {
-                        if(piece.getTeamColor() != BLACK) {
-                            picture.append('P');
-                        } else {
-                            picture.append('p');
-                        }
+                    } else {
+                        picture.append(" ");
                     }
-                } else {
-                    picture.append(" ");
                 }
             }
+            picture.append("|1\n");
         }
-        //FIXME::get rid of the |#|#|#|#|# in the append statement for final
-        picture.append("|\n |1|2|3|4|5|6|7|8|");
+        else {
+            picture.append(1);
+            for(int r = 0; r < 8; r++) {
+                if(r != 0) {
+                    int sum_r = r+1;
+                    picture.append(r + "|\n"+sum_r);
+                }
+                for(int c = 0; c < 8; c++) {
+                    picture.append('|');
+                    Piece piece = new Piece();
+                    piece = board[r][c];
+                    if(piece != null) {
+                        if(piece.getPieceType() == KING) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('K');
+                            } else {
+                                picture.append('k');
+                            }
+                        } else if(piece.getPieceType() == QUEEN) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('Q');
+                            } else {
+                                picture.append('q');
+                            }
+                        } else if(piece.getPieceType() == BISHOP) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('B');
+                            } else {
+                                picture.append('b');
+                            }
+                        } else if(piece.getPieceType() == KNIGHT) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('N');
+                            } else {
+                                picture.append('n');
+                            }
+                        } else if(piece.getPieceType() == ROOK) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('R');
+                            } else {
+                                picture.append('r');
+                            }
+                        } else if (piece.getPieceType() == PAWN) {
+                            if(piece.getTeamColor() != BLACK) {
+                                picture.append('P');
+                            } else {
+                                picture.append('p');
+                            }
+                        }
+                    } else {
+                        picture.append(" ");
+                    }
+                }
+            }
+            picture.append("|8\n");
+        }
+
         return picture.toString();
     }
 }

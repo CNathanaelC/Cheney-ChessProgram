@@ -22,93 +22,94 @@ public class ClientTests {
          }
     }
     @Test
-    @Order(0)
+    @Order(1)
     @DisplayName("Destroy Success")
     public void destroy() {
         Assertions.assertDoesNotThrow(() -> client.destroy("samplePassword"), "Error was thrown");
     }
     @Test
-    @Order(1)
+    @Order(2)
     @DisplayName("Register Success")
     public void register() {
         Assertions.assertDoesNotThrow(() -> client.register("Palps", "JustD3wIt!", "notfromajedi@darkside.org"), "Error was thrown");
     }
     @Test
-    @Order(2)
+    @Order(3)
     @DisplayName("Login Success")
     public void login() {
         Assertions.assertDoesNotThrow(() -> client.login("LukeSky", "P0werCable$"), "Error was thrown");
     }
     @Test
-    @Order(3)
+    @Order(4)
     @DisplayName("List Games Success")
     public void list() {
         Assertions.assertDoesNotThrow(() -> client.listGames(), "Error was thrown");
     }
-    @Order(4)
+    @Test
+    @Order(5)
     @DisplayName("Logout Success")
     public void logout() {
         Assertions.assertDoesNotThrow(() -> client.logout(), "Error was thrown");
     }
     @Test
-    @Order(5)
+    @Order(6)
     @DisplayName("Create Game Success")
     public void create() {
         Assertions.assertDoesNotThrow(() -> client.createGame("Trap at Cloud City"), "Error was thrown");
     }
     @Test
-    @Order(6)
+    @Order(7)
     @DisplayName("Join as Player Success")
     public void play() {
         Assertions.assertDoesNotThrow(() -> client.joinGame("BLACK", "1000"), "Error was thrown");
     }
     @Test
-    @Order(6)
+    @Order(8)
     @DisplayName("Join as Observer Success")
     public void observe() {
         Assertions.assertDoesNotThrow(() -> client.joinObserver("1000"), "Error was thrown");
     }
     @Test
-    @Order(7)
+    @Order(9)
     @DisplayName("Register Failure")
     public void badRegister() {
         Assertions.assertThrows(Exception.class, () -> client.register("LukeSky", "P0werCable$", "bluemilk@tatooine.com"), "Error was not thrown");
     }
     @Test
-    @Order(8)
+    @Order(10)
     @DisplayName("Login Failure")
     public void badLogin() {
         Assertions.assertThrows(Exception.class, () -> client.login("LukeSky", "P0werCables"), "Error was not thrown");
     }
     @Test
-    @Order(9)
+    @Order(11)
     @DisplayName("Logout Failure")
     public void badLogout() {
         Assertions.assertDoesNotThrow(() -> client.logout(), "Error was thrown");
         Assertions.assertThrows(Exception.class, () -> client.logout(), "Error was not thrown");
     }
     @Test
-    @Order(10)
+    @Order(12)
     @DisplayName("List Games Failure")
     public void badList() {
         Assertions.assertDoesNotThrow(() -> client.logout(), "Error was thrown");
         Assertions.assertThrows(Exception.class, () -> client.listGames(), "Error was not thrown");
     }
     @Test
-    @Order(11)
+    @Order(13)
     @DisplayName("Create Game Failure")
     public void badCreate() {
         Assertions.assertDoesNotThrow(() -> client.logout(), "Error was thrown");
         Assertions.assertThrows(Exception.class,() -> client.createGame("Trap at Cloud City"), "Error was not thrown");
     }
     @Test
-    @Order(12)
+    @Order(14)
     @DisplayName("Join as Player Failure")
     public void badPlay() {
         Assertions.assertThrows(ResponseException.class, () -> client.joinGame("WHITE", "1000"), "Error was not thrown");
     }
     @Test
-    @Order(13)
+    @Order(15)
     @DisplayName("Join as Observer Failure")
     public void badObserve() {
         Assertions.assertThrows(ResponseException.class, () -> client.joinObserver("2000"), "Error was not thrown");

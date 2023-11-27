@@ -1,11 +1,16 @@
 package ui;
 
+import chess.Board;
+import chess.Game;
+import chess.Piece;
+
 import java.io.IOException;
 import java.util.Arrays;
 import static ui.EscapeSequences.*;
 
 public class ChessClient {
     public boolean sessionLogin = false;
+    public boolean joinedGame = false;
     private static ServerFacade server = new ServerFacade();
     public static void main(String[] args) {
         new Repl().run();
@@ -29,21 +34,27 @@ public class ChessClient {
                 return e.getMessage();
             }
         } else {
-            try {
-                var tokens = input.toLowerCase().split(" ");
-                var cmd = (tokens.length > 0) ? tokens[0] : "help";
-                var params = Arrays.copyOfRange(tokens, 1, tokens.length);
-                return switch (cmd) {
-                    case "quit" -> quit();
-                    case "login" -> login(params);
-                    case "register" -> register(params);
-                    default -> help();
-                };
-            } catch (ResponseException e) {
-                return e.getMessage();
+            if(joinedGame) {
+                //TODO:: implement the gameplay ui for final stage
+                printChessBoard("WHITE");
+                printChessBoard("BLACK");
+                return "";
+            } else {
+                try {
+                    var tokens = input.toLowerCase().split(" ");
+                    var cmd = (tokens.length > 0) ? tokens[0] : "help";
+                    var params = Arrays.copyOfRange(tokens, 1, tokens.length);
+                    return switch (cmd) {
+                        case "quit" -> quit();
+                        case "login" -> login(params);
+                        case "register" -> register(params);
+                        default -> help();
+                    };
+                } catch (ResponseException e) {
+                    return e.getMessage();
+                }
             }
         }
-
     }
 
     public String help() {
@@ -113,8 +124,7 @@ public class ChessClient {
     }
     public String listGames() throws ResponseException {
         if(server.listGames()) {
-            //FIXME::have it actually print out the game list
-            return "/Gamelist/\n";
+            return "";
         } else {
             throw new ResponseException("List Games Failure");
         }
@@ -122,7 +132,8 @@ public class ChessClient {
     public String joinGame(String...params) throws ResponseException {
         if(params.length == 2) {
             if(server.joinPlayer(params[0], Integer.parseInt(params[1]))) {
-                printChessBoard();
+                printChessBoard("WHITE");
+                printChessBoard("BLACK");
                 return "Game " + params[1] + " was successfully joined as the " + params[0].toLowerCase() + " player.\n";
             } else {
                 throw new ResponseException("Game Join Failure\n");
@@ -136,7 +147,8 @@ public class ChessClient {
     public String joinObserver(String...params) throws ResponseException {
         if(params.length == 1) {
             if(server.joinObserver(Integer.parseInt(params[0]))) {
-                printChessBoard();
+                printChessBoard("WHITE");
+                printChessBoard("BLACK");
                 return "Game " + params[0] + " was successfully joined as the observer.\n";
             } else {
                 throw new ResponseException("Game Observe Failure\n");
@@ -145,8 +157,68 @@ public class ChessClient {
             throw new ResponseException("Incorrect number of elements\n");
         }
     }
-    public void printChessBoard() {
+    public void printChessBoard(String viewColor) {
+        Board board = new Board();
+        board.resetBoard();
+        String s = board.toString(viewColor);
+        boolean b = true;
+        boolean b2 = true;
+        int sidebarIt = 0;
+        System.out.print(SET_TEXT_COLOR_BLACK);
+        System.out.println(SET_BG_COLOR_GREEN + "    a  b  c  d  e  f  g  h    " + RESET_BG_COLOR);
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == '\n') {
+                b = !b;
+                System.out.println(RESET_BG_COLOR);
+            } else if(s.charAt(i) != '|')  {
+                if(b) {
+                    if(b2) {
+                        if(sidebarIt == 0 || sidebarIt == 9) {
+                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
+                        } else {
+                            System.out.print(SET_BG_COLOR_BLUE + " " + s.charAt(i) + " ");
+                        }
+                        b2 = !b2;
+                    } else {
+                        if(sidebarIt == 0 || sidebarIt == 9) {
+                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
+                        } else {
+                            System.out.print(SET_BG_COLOR_MAGENTA + " " + s.charAt(i) + " ");
+                        }
+                        b2 = !b2;
+                    }
+                } else {
+                    if(b2) {
+                        if(sidebarIt == 0 || sidebarIt == 9) {
+                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
+                        } else {
+                            System.out.print(SET_BG_COLOR_MAGENTA + " " + s.charAt(i) + " ");
+                        }
+                        b2 = !b2;
+                    } else {
+                        if(sidebarIt == 0 || sidebarIt == 9) {
+                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
+                        } else {
+                            System.out.print(SET_BG_COLOR_BLUE + " " + s.charAt(i) + " ");
+                        }
+                        b2 = !b2;
+                    }
+                }
+                if(sidebarIt != 9) {
+                    sidebarIt++;
+                } else {
+                    sidebarIt = 0;
+                }
+            }
 
+        }
+        System.out.println(SET_BG_COLOR_GREEN + "    a  b  c  d  e  f  g  h    " + RESET_BG_COLOR);
+        System.out.println(RESET_BG_COLOR + RESET_TEXT_COLOR);
+        if(viewColor.equals("WHITE")) {
+
+        } else {
+
+        }
     }
     public void destroy(String p) throws ResponseException {
         if(p.equals("samplePassword")) {

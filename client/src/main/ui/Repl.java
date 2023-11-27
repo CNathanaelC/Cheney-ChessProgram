@@ -16,7 +16,11 @@ public class Repl {
         Scanner scanner = new Scanner(System.in);
         var result = "";
         while (!result.equals("quit")) {
-            System.out.print(SET_TEXT_COLOR_MAGENTA+"["+ chessClient.sessionLogin + "] >>> " + SET_TEXT_COLOR_RED);
+            if(chessClient.sessionLogin) {
+                System.out.print(SET_TEXT_COLOR_MAGENTA+"["+ "Logged In" + "] >>> " + SET_TEXT_COLOR_RED);
+            } else {
+                System.out.print(SET_TEXT_COLOR_MAGENTA+"["+ "Logged Out" + "] >>> " + SET_TEXT_COLOR_RED);
+            }
             String line = scanner.nextLine();
 
             try {

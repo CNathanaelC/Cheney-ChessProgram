@@ -7,11 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: All Unit Tests Passed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/test/ClientTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/ClientTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Board.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,8 +77,11 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="chess" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.ChessServer">
+  <component name="RunManager" selected="JUnit.ClientTests">
     <configuration name="ChessClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.ChessClient" />
       <module name="client" />
@@ -137,8 +141,8 @@
       <list>
         <item itemvalue="JUnit.ClientTests" />
         <item itemvalue="Application.ChessServer" />
-        <item itemvalue="JUnit.ClientTests.list" />
         <item itemvalue="Application.ChessClient" />
+        <item itemvalue="JUnit.ClientTests.list" />
         <item itemvalue="JUnit.ClientTests.create" />
       </list>
     </recent_temporary>
@@ -334,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700784088016</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Phase 5: All Unit Tests Passed">
+      <created>1700899185361</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1700899185361</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -349,7 +360,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implemented a couple methods and fixd testfactory" />
     <MESSAGE value="implemented a couple methods and fixed testfactory and chess board tests are passed" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt;" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly" />
@@ -374,7 +384,8 @@
     <MESSAGE value="Phase 5: structure set up with basic functionality without accessing or storing info. The structure is probably bad" />
     <MESSAGE value="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented" />
     <MESSAGE value="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed" />
+    <MESSAGE value="Phase 5: All Unit Tests Passed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: All Unit Tests Passed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
