@@ -7,12 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: All Unit Tests Passed">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: All Unit Tests Passed and Client Formatted">
+      <change afterPath="$PROJECT_DIR$/client/src/test/FacadeTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/ClientTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/ClientTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/starter/chess/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +81,7 @@
       <recent name="chess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ClientTests">
+  <component name="RunManager" selected="JUnit.FacadeTests">
     <configuration name="ChessClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.ChessClient" />
       <module name="client" />
@@ -117,16 +117,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientTests.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ClientTests" />
-      <option name="METHOD_NAME" value="create" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ClientTests.list" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="client" />
       <option name="PACKAGE_NAME" value="" />
@@ -137,13 +127,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FacadeTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="client" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FacadeTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClientTests" />
-        <item itemvalue="Application.ChessServer" />
+        <item itemvalue="JUnit.FacadeTests" />
         <item itemvalue="Application.ChessClient" />
+        <item itemvalue="Application.ChessServer" />
+        <item itemvalue="JUnit.ClientTests" />
         <item itemvalue="JUnit.ClientTests.list" />
-        <item itemvalue="JUnit.ClientTests.create" />
       </list>
     </recent_temporary>
   </component>
@@ -345,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700899185361</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Phase 5: All Unit Tests Passed and Client Formatted">
+      <created>1701122289299</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1701122289299</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -360,7 +366,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implemented a couple methods and fixed testfactory and chess board tests are passed" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt;" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly maybe" />
@@ -385,7 +390,8 @@
     <MESSAGE value="Phase 5: Issues fixed the facade seems to be working and the testing cases have begun to be implemented" />
     <MESSAGE value="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed" />
     <MESSAGE value="Phase 5: All Unit Tests Passed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: All Unit Tests Passed" />
+    <MESSAGE value="Phase 5: All Unit Tests Passed and Client Formatted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: All Unit Tests Passed and Client Formatted" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -401,9 +407,9 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/ui/ServerFacade.java</url>
-          <line>149</line>
-          <option name="timeStamp" value="23" />
+          <url>file://$PROJECT_DIR$/client/src/main/ui/ChessClient.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

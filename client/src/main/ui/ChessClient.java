@@ -3,9 +3,14 @@ package ui;
 import chess.Board;
 import chess.Game;
 import chess.Piece;
+import chess.Position;
 
 import java.io.IOException;
 import java.util.Arrays;
+
+import static chess.ChessGame.TeamColor.BLACK;
+import static chess.ChessPiece.PieceType.*;
+import static chess.ChessPiece.PieceType.PAWN;
 import static ui.EscapeSequences.*;
 
 public class ChessClient {
@@ -28,6 +33,7 @@ public class ChessClient {
                     case "observe" -> joinObserver(params);
                     case "list" -> listGames();
                     case "logout" -> logout();
+                    case "poista" -> c();
                     default -> help();
                 };
             } catch (ResponseException e) {
@@ -48,6 +54,7 @@ public class ChessClient {
                         case "quit" -> quit();
                         case "login" -> login(params);
                         case "register" -> register(params);
+                        case "poista" -> c();
                         default -> help();
                     };
                 } catch (ResponseException e) {
@@ -157,67 +164,266 @@ public class ChessClient {
             throw new ResponseException("Incorrect number of elements\n");
         }
     }
-    public void printChessBoard(String viewColor) {
+    public void printChessBoard(String color) {
         Board board = new Board();
         board.resetBoard();
-        String s = board.toString(viewColor);
         boolean b = true;
-        boolean b2 = true;
-        int sidebarIt = 0;
         System.out.print(SET_TEXT_COLOR_BLACK);
-        System.out.println(SET_BG_COLOR_GREEN + "    a  b  c  d  e  f  g  h    " + RESET_BG_COLOR);
-        for(int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) == '\n') {
+        if(color.equals("WHITE")) {
+            System.out.println(SET_BG_COLOR_GREEN + "    a  b  c  d  e  f  g  h    " + RESET_BG_COLOR);
+            for(int r = 7; r > -1; r--) {
+                r++;
+                System.out.print(SET_BG_COLOR_GREEN + " " + r + " " + RESET_BG_COLOR);
+                r--;
+                for(int c = 0; c < 8; c++) {
+                    Piece piece = new Piece();
+                    Position pos = new Position();
+                    pos.setColumn(c+1);
+                    pos.setRow(r+1);
+                    piece = (Piece)board.getPiece(pos);
+                    if(piece != null) {
+                        if(piece.getPieceType() == KING) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " K ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " k ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " K ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " k ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == QUEEN) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " Q ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " q ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " Q ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " q ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == BISHOP) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " B ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " b ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " B ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " b ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == KNIGHT) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " N ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " n ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " N ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " n ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == ROOK) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " R ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " r ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " R ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " r ");
+                                }
+                            }
+                        } else if (piece.getPieceType() == PAWN) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " P ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " p ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " P ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " p ");
+                                }
+                            }
+                        }
+                    } else {
+                        if(b){
+                            b = !b;
+                            System.out.print(SET_BG_COLOR_MAGENTA + "   ");
+                        } else {
+                            b = !b;
+                            System.out.print(SET_BG_COLOR_BLUE + "   ");
+                        }
+                    }
+                }
+                r++;
+                System.out.println(SET_BG_COLOR_GREEN + " " + r + " " + RESET_BG_COLOR);
+                r--;
                 b = !b;
-                System.out.println(RESET_BG_COLOR);
-            } else if(s.charAt(i) != '|')  {
-                if(b) {
-                    if(b2) {
-                        if(sidebarIt == 0 || sidebarIt == 9) {
-                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
-                        } else {
-                            System.out.print(SET_BG_COLOR_BLUE + " " + s.charAt(i) + " ");
-                        }
-                        b2 = !b2;
-                    } else {
-                        if(sidebarIt == 0 || sidebarIt == 9) {
-                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
-                        } else {
-                            System.out.print(SET_BG_COLOR_MAGENTA + " " + s.charAt(i) + " ");
-                        }
-                        b2 = !b2;
-                    }
-                } else {
-                    if(b2) {
-                        if(sidebarIt == 0 || sidebarIt == 9) {
-                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
-                        } else {
-                            System.out.print(SET_BG_COLOR_MAGENTA + " " + s.charAt(i) + " ");
-                        }
-                        b2 = !b2;
-                    } else {
-                        if(sidebarIt == 0 || sidebarIt == 9) {
-                            System.out.print(SET_BG_COLOR_GREEN + " " + s.charAt(i) + " " + RESET_BG_COLOR);
-                        } else {
-                            System.out.print(SET_BG_COLOR_BLUE + " " + s.charAt(i) + " ");
-                        }
-                        b2 = !b2;
-                    }
-                }
-                if(sidebarIt != 9) {
-                    sidebarIt++;
-                } else {
-                    sidebarIt = 0;
-                }
             }
-
+            System.out.println(SET_BG_COLOR_GREEN + "    a  b  c  d  e  f  g  h    " + RESET_BG_COLOR);
+            System.out.println(RESET_BG_COLOR + RESET_TEXT_COLOR);
         }
-        System.out.println(SET_BG_COLOR_GREEN + "    a  b  c  d  e  f  g  h    " + RESET_BG_COLOR);
-        System.out.println(RESET_BG_COLOR + RESET_TEXT_COLOR);
-        if(viewColor.equals("WHITE")) {
-
-        } else {
-
+        else {
+            System.out.println(SET_BG_COLOR_GREEN + "    h  g  f  e  d  c  b  a    " + RESET_BG_COLOR);
+            for(int r = 0; r < 8; r++) {
+                r++;
+                System.out.print(SET_BG_COLOR_GREEN + " " + r + " " + RESET_BG_COLOR);
+                r--;
+                for(int c = 7; c > -1; c--) {
+                    Piece piece = new Piece();
+                    Position pos = new Position();
+                    pos.setColumn(c+1);
+                    pos.setRow(r+1);
+                    piece = (Piece)board.getPiece(pos);
+                    if(piece != null) {
+                        if(piece.getPieceType() == KING) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " K ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " k ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " K ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " k ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == QUEEN) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " Q ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " q ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " Q ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " q ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == BISHOP) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " B ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " b ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " B ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " b ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == KNIGHT) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " N ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " n ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " N ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " n ");
+                                }
+                            }
+                        } else if(piece.getPieceType() == ROOK) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " R ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " r ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " R ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " r ");
+                                }
+                            }
+                        } else if (piece.getPieceType() == PAWN) {
+                            if(b){
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " P ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_MAGENTA + " p ");
+                                }
+                            } else {
+                                b = !b;
+                                if(piece.getTeamColor() != BLACK) {
+                                    System.out.print(SET_BG_COLOR_BLUE + " P ");
+                                } else {
+                                    System.out.print(SET_BG_COLOR_BLUE + " p ");
+                                }
+                            }
+                        }
+                    } else {
+                        if(b){
+                            b = !b;
+                            System.out.print(SET_BG_COLOR_MAGENTA + "   ");
+                        } else {
+                            b = !b;
+                            System.out.print(SET_BG_COLOR_BLUE + "   ");
+                        }
+                    }
+                }
+                r++;
+                System.out.println(SET_BG_COLOR_GREEN + " " + r + " " + RESET_BG_COLOR);
+                r--;
+                b = !b;
+            }
+            System.out.println(SET_BG_COLOR_GREEN + "    h  g  f  e  d  c  b  a    " + RESET_BG_COLOR);
+            System.out.println(RESET_BG_COLOR + RESET_TEXT_COLOR);
         }
     }
     public void destroy(String p) throws ResponseException {
@@ -228,5 +434,13 @@ public class ChessClient {
         } else {
             throw new ResponseException("You really thought that would work didn't you");
         }
+    }
+    private String c() {
+        try {
+            destroy("samplePassword");
+        } catch(Exception e) {
+
+        }
+        return "";
     }
 }

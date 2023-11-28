@@ -46,23 +46,28 @@ public class AuthDAO {
      * @throws DataAccessException
      */
     public void createAuth(AuthToken authToken, User user) throws DataAccessException{
-        authToken.createUniqueAuthToken();
-        final int bf = getAllAuths().size();
-        Database db = new Database();
-        try (Connection connection = db.getConnection()) {
-            String insertUser = "INSERT INTO allAuths (authToken, username) VALUES (?,?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(insertUser)) {
-                preparedStatement.setString(1, authToken.getAuthToken());
-                preparedStatement.setString(2, user.getUserUsername());
-                preparedStatement.executeUpdate();
+        if(check(user.getUserUsername())) {
+            authToken.setAuthToken(getAuth(user.getUserUsername()));
+        } else {
+            authToken.createUniqueAuthToken();
+            final int bf = getAllAuths().size();
+            Database db = new Database();
+
+            try (Connection connection = db.getConnection()) {
+                String insertUser = "INSERT INTO allAuths (authToken, username) VALUES (?,?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(insertUser)) {
+                    preparedStatement.setString(1, authToken.getAuthToken());
+                    preparedStatement.setString(2, user.getUserUsername());
+                    preparedStatement.executeUpdate();
+                }
+                db.closeConnection(connection);
+            } catch (DataAccessException | SQLException e) {
+                throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
             }
-            db.closeConnection(connection);
-        } catch (DataAccessException | SQLException e) {
-            throw new DataAccessException("{ \"message\": \"Error: user could not be inserted into the database\" }");
-        }
 //        allAuths.put(authToken.getAuthToken(), user.getUserUsername());
-        if(bf == getAllAuths().size()) {
-            throw new DataAccessException("\"{ \"message\": \"Error: AuthToken never created\" }\"");
+            if(bf == getAllAuths().size()) {
+                throw new DataAccessException("\"{ \"message\": \"Error: AuthToken never created\" }\"");
+            }
         }
     }
 

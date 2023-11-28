@@ -80,7 +80,7 @@ public class ServerFacade {
     public boolean joinPlayer(String playerColor, int gameID) {
         try {
             return makeRequest("PUT", "/game", "{" +
-                    "  \"playerColor\": \""+ playerColor +"\"," +
+                    "  \"playerColor\": \""+ playerColor.toUpperCase() +"\"," +
                     "  \"gameID\": " + gameID +
                     "}");
         } catch (IOException e) {
@@ -159,9 +159,11 @@ public class ServerFacade {
                 connection.getOutputStream().write(body[0].getBytes("UTF-8"));
             }
             int responseCode = connection.getResponseCode();
-            String message;
+            String message = "";
             try (Scanner scanner = new Scanner(connection.getInputStream(), "UTF-8")) {
                 message = scanner.nextLine();
+            } catch (Exception e) {
+
             }
             if (responseCode == 200) {
                 if(method.equals("POST") && (path.equals("/user") || path.equals("/session"))) {
