@@ -7,12 +7,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: All Unit Tests Passed and Client Formatted">
-      <change afterPath="$PROJECT_DIR$/client/src/test/FacadeTests.java" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 5: Completed and Passed Off">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/glassfish_tyrus_bundles_standalone_client.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/Error.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/LoadGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/serverMessages/ServerMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/JoinObserver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/JoinPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/Leave.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/MakeMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/Resign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/UserGameCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Server/webSocket/Connection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Server/webSocket/WSHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/passoffTests/serverTests/WebSocketTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cheney Chess Program.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Cheney Chess Program.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/AuthDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/6-gameplay/starter-code/serverTests/WebSocketTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/6-gameplay/starter-code/webSocketMessages/serverMessages/ServerMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/softwareconstruction/chess/6-gameplay/starter-code/webSocketMessages/userCommands/UserGameCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/ChessServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ChessServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,35 +62,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bubba/IdeaProjects/Cheney Chess Program/src/libs&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "OverrideImplement.generate.javadoc": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "create.test.in.the.same.root": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-20",
+    "last_opened_file_path": "C:/Users/bubba/IdeaProjects/Cheney Chess Program",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="chess" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\client\src\main\ui" />
+      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\shared\src\starter" />
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\passoffTests\serverTests" />
+      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\client\src\main\ui" />
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src\dataAccess" />
       <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\web" />
-      <recent name="C:\Users\bubba\IdeaProjects\Cheney Chess Program\src" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -351,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701122289299</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Phase 5: Completed and Passed Off">
+      <created>1701215131019</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1701215131019</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -366,7 +391,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt;" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly" />
     <MESSAGE value="figured out that you have to implement the hashcode and equals method if you want to use the HashSet for the Collection&lt;ChessMove&gt; and did it correctly maybe" />
     <MESSAGE value="18 failed 40 passed" />
@@ -391,7 +415,8 @@
     <MESSAGE value="Phase 5: Most of the Test cases work except for join failures, game list needs to be fixed" />
     <MESSAGE value="Phase 5: All Unit Tests Passed" />
     <MESSAGE value="Phase 5: All Unit Tests Passed and Client Formatted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: All Unit Tests Passed and Client Formatted" />
+    <MESSAGE value="Phase 5: Completed and Passed Off" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 5: Completed and Passed Off" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -405,11 +430,6 @@
           <url>file://$PROJECT_DIR$/src/passoffTests/serverTests/StandardAPITests.java</url>
           <line>462</line>
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/ui/ChessClient.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

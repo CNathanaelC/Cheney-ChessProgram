@@ -2,21 +2,21 @@ package Server;
 
 import dataAccess.DataAccessException;
 import dataAccess.Database;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
+import org.eclipse.jetty.websocket.api.Session;
 import spark.Spark;
 import Handlers.*;
 
 import java.sql.SQLException;
-
+@WebSocket
 public class ChessServer {
     public static void main(String[] args) {
         new ChessServer().run();
     }
     private void run() {
-        // Specify the port you want the server to listen on
         Spark.port(8080);
-        // Register a directory for hosting static files
         Spark.externalStaticFileLocation("web");
-        //Start Database
         Database db = new Database();
         try {
             db.configureDatabase();
@@ -24,7 +24,7 @@ public class ChessServer {
             System.out.println("SQL failed");
             e.printStackTrace();
         }
-        // Register handlers for each endpoint using the method reference syntax
+        Spark.webSocket("/connect", ChessServer.class);
         Spark.delete("/db", Handlers::ClearApplicationHandler);
         Spark.post("/user", Handlers::RegisterHandler);
         Spark.post("/session", Handlers::LoginHandler);
