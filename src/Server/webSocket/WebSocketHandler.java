@@ -6,6 +6,7 @@ import chess.ChessGame;
 import chess.Game;
 import com.google.gson.Gson;
 import dataAccess.AuthDAO;
+import dataAccess.DataAccessException;
 import dataAccess.GameDAO;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
@@ -32,6 +33,16 @@ public class WebSocketHandler {
     public void joinPlayer(JoinPlayer cmd, Session session) throws IOException {
         try {
             try {
+                try {
+                    AuthToken at = new AuthToken();
+                    at.setAuthToken(cmd.getAuthString());
+                    new AuthDAO().validate(at);
+                } catch(Exception e) {
+                    String message = String.format("AuthToken Invalid");
+                    ErrorMessage error = new ErrorMessage();
+                    error.setErrorMessage(message);
+                    connections.notifyRoot(cmd.getAuthString(), error);
+                }
                 GameData gameData = connections.play(cmd.getAuthString(), cmd.getGameID(), cmd.getPlayerColor(), session);
                 AuthToken at = new AuthToken();
                 at.setAuthToken(cmd.getAuthString());
@@ -63,7 +74,7 @@ public class WebSocketHandler {
                         ErrorMessage error = new ErrorMessage();
                         error.setErrorMessage(message);
                         connections.notifyRoot(cmd.getAuthString(), error);
-                    } else if (gameData.getBlackUsername() == null || gameData.getBlackUsername().equals(new AuthDAO().getUsername(at))) {
+                    } else if (gameData.getBlackUsername().equals(new AuthDAO().getUsername(at))) {
                         //Server sends a LOAD_GAME message back to the root client.
                         String message = String.format("User %s joined a game as a player", new AuthDAO().getUsername(at));
                         LoadGame loadGame = new LoadGame();
@@ -91,35 +102,55 @@ public class WebSocketHandler {
         }
     }
     public void joinObserver(JoinObserver cmd, Session session) throws IOException {
-        connections.observe(cmd.getAuthString(), session);
-        AuthToken at = new AuthToken();
-        at.setAuthToken(cmd.getAuthString());
-        //Server sends a LOAD_GAME message back to the root client.
-        String message = String.format("User %s joined a game as an observer", new AuthDAO().getUsername(at));
-        LoadGame loadGame = new LoadGame();
-        connections.notifyRoot(cmd.getAuthString(), loadGame);
-        //Server sends a Notification message to all other clients in that game informing them the root client joined as an observer.
-        Notification notification = new Notification();
-        notification.message = message;
-        connections.notifyOthers(cmd.getAuthString(), notification);
+        try {
+            AuthToken at = new AuthToken();
+            at.setAuthToken(cmd.getAuthString());
+            new AuthDAO().validate(at);
+        } catch(Exception e) {
+            String message = String.format("AuthToken Invalid");
+            ErrorMessage error = new ErrorMessage();
+            error.setErrorMessage(message);
+            connections.notifyRoot(cmd.getAuthString(), error);
+        }
+        try {
+            Game game = connections.observe(cmd.getAuthString(), cmd.getGameID(), session);
+            AuthToken at = new AuthToken();
+            at.setAuthToken(cmd.getAuthString());
+            //Server sends a LOAD_GAME message back to the root client.
+            String message = String.format("User %s joined a game as an observer", new AuthDAO().getUsername(at));
+            LoadGame loadGame = new LoadGame();
+            loadGame.setGame(game);
+            connections.notifyRoot(cmd.getAuthString(), loadGame);
+            //Server sends a Notification message to all other clients in that game informing them the root client joined as an observer.
+            Notification notification = new Notification();
+            notification.message = message;
+            connections.notifyOthers(cmd.getAuthString(), notification);
+        } catch(Exception e) {
+            String message = String.format("GameID invalid");
+            ErrorMessage error = new ErrorMessage();
+            error.setErrorMessage(message);
+            connections.notifyRoot(cmd.getAuthString(), error);
+        }
     }
     public void makeMove(MakeMove cmd, Session session) throws IOException {
         try {
-            connections.move(cmd.getAuthString(), cmd.getGameID(), cmd.getMove());
+            Game game = connections.move(cmd.getAuthString(), cmd.getGameID(), cmd.getMove());
+            if (game != null) {
+                AuthToken at = new AuthToken();
+                at.setAuthToken(cmd.getAuthString());
+                //Server sends a LOAD_GAME message to all clients in the game (including the root client) with an updated game.
+                var message = String.format("Player %s made a move", new AuthDAO().getUsername(at));
+                LoadGame loadGame = new LoadGame();
+                loadGame.setGame(game);
+                connections.notifyAll(cmd.getAuthString(), loadGame);
+                //Server sends a Notification message to all other clients in that game informing them what move was made.
+                Notification notification = new Notification();
+                notification.message = message;
+                connections.notifyOthers(cmd.getAuthString(), notification);
+            }
         } catch(Exception e) {
             throw new IOException(e.getMessage());
         }
-        AuthToken at = new AuthToken();
-        at.setAuthToken(cmd.getAuthString());
-        //Server sends a LOAD_GAME message to all clients in the game (including the root client) with an updated game.
-        var message = String.format("Player %s made a move", new AuthDAO().getUsername(at));
-        LoadGame loadGame = new LoadGame();
-        connections.notifyRoot(cmd.getAuthString(), loadGame);
-        connections.notifyOthers(cmd.getAuthString(), loadGame);
-        //Server sends a Notification message to all other clients in that game informing them what move was made.
-        Notification notification = new Notification();
-        notification.message = message;
-        connections.notifyOthers(cmd.getAuthString(), notification);
     }
     public void leave(Leave cmd, Session session) throws IOException {
         //If a player is leaving, then the game is updated to remove the root client. Game is updated in the database.
@@ -133,17 +164,6 @@ public class WebSocketHandler {
         connections.notifyOthers(cmd.getAuthString(), notification);
     }
     public void resign(Resign cmd, Session session) throws IOException {
-        //Server marks the game as over (no more moves can be made). Game is updated in the database.
-        //Server sends a Notification message to all clients in that game informing them that the root client left. This applies to both players and observers.
-        AuthToken at = new AuthToken();
-        at.setAuthToken(cmd.getAuthString());
-        String message = String.format("Player %s resigned from the game", new AuthDAO().getUsername(at));
-        Notification notification = new Notification();
-        notification.message = message;
-        connections.notifyRoot(cmd.getAuthString(), notification);
-        connections.notifyOthers(cmd.getAuthString(), notification);
-    }
-    public void checkstate(String auth, Session session) {
-
+        connections.resign(cmd.getAuthString(), cmd.getGameID());
     }
 }

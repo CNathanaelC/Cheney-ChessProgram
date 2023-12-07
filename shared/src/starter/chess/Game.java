@@ -9,6 +9,13 @@ import static chess.ChessGame.TeamColor.WHITE;
 public class Game implements ChessGame{
     private TeamColor teamTurn = WHITE;
     public Board official_board = new Board();
+    private boolean gameOver = false;
+    public boolean go() {
+        return !gameOver;
+    }
+    public void end() {
+        gameOver = true;
+    }
     @Override
     public TeamColor getTeamTurn() {
         return teamTurn;
@@ -49,11 +56,7 @@ public class Game implements ChessGame{
         //if move is in possible moves
         Collection<ChessMove> possibleMoves = validMoves(move.getStartPosition());
         boolean continueQ = false;
-        System.out.println("Move: (" + ((Move)move).getStartPosition().getRow() + "," + ((Move)move).getStartPosition().getColumn() + ") to (" +
-                ((Move)move).getEndPosition().getRow() + "," + ((Move)move).getEndPosition().getColumn() + ")");
         for(ChessMove possibleMove : possibleMoves) {
-            System.out.println("\tMove: (" + ((Move)possibleMove).getStartPosition().getRow() + "," + ((Move)possibleMove).getStartPosition().getColumn() + ") to (" +
-                    ((Move)possibleMove).getEndPosition().getRow() + "," + ((Move)possibleMove).getEndPosition().getColumn() + ")");
            if(((Move)possibleMove).equals(move)) {
                 continueQ = true;
             }
