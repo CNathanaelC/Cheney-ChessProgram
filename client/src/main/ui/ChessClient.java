@@ -4,7 +4,9 @@ import chess.Board;
 import chess.Game;
 import chess.Piece;
 import chess.Position;
+import webSocketMessages.userCommands.JoinPlayer;
 
+import javax.websocket.Endpoint;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -18,6 +20,7 @@ public class ChessClient {
     public boolean joinedGame = false;
     public String playerColor;
     private static ServerFacade server = new ServerFacade();
+
     public static void main(String[] args) {
         new Repl().run();
     }
@@ -37,7 +40,7 @@ public class ChessClient {
                     case "poista" -> c();
                     default -> help();
                 };
-            } catch (ResponseException e) {
+            } catch (Exception e) {
                 return e.getMessage();
             }
         } else {
@@ -190,6 +193,7 @@ public class ChessClient {
         }
     }
     public String leaveGame() throws ResponseException {
+
         return "";
     }
     public String makeMove(String...params) throws ResponseException {

@@ -118,6 +118,23 @@ public class GameDAO {
             throw new DataAccessException("{ \"message\": \"Error: bad request\" }");
         }
     }
+    public void remove(int gameID) throws DataAccessException {
+        if(getAllGames().containsKey(gameID)) {
+            Database db = new Database();
+            try (Connection connection = db.getConnection()) {
+                String deleteGameData = "DELETE FROM allGameData WHERE gameID = ?";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(deleteGameData)) {
+                    preparedStatement.setInt(1, gameID);
+                    preparedStatement.executeUpdate();
+                }
+                db.closeConnection(connection);
+            } catch (DataAccessException | SQLException e) {
+                throw new DataAccessException("{ \"message\": \"Error: authTokens could not be cleared from the database\" }");
+            }
+        } else {
+            throw new DataAccessException("{ \"message\": \"Error: bad request\" }");
+        }
+    }
 
     /** A method for retrieving all games from the database
      *
@@ -197,11 +214,11 @@ public class GameDAO {
             }
             db.closeConnection(connection);
         } catch (DataAccessException | SQLException e) {
-            throw new DataAccessException("{ \"message\": \"Error: authTokens could not be cleared from the database\" }");
+            throw new DataAccessException("{ \"message\": \"Error: GameData could not be cleared from the database\" }");
         }
 //        allGames.clear();
         if(getAllGames().size() != 0) {
-            throw new DataAccessException("{ \"message\": \"Error: AuthTokens not cleared\" }");
+            throw new DataAccessException("{ \"message\": \"Error: GameData not cleared\" }");
         }
     }
 }

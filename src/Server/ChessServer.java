@@ -1,5 +1,6 @@
 package Server;
 
+import Server.webSocket.WebSocketHandler;
 import dataAccess.DataAccessException;
 import dataAccess.Database;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
@@ -9,7 +10,7 @@ import spark.Spark;
 import Handlers.*;
 
 import java.sql.SQLException;
-@WebSocket
+
 public class ChessServer {
     public static void main(String[] args) {
         new ChessServer().run();
@@ -24,7 +25,7 @@ public class ChessServer {
             System.out.println("SQL failed");
             e.printStackTrace();
         }
-        Spark.webSocket("/connect", ChessServer.class);
+        Spark.webSocket("/connect", WebSocketHandler.class);
         Spark.delete("/db", Handlers::ClearApplicationHandler);
         Spark.post("/user", Handlers::RegisterHandler);
         Spark.post("/session", Handlers::LoginHandler);
