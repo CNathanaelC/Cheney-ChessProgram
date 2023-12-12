@@ -1,6 +1,8 @@
 package chess;
 
 
+import java.util.HashMap;
+
 public class Position implements ChessPosition {
     private int row;
     private int column;
@@ -20,5 +22,9 @@ public class Position implements ChessPosition {
         column = c;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        Position p = (Position) obj;
+        return column == p.getColumn() && row == p.getRow();
+    }
 }

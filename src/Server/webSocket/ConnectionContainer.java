@@ -27,12 +27,17 @@ public class ConnectionContainer {
         return new GameDAO().find(gameID).getGame();
     }
     public GameData play(String auth, Integer gameID, ChessGame.TeamColor playerColor, Session session) throws Exception {
+        GameData gameData = new GameDAO().find(gameID);
         var connection = new Connection(auth, session);
         connections.put(auth, connection);
-        Game game = new GameDAO().find(gameID).getGame();
-        game.official_board.resetBoard();
+        Game game = gameData.getGame();
+        if(!game.started) {
+            game.official_board.resetBoard();
+            game.start();
+        }
+        gameData.setGame(game);
         new GameDAO().update(gameID, game);
-        return new GameDAO().find(gameID);
+        return gameData;
     }
 
     public void leave(String auth) {
@@ -48,18 +53,18 @@ public class ConnectionContainer {
                 if(new AuthDAO().getUsername(at).equals(gameData.getBlackUsername()) || new AuthDAO().getUsername(at).equals(gameData.getWhiteUsername())) {
                     game.end();
                     new GameDAO().update(gameID, game);
-                    String message = String.format("Player %s resigned from the game", new AuthDAO().getUsername(at));
+                    String message = String.format("\nPlayer %s resigned from the game", new AuthDAO().getUsername(at));
                     Notification notification = new Notification();
                     notification.message = message;
                     notifyAll(auth, notification);
                 } else {
-                    String message = String.format("Observers cannot resign, just leave");
+                    String message = String.format("\nObservers cannot resign, just leave");
                     ErrorMessage error = new ErrorMessage();
                     error.setErrorMessage(message);
                     notifyRoot(auth, error);
                 }
             } else {
-                String message = String.format("Game is over, resignation prohibited");
+                String message = String.format("\nGame is over, resignation prohibited");
                 ErrorMessage error = new ErrorMessage();
                 error.setErrorMessage(message);
                 notifyRoot(auth, error);
@@ -107,7 +112,7 @@ public class ConnectionContainer {
                                 }
                             }
                         } else {
-                            String message = String.format("It is not Black's turn");
+                            String message = String.format("\nIt is not Black's turn");
                             ErrorMessage error = new ErrorMessage();
                             error.setErrorMessage(message);
                             notifyRoot(auth, error);
@@ -118,14 +123,14 @@ public class ConnectionContainer {
                         new GameDAO().update(gameID, game);
                         return game;
                     } else {
-                        String message = String.format("Invalid Move");
+                        String message = String.format("\nInvalid Move");
                         ErrorMessage error = new ErrorMessage();
                         error.setErrorMessage(message);
                         notifyRoot(auth, error);
                         return null;
                     }
                 } else {
-                    String message = String.format("You cannot move this color");
+                    String message = String.format("\nYou cannot move this color");
                     ErrorMessage error = new ErrorMessage();
                     error.setErrorMessage(message);
                     notifyRoot(auth, error);
@@ -162,7 +167,7 @@ public class ConnectionContainer {
                                 }
                             }
                         } else {
-                            String message = String.format("It is not White's turn");
+                            String message = String.format("\nIt is not White's turn");
                             ErrorMessage error = new ErrorMessage();
                             error.setErrorMessage(message);
                             notifyRoot(auth, error);
@@ -172,28 +177,28 @@ public class ConnectionContainer {
                         new GameDAO().update(gameID, game);
                         return game;
                     } else {
-                        String message = String.format("Invalid Move");
+                        String message = String.format("\nInvalid Move");
                         ErrorMessage error = new ErrorMessage();
                         error.setErrorMessage(message);
                         notifyRoot(auth, error);
                         return null;
                     }
                 } else {
-                    String message = String.format("You cannot move this color");
+                    String message = String.format("\nYou cannot move this color");
                     ErrorMessage error = new ErrorMessage();
                     error.setErrorMessage(message);
                     notifyRoot(auth, error);
                     return null;
                 }
             } else {
-                String message = String.format("Observers cannot make moves");
+                String message = String.format("\nObservers cannot make moves");
                 ErrorMessage error = new ErrorMessage();
                 error.setErrorMessage(message);
                 notifyRoot(auth, error);
                 return null;
             }
         } else {
-            String message = String.format("Game is over, all moves prohibited");
+            String message = String.format("\nGame is over, all moves prohibited");
             ErrorMessage error = new ErrorMessage();
             error.setErrorMessage(message);
             notifyRoot(auth, error);

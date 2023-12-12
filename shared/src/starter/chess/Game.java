@@ -10,6 +10,10 @@ public class Game implements ChessGame{
     private TeamColor teamTurn = WHITE;
     public Board official_board = new Board();
     private boolean gameOver = false;
+    public boolean started = false;
+    public void start() {
+        started = true;
+    }
     public boolean go() {
         return !gameOver;
     }

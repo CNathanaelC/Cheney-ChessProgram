@@ -20,7 +20,6 @@ public class GameData {
     /** the actual game with its associated board, pieces, moves, and status(ongoing, checkmate, or stalemate) */
     private Game game;
 
-
     public int getGameID() {
         return gameID;
     }

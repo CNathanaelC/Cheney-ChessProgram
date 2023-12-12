@@ -7,11 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: All WebSocketTests completed but client is still not really working">
-      <change afterPath="$PROJECT_DIR$/client/src/main/ui/GameList.java" afterDir="false" />
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: All WebSocketTests completed but client is still not really working but the list games looks better">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/Model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/Model/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/chess/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +85,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.ChessClient">
-    <configuration name="ChessClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ChessClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.ChessClient" />
       <module name="client" />
       <extension name="coverage">
@@ -153,11 +157,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.ChessClient" />
+      <item itemvalue="Application.ChessServer" />
+      <item itemvalue="JUnit.StandardAPITests" />
+      <item itemvalue="JUnit.WebSocketTests" />
+      <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ChessClient" />
-        <item itemvalue="Application.ChessServer" />
         <item itemvalue="JUnit.WebSocketTests" />
+        <item itemvalue="Application.ChessServer" />
         <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
       </list>
@@ -403,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702350029176</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Phase 6: All WebSocketTests completed but client is still not really working but the list games looks better">
+      <created>1702354961382</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1702354961382</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -418,7 +436,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="phase 1 completed sans enpassant and castling" />
     <MESSAGE value="Phase 2 Completed and Modified" />
     <MESSAGE value="Phase 3 started and first two APIs are completed maybe" />
     <MESSAGE value="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring" />
@@ -443,7 +460,8 @@
     <MESSAGE value="Phase 6: Most of the JoinPlayer tests work as well as the leave test" />
     <MESSAGE value="Phase 6: All WebSocketTests completed" />
     <MESSAGE value="Phase 6: All WebSocketTests completed but client is still not really working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: All WebSocketTests completed but client is still not really working" />
+    <MESSAGE value="Phase 6: All WebSocketTests completed but client is still not really working but the list games looks better" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: All WebSocketTests completed but client is still not really working but the list games looks better" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -459,11 +477,16 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/client/src/main/ui/ChessClient.java</url>
-          <line>202</line>
-          <option name="timeStamp" value="27" />
+          <url>file://$PROJECT_DIR$/src/dataAccess/GameDAO.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Cheney_Chess_Program$ChessClient.ic" NAME="ChessClient Coverage Results" MODIFIED="1702420064522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ui.*</FILTER>
+    </SUITE>
   </component>
 </project>

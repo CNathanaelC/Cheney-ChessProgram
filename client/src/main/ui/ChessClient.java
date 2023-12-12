@@ -32,7 +32,7 @@ public class ChessClient {
                     return switch (cmd) {
                         case "resign" -> resign();
                         case "move" -> makeMove(params);
-                        case "highlight" -> highlight();
+                        case "highlight" -> highlight(params[0]);
                         case "redraw" -> redraw();
                         case "leave" -> leaveGame();
                         case "poista" -> c();
@@ -168,8 +168,6 @@ public class ChessClient {
                 playerColor = params[0].toUpperCase();
                 joinedGame = true;
                 joinedGameID = Integer.parseInt(params[1]);
-                server.printChessBoard(params[0].toUpperCase());
-                return "Game " + params[1] + " was successfully joined as the " + params[0].toLowerCase() + " player.\n";
             } else {
                 throw new ResponseException("Game Join Failure\n");
             }
@@ -178,20 +176,22 @@ public class ChessClient {
         } else {
             throw new ResponseException("Incorrect number of elements\n");
         }
+        server.printChessBoard(params[0].toUpperCase());
+        return "Game " + params[1] + " was successfully joined as the " + params[0].toLowerCase() + " player.\n";
     }
     public String joinObserver(String...params) throws ResponseException {
         if(params.length == 1) {
             if(server.joinObserver(Integer.parseInt(params[0]))) {
-                server.printChessBoard("WHITE");
                 joinedGame = true;
                 joinedGameID = Integer.parseInt(params[0]);
-                return "Game " + params[0] + " was successfully joined as the observer.\n";
             } else {
                 throw new ResponseException("Game Observe Failure\n");
             }
         } else {
             throw new ResponseException("Incorrect number of elements\n");
         }
+        server.printChessBoard("WHITE");
+        return "Game " + params[0] + " was successfully joined as the observer.\n";
     }
     public String leaveGame() throws ResponseException {
         joinedGame = false;
@@ -205,10 +205,12 @@ public class ChessClient {
             Position ep = new Position();
             var s = Arrays.copyOfRange(params[0].toLowerCase().split(","), 0, params[0].length());
             var e = Arrays.copyOfRange(params[1].toLowerCase().split(","), 0, params[1].length());
-            sp.setRow(s[0].charAt(0)-'a'+1);
-            sp.setColumn(Integer.parseInt(s[1]));
-            ep.setRow(e[0].charAt(0)-'a'+1);
-            ep.setColumn(Integer.parseInt(e[1]));
+            sp.setColumn(s[0].charAt(0)-'a'+1);
+            sp.setRow(Integer.parseInt(s[1]));
+            ep.setColumn(e[0].charAt(0)-'a'+1);
+            ep.setRow(Integer.parseInt(e[1]));
+            move.setStartPosition(sp);
+            move.setEndPosition(ep);
             if(server.makeMove(joinedGameID, move)) {
                 return "Move from " + params[0] + " to " + params[1] + " was successfully made.\n";
             } else {
@@ -232,9 +234,12 @@ public class ChessClient {
         server.printChessBoard(playerColor);
         return "";
     }
-    public String highlight() throws ResponseException {
-        //server.getGame().validMoves()
-        server.printChessBoard(playerColor);
+    public String highlight(String param) throws ResponseException {
+        Position position = new Position();
+        var p = Arrays.copyOfRange(param.toLowerCase().split(","), 0, param.length());
+        position.setColumn(p[0].charAt(0)-'a'+1);
+        position.setRow(Integer.parseInt(p[1]));
+        server.highlightChessBoard(playerColor, position);
         return "";
     }
 

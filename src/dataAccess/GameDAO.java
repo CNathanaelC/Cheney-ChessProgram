@@ -171,6 +171,8 @@ public class GameDAO {
                     throw new DataAccessException("{ \"message\": \"Error: White username could not be updated in the database\" }");
                 }
 //                allGames.put(gameID, game);
+            } else if(getAllGames().get(gameID).getWhiteUsername().equals(username)) {
+                return;
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }
@@ -192,6 +194,8 @@ public class GameDAO {
                     throw new DataAccessException("{ \"message\": \"Error: Black username could not be updated in the database\" }");
                 }
 //                allGames.put(gameID, game);
+            } else if(getAllGames().get(gameID).getBlackUsername().equals(username)) {
+                return;
             } else {
                 throw new DataAccessException("{ \"message\": \"Error: already taken\" }");
             }
