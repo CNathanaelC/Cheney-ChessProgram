@@ -1,5 +1,8 @@
 package ui;
 
+import Model.GameData;
+import chess.ChessGame;
+import chess.Game;
 import chess.Move;
 import com.google.gson.Gson;
 
@@ -10,14 +13,15 @@ import java.net.URL;
 import java.util.Scanner;
 
 import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 import spark.Request;
-import webSocketMessages.userCommands.Leave;
-import webSocketMessages.userCommands.MakeMove;
-import webSocketMessages.userCommands.Resign;
+import webSocketMessages.serverMessages.*;
+import webSocketMessages.userCommands.*;
 
 import javax.websocket.*;
 import java.net.URI;
@@ -30,20 +34,42 @@ import javax.websocket.WebSocketContainer;
 
 public class ServerFacade extends Endpoint {
     private static String userAuth;
-    public String output;
-    private String userName;
+    private Game game = new Game();
+    private ChessGame.TeamColor color = null;
     private String serverURL = "http://localhost:8080";
+    public javax.websocket.Session session;
+
+    MessageHandler messageHandler = new MessageHandler.Whole<String>() {
+        @Override
+        public void onMessage(String message) {
+            ServerMessage msg = new Gson().fromJson(message, ServerMessage.class);
+            switch (msg.getServerMessageType()) {
+                case LOAD_GAME -> setGame(new Gson().fromJson(message, LoadGame.class).getGame());
+                case ERROR -> System.out.println(new Gson().fromJson(message, ErrorMessage.class).getErrorMessage());
+                case NOTIFICATION -> System.out.println(new Gson().fromJson(message, Notification.class).getMessage());
+            }
+        }
+    };
 
     public ServerFacade() {
+//        game.official_board.resetBoard();
         try {
             URI uri = new URI("ws://localhost:8080/connect");
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, uri);
+            this.session.addMessageHandler(messageHandler);
         } catch (Exception e) {
-            System.out.print(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
-    public javax.websocket.Session session;
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
     public void send(String msg) throws ResponseException {
         try {
@@ -113,11 +139,23 @@ public class ServerFacade extends Endpoint {
 
     public boolean joinPlayer(String playerColor, int gameID) {
         try {
-            return makeRequest("PUT", "/game", "{" +
+            boolean result = makeRequest("PUT", "/game", "{" +
                     "  \"playerColor\": \""+ playerColor.toUpperCase() +"\"," +
                     "  \"gameID\": " + gameID +
                     "}");
-        } catch (IOException e) {
+            JoinPlayer jp = new JoinPlayer(userAuth);
+            jp.setGameID(gameID);
+            if(playerColor.toUpperCase().equals("BLACK")) {
+                jp.setPlayerColor(ChessGame.TeamColor.BLACK);
+                color = ChessGame.TeamColor.BLACK;
+            } else {
+                jp.setPlayerColor(ChessGame.TeamColor.WHITE);
+                color = ChessGame.TeamColor.WHITE;
+            }
+            send(new Gson().toJson(jp));
+            return result;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("Connection Failure");
             return false;
         }
@@ -125,11 +163,15 @@ public class ServerFacade extends Endpoint {
 
     public boolean joinObserver(int gameID) {
         try {
-            return makeRequest("PUT", "/game", "{" +
+            boolean result = makeRequest("PUT", "/game", "{" +
                     "  \"gameID\": " + gameID +
                     "}");
-
-        } catch (IOException e) {
+            JoinObserver jo = new JoinObserver(userAuth);
+            jo.setGameID(gameID);
+            send(new Gson().toJson(jo));
+            return result;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("Connection Failure");
             return false;
         }
@@ -148,8 +190,11 @@ public class ServerFacade extends Endpoint {
             Leave l = new Leave(userAuth);
             l.setGameID(gameID);
             send(new Gson().toJson(l));
+            game = null;
+            color = null;
             return true;
         } catch(ResponseException e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -161,6 +206,7 @@ public class ServerFacade extends Endpoint {
             send(new Gson().toJson(mm));
             return true;
         } catch(ResponseException e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -171,14 +217,9 @@ public class ServerFacade extends Endpoint {
             send(new Gson().toJson(r));
             return true;
         } catch(ResponseException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-    }
-    public boolean redraw(String color) {
-        return false;
-    }
-    public boolean highlight() {
-        return false;
     }
 
     private boolean makeRequest(String method, String path, String... body) throws IOException {

@@ -1,9 +1,6 @@
 package ui;
 
-import chess.Board;
-import chess.Game;
-import chess.Piece;
-import chess.Position;
+import chess.*;
 import webSocketMessages.userCommands.JoinPlayer;
 
 import javax.websocket.Endpoint;
@@ -19,6 +16,7 @@ public class ChessClient {
     public boolean sessionLogin = false;
     public boolean joinedGame = false;
     public String playerColor;
+    public Integer joinedGameID;
     private static ServerFacade server = new ServerFacade();
 
     public static void main(String[] args) {
@@ -26,27 +24,7 @@ public class ChessClient {
     }
     public String execute(String input) {
         if(sessionLogin) {
-            try {
-                var tokens = input.toLowerCase().split(" ");
-                var cmd = (tokens.length > 0) ? tokens[0] : "help";
-                var params = Arrays.copyOfRange(tokens, 1, tokens.length);
-                return switch (cmd) {
-                    case "quit" -> quit();
-                    case "create" -> createGame(params);
-                    case "play" -> joinGame(params);
-                    case "observe" -> joinObserver(params);
-                    case "list" -> listGames();
-                    case "logout" -> logout();
-                    case "poista" -> c();
-                    default -> help();
-                };
-            } catch (Exception e) {
-                return e.getMessage();
-            }
-        } else {
             if(joinedGame) {
-                printChessBoard("WHITE");
-                printChessBoard("BLACK");
                 try {
                     var tokens = input.toLowerCase().split(" ");
                     var cmd = (tokens.length > 0) ? tokens[0] : "help";
@@ -54,8 +32,8 @@ public class ChessClient {
                     return switch (cmd) {
                         case "resign" -> resign();
                         case "move" -> makeMove(params);
-                        case "highlight" -> highlight(params);
-                        case "redraw" -> redraw(playerColor);
+                        case "highlight" -> highlight();
+                        case "redraw" -> redraw();
                         case "leave" -> leaveGame();
                         case "poista" -> c();
                         default -> help();
@@ -70,14 +48,32 @@ public class ChessClient {
                     var params = Arrays.copyOfRange(tokens, 1, tokens.length);
                     return switch (cmd) {
                         case "quit" -> quit();
-                        case "login" -> login(params);
-                        case "register" -> register(params);
+                        case "create" -> createGame(params);
+                        case "play" -> joinGame(params);
+                        case "observe" -> joinObserver(params);
+                        case "list" -> listGames();
+                        case "logout" -> logout();
                         case "poista" -> c();
                         default -> help();
                     };
-                } catch (ResponseException e) {
+                } catch (Exception e) {
                     return e.getMessage();
                 }
+            }
+        } else {
+            try {
+                var tokens = input.toLowerCase().split(" ");
+                var cmd = (tokens.length > 0) ? tokens[0] : "help";
+                var params = Arrays.copyOfRange(tokens, 1, tokens.length);
+                return switch (cmd) {
+                    case "quit" -> quit();
+                    case "login" -> login(params);
+                    case "register" -> register(params);
+                    case "poista" -> c();
+                    default -> help();
+                };
+            } catch (ResponseException e) {
+                return e.getMessage();
             }
         }
     }
@@ -109,6 +105,7 @@ public class ChessClient {
     }
     public String quit() throws ResponseException {
         sessionLogin = false;
+        joinedGame = false;
         return "quit";
     }
     public String login(String...params) throws ResponseException {
@@ -117,7 +114,7 @@ public class ChessClient {
                 sessionLogin = true;
                 return "User was successfully logged in as " + params[0] + ".\n";
             } else {
-                throw new ResponseException("Login Failure");
+                throw new ResponseException("Login Failure\n");
             }
         } else {
             throw new ResponseException("Incorrect number of elements\n");
@@ -126,9 +123,11 @@ public class ChessClient {
     public String logout() throws ResponseException {
         if(server.logout()) {
             sessionLogin = false;
+            joinedGame = false;
+            leaveGame();
             return "User was successfully logged out\n";
         } else {
-            throw new ResponseException("Logout Failure");
+            throw new ResponseException("Logout Failure\n");
         }
     }
     public String register(String...params) throws ResponseException {
@@ -137,7 +136,7 @@ public class ChessClient {
                 sessionLogin = true;
                 return "User was successfully logged in as " + params[0] + ".\n";
             } else {
-                throw new ResponseException("Register Failure");
+                throw new ResponseException("Register Failure\n");
             }
         } else {
             throw new ResponseException("Incorrect number of elements\n");
@@ -148,7 +147,7 @@ public class ChessClient {
             if(server.createGame(params[0])) {
 
             } else {
-                throw new ResponseException("Game Creation Failure");
+                throw new ResponseException("Game Creation Failure\n");
             }
 
             return "Game was successfully created\n";
@@ -160,15 +159,16 @@ public class ChessClient {
         if(server.listGames()) {
             return "";
         } else {
-            throw new ResponseException("List Games Failure");
+            throw new ResponseException("List Games Failure\n");
         }
     }
     public String joinGame(String...params) throws ResponseException {
         if(params.length == 2) {
             if(server.joinPlayer(params[0], Integer.parseInt(params[1]))) {
-                printChessBoard("WHITE");
-                printChessBoard("BLACK");
-                playerColor = params[0];
+                playerColor = params[0].toUpperCase();
+                joinedGame = true;
+                joinedGameID = Integer.parseInt(params[1]);
+                printChessBoard(params[0].toUpperCase());
                 return "Game " + params[1] + " was successfully joined as the " + params[0].toLowerCase() + " player.\n";
             } else {
                 throw new ResponseException("Game Join Failure\n");
@@ -183,7 +183,8 @@ public class ChessClient {
         if(params.length == 1) {
             if(server.joinObserver(Integer.parseInt(params[0]))) {
                 printChessBoard("WHITE");
-                printChessBoard("BLACK");
+                joinedGame = true;
+                joinedGameID = Integer.parseInt(params[0]);
                 return "Game " + params[0] + " was successfully joined as the observer.\n";
             } else {
                 throw new ResponseException("Game Observe Failure\n");
@@ -193,34 +194,51 @@ public class ChessClient {
         }
     }
     public String leaveGame() throws ResponseException {
-
+        joinedGame = false;
+        joinedGameID = null;
         return "";
     }
     public String makeMove(String...params) throws ResponseException {
         if(params.length == 2) {
-            if(server.login(params[0], params[1])) {
-                return "Move from " + params[0] + "to " + params[1] + "was succesfully made.\n";
+            Move move = new Move();
+            Position sp = new Position();
+            Position ep = new Position();
+            var s = Arrays.copyOfRange(params[0].toLowerCase().split(","), 0, params[0].length());
+            var e = Arrays.copyOfRange(params[1].toLowerCase().split(","), 0, params[1].length());
+            sp.setRow(s[0].charAt(0)-'a'+1);
+            sp.setColumn(Integer.parseInt(s[1]));
+            ep.setRow(e[0].charAt(0)-'a'+1);
+            ep.setColumn(Integer.parseInt(e[1]));
+            if(server.makeMove(joinedGameID, move)) {
+                return "Move from " + params[0] + " to " + params[1] + " was successfully made.\n";
             } else {
-                throw new ResponseException("Move Failure");
+                throw new ResponseException("Move Failure\n");
             }
         } else {
             throw new ResponseException("Incorrect number of elements\n");
         }
     }
     public String resign() throws ResponseException {
+        if(server.resign(joinedGameID)) {
+
+        } else {
+            throw new ResponseException("Could not Resign");
+        }
+
         return "";
     }
-    public String redraw(String color) throws ResponseException {
-        printChessBoard(color);
+    public String redraw() throws ResponseException {
+
+        printChessBoard(playerColor);
         return "";
     }
-    public String highlight(String...params) throws ResponseException {
+    public String highlight() throws ResponseException {
+        //server.getGame().validMoves()
+        printChessBoard(playerColor);
         return "";
     }
     public void printChessBoard(String color) {
-        //TODO::get the actual board instead of a stand in board
-        Board board = new Board();
-        board.resetBoard();
+        Board board = (Board) server.getGame().getBoard();
         boolean b = true;
         System.out.print(SET_TEXT_COLOR_BLACK);
         if(color.equals("WHITE")) {

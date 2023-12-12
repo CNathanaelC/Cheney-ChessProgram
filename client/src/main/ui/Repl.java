@@ -17,9 +17,9 @@ public class Repl {
         var result = "";
         while (!result.equals("quit")) {
             if(chessClient.sessionLogin) {
-                System.out.print(SET_TEXT_COLOR_MAGENTA+"["+ "Logged In" + "] >>> " + SET_TEXT_COLOR_RED);
+                System.out.print("\n" + SET_TEXT_COLOR_MAGENTA+"["+ "Logged In" + "] >>> " + SET_TEXT_COLOR_RED);
             } else {
-                System.out.print(SET_TEXT_COLOR_MAGENTA+"["+ "Logged Out" + "] >>> " + SET_TEXT_COLOR_RED);
+                System.out.print("\n" + SET_TEXT_COLOR_MAGENTA+"["+ "Logged Out" + "] >>> " + SET_TEXT_COLOR_RED);
             }
             String line = scanner.nextLine();
 

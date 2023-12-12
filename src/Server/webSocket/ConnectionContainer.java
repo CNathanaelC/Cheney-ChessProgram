@@ -29,7 +29,7 @@ public class ConnectionContainer {
     public GameData play(String auth, Integer gameID, ChessGame.TeamColor playerColor, Session session) throws Exception {
         var connection = new Connection(auth, session);
         connections.put(auth, connection);
-        Game game = new Game();
+        Game game = new GameDAO().find(gameID).getGame();
         game.official_board.resetBoard();
         new GameDAO().update(gameID, game);
         return new GameDAO().find(gameID);

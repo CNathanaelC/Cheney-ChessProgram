@@ -7,9 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: Most of the JoinPlayer tests work as well as the leave test">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: All WebSocketTests completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/starter/chess/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/chess/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/ui/WebSocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/MakeMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/starter/webSocketMessages/userCommands/MakeMove.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/webSocket/WebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/webSocket/WebSocketHandler.java" afterDir="false" />
     </list>
@@ -80,7 +84,7 @@
       <recent name="chess" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.StandardAPITests">
+  <component name="RunManager" selected="Application.ChessServer">
     <configuration name="ChessClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.ChessClient" />
       <module name="client" />
@@ -155,10 +159,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="Application.ChessClient" />
-        <item itemvalue="JUnit.WebSocketTests" />
         <item itemvalue="Application.ChessServer" />
+        <item itemvalue="JUnit.WebSocketTests" />
+        <item itemvalue="JUnit.StandardAPITests" />
         <item itemvalue="JUnit.WebSocketTests.invalidMoveGameOver" />
       </list>
     </recent_temporary>
@@ -389,7 +393,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701908278394</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Phase 6: All WebSocketTests completed">
+      <created>1701990751231</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1701990751246</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -404,7 +415,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="18 failed 40 passed" />
     <MESSAGE value="15 failed 43 passed all pieces supposedly work correctly. None in valid moves and invalid make move, full game checkmate, and pinned king also failed" />
     <MESSAGE value="phase 1 completed sans enpassant and castling" />
     <MESSAGE value="Phase 2 Completed and Modified" />
@@ -429,7 +439,8 @@
     <MESSAGE value="Phase 5: Completed and Passed Off" />
     <MESSAGE value="Phase 6: Setup with questionable WebSocket for a couple functions." />
     <MESSAGE value="Phase 6: Most of the JoinPlayer tests work as well as the leave test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: Most of the JoinPlayer tests work as well as the leave test" />
+    <MESSAGE value="Phase 6: All WebSocketTests completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: All WebSocketTests completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -445,9 +456,9 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="21" />
+          <url>file://$PROJECT_DIR$/client/src/main/ui/ChessClient.java</url>
+          <line>202</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

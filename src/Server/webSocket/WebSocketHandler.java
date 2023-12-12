@@ -58,7 +58,8 @@ public class WebSocketHandler {
                         LoadGame loadGame = new LoadGame();
                         loadGame.setGame(gameData.getGame());
                         connections.notifyRoot(cmd.getAuthString(), loadGame);
-                        //Server sends a Notification message to all other clients in that game informing them what color the root client is joining as.
+                        //Server sends a Notification message to all other clients in that game
+                        // informing them what color the root client is joining as.
                         Notification notification = new Notification();
                         notification.message = message;
                         connections.notifyOthers(cmd.getAuthString(), notification);
