@@ -54,13 +54,13 @@ public class ServerFacade extends Endpoint {
                     switch (msg.getServerMessageType()) {
                         //add a conjoined update board and print method;
                         case LOAD_GAME -> updateGame(new Gson().fromJson(message, LoadGame.class).getGame());
-                        case ERROR -> System.out.println("\n" + new Gson().fromJson(message, ErrorMessage.class).getErrorMessage());
-                        case NOTIFICATION -> System.out.println("\n" + new Gson().fromJson(message, Notification.class).getMessage());
+                        case ERROR -> System.out.println(SET_TEXT_COLOR_RED + new Gson().fromJson(message, ErrorMessage.class).getErrorMessage());
+                        case NOTIFICATION -> System.out.println(SET_TEXT_COLOR_RED + new Gson().fromJson(message, Notification.class).getMessage());
                     }
                 }
             });
         } catch (Exception e) {
-            System.out.println("\n" + e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + "\n" + e.getMessage());
         }
     }
 
@@ -73,8 +73,11 @@ public class ServerFacade extends Endpoint {
     }
 
     public void updateGame(Game game) {
+        System.out.println();
         setGame(game);
-        if(color.equals(BLACK)) {
+        if(color == null){
+            printChessBoard("WHITE");
+        } else if(color.equals(BLACK)) {
             printChessBoard("BLACK");
         } else {
             printChessBoard("WHITE");
@@ -100,7 +103,7 @@ public class ServerFacade extends Endpoint {
                     "  \"email\": \""+ email +"\"" +
                     "}");
         } catch (IOException e) {
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -113,7 +116,7 @@ public class ServerFacade extends Endpoint {
                     "}");
 
         } catch (IOException e) {
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -122,7 +125,7 @@ public class ServerFacade extends Endpoint {
         try {
             return makeRequest("DELETE", "/session");
         } catch (IOException e) {
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -131,7 +134,7 @@ public class ServerFacade extends Endpoint {
         try {
             return makeRequest("GET", "/game");
         } catch (IOException e) {
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -142,7 +145,7 @@ public class ServerFacade extends Endpoint {
                     "  \"gameName\": \""+ gameName +"\"" +
                     "}");
         } catch (IOException e) {
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -165,8 +168,8 @@ public class ServerFacade extends Endpoint {
             send(new Gson().toJson(jp));
             return result;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -181,8 +184,8 @@ public class ServerFacade extends Endpoint {
             send(new Gson().toJson(jo));
             return result;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -191,7 +194,7 @@ public class ServerFacade extends Endpoint {
         try {
             return makeRequest("DELETE", "/db");
         } catch (IOException e) {
-            System.out.println("Connection Failure");
+            System.out.println(SET_TEXT_COLOR_RED + "Connection Failure");
             return false;
         }
     }
@@ -204,7 +207,7 @@ public class ServerFacade extends Endpoint {
             color = null;
             return true;
         } catch(ResponseException e) {
-            System.out.println(e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + e.getMessage());
             return false;
         }
     }
@@ -216,7 +219,7 @@ public class ServerFacade extends Endpoint {
             send(new Gson().toJson(mm));
             return true;
         } catch(ResponseException e) {
-            System.out.println(e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + e.getMessage());
             return false;
         }
     }
@@ -225,9 +228,10 @@ public class ServerFacade extends Endpoint {
             Resign r = new Resign(userAuth);
             r.setGameID(gameID);
             send(new Gson().toJson(r));
+            color = null;
             return true;
         } catch(ResponseException e) {
-            System.out.println(e.getMessage());
+            System.out.println(SET_TEXT_COLOR_RED + e.getMessage());
             return false;
         }
     }
@@ -294,7 +298,7 @@ public class ServerFacade extends Endpoint {
                 }
                 if(operation.equals("List Games")) {
                     GameList gm = new Gson().fromJson(message, GameList.class);
-                    System.out.println("Games:");
+                    System.out.println(SET_TEXT_COLOR_RED + "Games:");
                     for(GameData gd : gm.getGames()) {
                         System.out.println(SET_TEXT_BOLD + gd.getGameName() + RESET_TEXT_BOLD_FAINT + "(id: " + gd.getGameID() + ")");
                         if(gd.getWhiteUsername() == null) {
@@ -310,10 +314,10 @@ public class ServerFacade extends Endpoint {
                         System.out.println();
                     }
                 }
-                System.out.println(operation + " Operation Success");
+                System.out.println(SET_TEXT_COLOR_RED + operation + " Operation Success");
                 returnVal = true;
             } else {
-                System.out.println(operation + " Operation Failure: " + message);
+                System.out.println(SET_TEXT_COLOR_RED + operation + " Operation Failure: " + message);
                 returnVal = false;
             }
         } finally {

@@ -25,7 +25,7 @@ public class Repl {
 
             try {
                 result = chessClient.execute(line);
-                System.out.print(result);
+                System.out.print(SET_TEXT_COLOR_RED + result);
             } catch (Throwable e) {
                 System.out.println(e.getMessage());
             }
