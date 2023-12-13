@@ -192,9 +192,11 @@ public class ChessClient {
         return "Game " + params[0] + " was successfully joined as the observer.\n";
     }
     public String leaveGame() throws ResponseException {
+        server.leaveGame(joinedGameID);
         joinedGame = false;
         joinedGameID = null;
-        return "";
+        server = new ServerFacade();
+        return "You have left the game.\n";
     }
     public String makeMove(String...params) throws ResponseException {
         if(params.length == 2) {

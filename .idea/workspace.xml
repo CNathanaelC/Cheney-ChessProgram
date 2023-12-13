@@ -7,11 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: All WebSocketTests completed and mostly passed off with a few exceptions">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: All WebSocketTests completed and mostly passed off fixing text color issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/ui/Repl.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/Repl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/webSocket/WebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/webSocket/WebSocketHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702424012963</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Phase 6: All WebSocketTests completed and mostly passed off fixing text color issues">
+      <created>1702427521236</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1702427521236</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -439,7 +446,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Phase 3 started and first two APIs are completed maybe" />
     <MESSAGE value="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring" />
     <MESSAGE value="Phase 3: 8/23 passed (first 7 and last 1) login and register complete, and the rest still erroring" />
     <MESSAGE value="Phase 3: 17/23 passed (first 11 and various others) login and register complete, and the list ones are still erroring" />
@@ -464,7 +470,8 @@
     <MESSAGE value="Phase 6: All WebSocketTests completed but client is still not really working" />
     <MESSAGE value="Phase 6: All WebSocketTests completed but client is still not really working but the list games looks better" />
     <MESSAGE value="Phase 6: All WebSocketTests completed and mostly passed off with a few exceptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: All WebSocketTests completed and mostly passed off with a few exceptions" />
+    <MESSAGE value="Phase 6: All WebSocketTests completed and mostly passed off fixing text color issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: All WebSocketTests completed and mostly passed off fixing text color issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

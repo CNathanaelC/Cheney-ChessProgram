@@ -159,7 +159,7 @@ public class WebSocketHandler {
         connections.leave(cmd.getAuthString());
         AuthToken at = new AuthToken();
         at.setAuthToken(cmd.getAuthString());
-        String message = String.format("Player %s left the game", new AuthDAO().getUsername(at));
+        String message = String.format("User %s has left the game", new AuthDAO().getUsername(at));
         Notification notification = new Notification();
         notification.message = message;
         connections.notifyOthers(cmd.getAuthString(), notification);
