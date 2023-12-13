@@ -230,7 +230,11 @@ public class ChessClient {
         return "";
     }
     public String redraw() throws ResponseException {
-        server.printChessBoard(playerColor);
+        if(playerColor != null) {
+            server.printChessBoard(playerColor);
+        } else {
+            server.printChessBoard("WHITE");
+        }
         return "";
     }
     public String highlight(String...params) throws ResponseException {

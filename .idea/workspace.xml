@@ -7,11 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: All WebSocketTests completed and mostly passed off fixing text color issues">
+    <list default="true" id="4a936ebe-86ac-4112-a2f5-5dc62b8efe67" name="Changes" comment="Phase 6: Hopefully everything works, if so this is the last update to this program and hopefully its helpful to all of the devious students of the future">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ChessClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/ui/ServerFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/webSocket/WebSocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/webSocket/WebSocketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/webSocket/ConnectionContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataAccess/GameDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -431,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702427521236</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Phase 6: Hopefully everything works, if so this is the last update to this program and hopefully its helpful to all of the devious students of the future">
+      <created>1702441265305</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1702441265305</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -446,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Phase 3: 7/23 passed (first 6 and last 1) login complete, register almost, and the rest still erroring" />
     <MESSAGE value="Phase 3: 8/23 passed (first 7 and last 1) login and register complete, and the rest still erroring" />
     <MESSAGE value="Phase 3: 17/23 passed (first 11 and various others) login and register complete, and the list ones are still erroring" />
     <MESSAGE value="Phase 3: 20/23 passed (Only Watch Game, Join Created Game, List Multiple Games only fail)" />
@@ -471,7 +478,8 @@
     <MESSAGE value="Phase 6: All WebSocketTests completed but client is still not really working but the list games looks better" />
     <MESSAGE value="Phase 6: All WebSocketTests completed and mostly passed off with a few exceptions" />
     <MESSAGE value="Phase 6: All WebSocketTests completed and mostly passed off fixing text color issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: All WebSocketTests completed and mostly passed off fixing text color issues" />
+    <MESSAGE value="Phase 6: Hopefully everything works, if so this is the last update to this program and hopefully its helpful to all of the devious students of the future" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 6: Hopefully everything works, if so this is the last update to this program and hopefully its helpful to all of the devious students of the future" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -485,11 +493,6 @@
           <url>file://$PROJECT_DIR$/src/passoffTests/serverTests/StandardAPITests.java</url>
           <line>462</line>
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dataAccess/GameDAO.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

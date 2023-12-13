@@ -28,6 +28,9 @@ public class ConnectionContainer {
     }
     public GameData play(String auth, Integer gameID, ChessGame.TeamColor playerColor, Session session) throws Exception {
         GameData gameData = new GameDAO().find(gameID);
+        if(gameData == null) {
+            throw new Exception("GameID is invalid");
+        }
         var connection = new Connection(auth, session);
         connections.put(auth, connection);
         Game game = gameData.getGame();

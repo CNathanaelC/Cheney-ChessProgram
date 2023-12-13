@@ -588,7 +588,7 @@ public class ServerFacade extends Endpoint {
             System.out.println(RESET_BG_COLOR + RESET_TEXT_COLOR);
         }
     }
-    //fix the black player highlighting
+
     public void highlightChessBoard(String color, Position position) {
         Board board = (Board) getGame().getBoard();
         List<Position> possiblePositions = new ArrayList<>();
